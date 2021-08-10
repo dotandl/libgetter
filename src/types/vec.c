@@ -7,15 +7,17 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef CORE_H_
-#define CORE_H_
+#include <getter/types/vec.h>
 
-#include <getter/decl.h>
+void vec_str_free(vec_str_t *vec) {
+  char *str;
+  int i;
 
-HEADER_BEGIN
+  if (vec == NULL) return;
 
-WINDLL void hello(void);
+  vec_foreach(vec, str, i) {
+    if (str != NULL) free(str);
+  }
 
-HEADER_END
-
-#endif /* CORE_H_ */
+  free(vec);
+}

@@ -5,10 +5,5 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-# For Windows: Prevent overriding the parent project's compiler/linker settings
-set(gtest_force_shared_crt ON)
-
-add_subdirectory(googletest)
-
-include(jsmn.cmake)
-include(vec.cmake)
+add_library(vec STATIC vec/src/vec.c vec/src/vec.h)
+target_include_directories(vec PUBLIC ${PROJECT_SOURCE_DIR}/lib/vec/src)

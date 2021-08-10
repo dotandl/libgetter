@@ -7,11 +7,11 @@
 
 set(libgetter_VERSION 0.0.0)
 
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.12)
 project(libgetter VERSION ${libgetter_VERSION} LANGUAGES C CXX)
 
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 11) # Required by GoogleTest
 
 enable_testing()
 

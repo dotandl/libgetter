@@ -19,7 +19,7 @@
 #ifdef WINDLLBUILD
 #define WINDLL __declspec(dllexport)
 #else
-#define WINDLL __declsped(dllimport)
+#define WINDLL __declspec(dllimport)
 #endif
 #else
 #define WINDLL

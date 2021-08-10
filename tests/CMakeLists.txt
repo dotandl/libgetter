@@ -6,11 +6,11 @@
 # +----------------------------------------------------------+
 
 set(SOURCE_FILES
-  test.cpp
+  box/info.cpp
 )
 
 add_executable(libgetter_test ${SOURCE_FILES})
-target_link_libraries(libgetter_test gtest_main)
+target_link_libraries(libgetter_test libgetter_static gtest_main)
 
 include(GoogleTest)
 gtest_discover_tests(libgetter_test)

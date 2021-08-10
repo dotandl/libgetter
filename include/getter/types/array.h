@@ -7,6 +7,22 @@
  * +----------------------------------------------------------+
  */
 
-#include <gtest/gtest.h>
+#ifndef ARRAY_H_
+#define ARRAY_H_
 
-TEST(Math, Add) { EXPECT_EQ(2 + 2, 4); }
+#include <getter/decl.h>
+#include <vec.h>
+
+HEADER_BEGIN
+
+/**
+ * Returns a number of elements in the array.
+ *
+ * \param arr Array to calculate number of elements from.
+ * \returns Number of elements in the array.
+ */
+#define arrlen(arr) sizeof(arr) / sizeof(*arr)
+
+HEADER_END
+
+#endif /* ARRAY_H_ */

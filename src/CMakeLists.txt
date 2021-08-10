@@ -6,20 +6,26 @@
 # +----------------------------------------------------------+
 
 set(SOURCE_FILES
-  core.c
+  types/vec.c
+  box/info.c
 )
 
 set(HEADER_FILES
+  # Headers WITHOUT corresponding source files
   getter.h
   decl.h
+  types/array.h
 
-  core.h
+  # Headers WITH corresponding source files
+  types/vec.h
+  box/info.h
 )
 
 list(TRANSFORM HEADER_FILES PREPEND ${PROJECT_SOURCE_DIR}/include/getter/)
 
 add_library(libgetter_object OBJECT ${SOURCE_FILES} ${HEADER_FILES})
 target_include_directories(libgetter_object PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(libgetter_object PUBLIC jsmn vec)
 
 add_library(libgetter SHARED)
 add_library(libgetter_static STATIC)
