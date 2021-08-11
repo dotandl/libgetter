@@ -30,10 +30,10 @@ typedef vec_t(GttKeyVal) vec_keyval_t;
  *
  * \param vec String vector to free.
  */
-WINDLL void vec_str_free(vec_str_t *vec);
+WINDLL void dyn_vec_str_free(vec_str_t *vec);
 
 /**
- * Frees every key-value pair in dynamically-allocated key-value vector.
+ * Frees every dynamically allocated key and value pair in key-value vector.
  *
  * \param vec Key-value vector to free.
  */

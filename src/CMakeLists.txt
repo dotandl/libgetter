@@ -7,6 +7,7 @@
 
 set(SOURCE_FILES
   types/vec.c
+  types/pkvf.c
   box/info.c
 )
 
@@ -18,6 +19,7 @@ set(HEADER_FILES
 
   # Headers WITH corresponding source files
   types/vec.h
+  types/pkvf.h
   box/info.h
 )
 

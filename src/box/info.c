@@ -146,13 +146,13 @@ void gtt_box_info_delete(GttBoxInfo *self) {
   if (self->readme != NULL) free((char **)self->readme);
   if (self->changelog != NULL) free((char **)self->changelog);
 
-  vec_str_free(self->authors);
-  vec_str_free(self->categories);
-  vec_str_free(self->dependencies);
-  vec_str_free(self->build_dependencies);
-  vec_str_free(self->optional_dependencies);
-  vec_str_free(self->conflicts);
-  vec_str_free(self->replaces);
+  dyn_vec_str_free(self->authors);
+  dyn_vec_str_free(self->categories);
+  dyn_vec_str_free(self->dependencies);
+  dyn_vec_str_free(self->build_dependencies);
+  dyn_vec_str_free(self->optional_dependencies);
+  dyn_vec_str_free(self->conflicts);
+  dyn_vec_str_free(self->replaces);
 
   free(self);
 }
