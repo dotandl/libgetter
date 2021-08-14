@@ -19,7 +19,7 @@ static bool json_str_eq(const char *json, jsmntok_t *token, const char *str);
 static void json_str_alloc_copy(const char *json, jsmntok_t *token,
                                 char **dest);
 static void json_arr_to_vec(const char *json, jsmntok_t *token,
-                            vec_str_t **vec);
+                            GttVector_string **vec);
 
 GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   GttBoxInfo *bi;
@@ -146,13 +146,14 @@ void gtt_box_info_delete(GttBoxInfo *self) {
   if (self->readme != NULL) free((char **)self->readme);
   if (self->changelog != NULL) free((char **)self->changelog);
 
-  dyn_vec_str_free(self->authors);
-  dyn_vec_str_free(self->categories);
-  dyn_vec_str_free(self->dependencies);
-  dyn_vec_str_free(self->build_dependencies);
-  dyn_vec_str_free(self->optional_dependencies);
-  dyn_vec_str_free(self->conflicts);
-  dyn_vec_str_free(self->replaces);
+  // BUG: memory leak: strings are not freed
+  gtt_vector_string_delete(self->authors);
+  gtt_vector_string_delete(self->categories);
+  gtt_vector_string_delete(self->dependencies);
+  gtt_vector_string_delete(self->build_dependencies);
+  gtt_vector_string_delete(self->optional_dependencies);
+  gtt_vector_string_delete(self->conflicts);
+  gtt_vector_string_delete(self->replaces);
 
   free(self);
 }
@@ -170,20 +171,20 @@ void json_str_alloc_copy(const char *json, jsmntok_t *token, char **dest) {
   memcpy(*dest, json + token->start, token->end - token->start);
 }
 
-void json_arr_to_vec(const char *json, jsmntok_t *token, vec_str_t **vec) {
+void json_arr_to_vec(const char *json, jsmntok_t *token,
+                     GttVector_string **vec) {
   jsmntok_t *current_tok;
   char *buf;
   int i;
 
   if (token->type != JSMN_ARRAY) return;
 
-  *vec = malloc(sizeof(vec_str_t));
-  vec_init(*vec);
+  *vec = gtt_vector_string_new();
 
   for (i = 0; i < token->size; i++) {
     current_tok = token + i + 1;
 
     json_str_alloc_copy(json, current_tok, &buf);
-    vec_push(*vec, buf);
+    gtt_vector_string_push(*vec, buf);
   }
 }

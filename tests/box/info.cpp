@@ -44,25 +44,25 @@ TEST(BoxInfo, CreatesFromJSONAllFields) {
 
   EXPECT_STREQ(bi->homepage, "https://example.com/");
   EXPECT_STREQ(bi->repository, "example/box");
-  EXPECT_STREQ(bi->authors->data[0], "Josh");
-  EXPECT_STREQ(bi->authors->data[1], "Jimmy");
-  EXPECT_STREQ(bi->categories->data[0], "Utilities");
+  EXPECT_STREQ(gtt_vector_string_get(bi->authors, 0), "Josh");
+  EXPECT_STREQ(gtt_vector_string_get(bi->authors, 1), "Jimmy");
+  EXPECT_STREQ(gtt_vector_string_get(bi->categories, 0), "Utilities");
 
   EXPECT_STREQ(bi->license_name, "MIT");
   EXPECT_STREQ(bi->license, "LICENSE.txt");
   EXPECT_STREQ(bi->readme, "README.txt");
   EXPECT_STREQ(bi->changelog, "CHANGELOG.txt");
 
-  EXPECT_STREQ(bi->dependencies->data[0], "box1");
-  EXPECT_STREQ(bi->dependencies->data[1], "box2");
-  EXPECT_STREQ(bi->build_dependencies->data[0], "box3");
-  EXPECT_STREQ(bi->build_dependencies->data[1], "box4");
-  EXPECT_STREQ(bi->build_dependencies->data[2], "box5");
-  EXPECT_STREQ(bi->optional_dependencies->data[0], "box6");
-  EXPECT_STREQ(bi->conflicts->data[0], "box7");
-  EXPECT_STREQ(bi->conflicts->data[1], "box8");
-  EXPECT_STREQ(bi->replaces->data[0], "box9");
-  EXPECT_STREQ(bi->replaces->data[1], "box10");
+  EXPECT_STREQ(gtt_vector_string_get(bi->dependencies, 0), "box1");
+  EXPECT_STREQ(gtt_vector_string_get(bi->dependencies, 1), "box2");
+  EXPECT_STREQ(gtt_vector_string_get(bi->build_dependencies, 0), "box3");
+  EXPECT_STREQ(gtt_vector_string_get(bi->build_dependencies, 1), "box4");
+  EXPECT_STREQ(gtt_vector_string_get(bi->build_dependencies, 2), "box5");
+  EXPECT_STREQ(gtt_vector_string_get(bi->optional_dependencies, 0), "box6");
+  EXPECT_STREQ(gtt_vector_string_get(bi->conflicts, 0), "box7");
+  EXPECT_STREQ(gtt_vector_string_get(bi->conflicts, 1), "box8");
+  EXPECT_STREQ(gtt_vector_string_get(bi->replaces, 0), "box9");
+  EXPECT_STREQ(gtt_vector_string_get(bi->replaces, 1), "box10");
 
   gtt_box_info_delete(bi);
 }
@@ -82,7 +82,7 @@ TEST(BoxInfo, CreatesFromJSONRequiredFields) {
   EXPECT_STREQ(bi->name, "another-example");
   EXPECT_STREQ(bi->full_name, "Another Example");
   EXPECT_STREQ(bi->summary, "Yet another example box");
-  EXPECT_STREQ(bi->authors->data[0], "Jack");
+  EXPECT_STREQ(gtt_vector_string_get(bi->authors, 0), "Jack");
   EXPECT_STREQ(bi->license_name, "GPLv3");
 
   gtt_box_info_delete(bi);

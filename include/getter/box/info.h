@@ -10,8 +10,14 @@
 #ifndef INFO_H_
 #define INFO_H_
 
+#include <string.h>
+
+#define GTT_VEC_TYPE char *
+#define GTT_VEC_NAME string
+#define gtt_vec_compare_elements(el1, el2) strcmp(el1, el2) == 0
+
 #include <getter/decl.h>
-#include <vec.h>
+#include <getter/types/vector.h>
 
 HEADER_BEGIN
 
@@ -24,19 +30,19 @@ struct GttBoxInfo {
 
   const char *homepage;
   const char *repository;
-  vec_str_t *authors;
-  vec_str_t *categories;
+  GttVector_string *authors;
+  GttVector_string *categories;
 
   const char *license_name;  ///< Name of the license (like MIT, GPLv3, etc.).
   const char *license;       ///< Path to the license file.
   const char *readme;        ///< Path to the readme file.
   const char *changelog;     ///< Path to the changelog file.
 
-  vec_str_t *dependencies;
-  vec_str_t *build_dependencies;
-  vec_str_t *optional_dependencies;
-  vec_str_t *conflicts;
-  vec_str_t *replaces;
+  GttVector_string *dependencies;
+  GttVector_string *build_dependencies;
+  GttVector_string *optional_dependencies;
+  GttVector_string *conflicts;
+  GttVector_string *replaces;
 };
 
 typedef struct GttBoxInfo GttBoxInfo;
