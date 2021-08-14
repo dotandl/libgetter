@@ -24,9 +24,9 @@ TEST(StringVector, GetsElement) {
   gtt_vector_string_push(vec, (char *)strings[1]);
   gtt_vector_string_push(vec, (char *)strings[2]);
 
-  EXPECT_STREQ(gtt_vector_string_get(vec, 0), strings[0]);
-  EXPECT_STREQ(gtt_vector_string_get(vec, 1), strings[1]);
-  EXPECT_STREQ(gtt_vector_string_get(vec, 2), strings[2]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 0)->value, strings[0]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 1)->value, strings[1]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 2)->value, strings[2]);
 
   gtt_vector_string_delete(vec);
 }
@@ -55,9 +55,9 @@ TEST(StringVector, UnshiftsElement) {
   gtt_vector_string_push(vec, (char *)strings[1]);
   gtt_vector_string_unshift(vec, (char *)strings[2]);
 
-  EXPECT_STREQ(gtt_vector_string_get(vec, 0), strings[2]);
-  EXPECT_STREQ(gtt_vector_string_get(vec, 1), strings[0]);
-  EXPECT_STREQ(gtt_vector_string_get(vec, 2), strings[1]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 0)->value, strings[2]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 1)->value, strings[0]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 2)->value, strings[1]);
 
   gtt_vector_string_delete(vec);
 }
@@ -70,9 +70,9 @@ TEST(StringVector, InsertsElement) {
   gtt_vector_string_push(vec, (char *)strings[1]);
   gtt_vector_string_insert(vec, (char *)strings[2], 1);
 
-  EXPECT_STREQ(gtt_vector_string_get(vec, 0), strings[0]);
-  EXPECT_STREQ(gtt_vector_string_get(vec, 1), strings[2]);
-  EXPECT_STREQ(gtt_vector_string_get(vec, 2), strings[1]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 0)->value, strings[0]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 1)->value, strings[2]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 2)->value, strings[1]);
 
   gtt_vector_string_delete(vec);
 }
@@ -86,8 +86,8 @@ TEST(StringVector, RemovesFirstElement) {
   gtt_vector_string_push(vec, (char *)strings[2]);
   gtt_vector_string_remove_first(vec);
 
-  EXPECT_STREQ(gtt_vector_string_get(vec, 0), strings[1]);
-  EXPECT_STREQ(gtt_vector_string_get(vec, 1), strings[2]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 0)->value, strings[1]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 1)->value, strings[2]);
 
   gtt_vector_string_delete(vec);
 }
@@ -101,8 +101,8 @@ TEST(StringVector, RemovesLastElement) {
   gtt_vector_string_push(vec, (char *)strings[2]);
   gtt_vector_string_remove_last(vec);
 
-  EXPECT_STREQ(gtt_vector_string_get(vec, 0), strings[0]);
-  EXPECT_STREQ(gtt_vector_string_get(vec, 1), strings[1]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 0)->value, strings[0]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 1)->value, strings[1]);
 
   gtt_vector_string_delete(vec);
 }
@@ -116,8 +116,8 @@ TEST(StringVector, RemovesElement) {
   gtt_vector_string_push(vec, (char *)strings[2]);
   gtt_vector_string_remove(vec, 1);
 
-  EXPECT_STREQ(gtt_vector_string_get(vec, 0), strings[0]);
-  EXPECT_STREQ(gtt_vector_string_get(vec, 1), strings[2]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 0)->value, strings[0]);
+  EXPECT_STREQ(gtt_vector_string_get(vec, 1)->value, strings[2]);
 
   gtt_vector_string_delete(vec);
 }

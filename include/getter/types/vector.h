@@ -24,7 +24,7 @@
  * gtt_vector_integer_push(vec, 12);
  * gtt_vector_integer_push(vec, 123);
  *
- * int element = gtt_vector_integer_get(vec, 1); // Will be 12
+ * int element = gtt_vector_integer_get(vec, 1)->value; // Will be 12
  * int index = gtt_vector_integer_index_of(vec, 123); // Will be 2
  *
  * gtt_vector_integer_delete(vec);
@@ -47,6 +47,7 @@
  *
  * Types:
  * - `GttVector_<GTT_VEC_NAME>`
+ * - `GttVectorNode_<GTT_VEC_NAME>`
  *
  * Functions:
  * - `GttVector_<GTT_VEC_NAME> *gtt_vector_<GTT_VEC_NAME>_new(void)`
@@ -82,7 +83,7 @@ HEADER_BEGIN
 #error GTT_VEC_NAME not defined.
 #endif
 
-#ifndef gtt_vec_compare_elements
+#if !defined(gtt_vec_compare_elements) && !defined(GTT_VEC_DISABLE_INDEX_OF)
 #define gtt_vec_compare_elements(el1, el2) (el1) == (el2)
 #endif
 
@@ -135,8 +136,8 @@ static void __gtt_vector_func(delete)(__GTT_VECTOR *self) {
   free(self);
 }
 
-static GTT_VEC_TYPE __gtt_vector_func(get)(__GTT_VECTOR *self,
-                                           unsigned int idx) {
+static __GTT_VECTOR_NODE *__gtt_vector_func(get)(__GTT_VECTOR *self,
+                                                 unsigned int idx) {
   __GTT_VECTOR_NODE *node;
   unsigned int i;
 
@@ -148,9 +149,10 @@ static GTT_VEC_TYPE __gtt_vector_func(get)(__GTT_VECTOR *self,
     node = node->next;
   }
 
-  return node->value;
+  return node;
 }
 
+#ifndef GTT_VEC_DISABLE_INDEX_OF
 static int __gtt_vector_func(index_of)(__GTT_VECTOR *self, GTT_VEC_TYPE val) {
   __GTT_VECTOR_NODE *node;
   unsigned int i;
@@ -169,6 +171,7 @@ static int __gtt_vector_func(index_of)(__GTT_VECTOR *self, GTT_VEC_TYPE val) {
 
   return i;
 }
+#endif
 
 static void __gtt_vector_func(unshift)(__GTT_VECTOR *self, GTT_VEC_TYPE val) {
   __GTT_VECTOR_NODE *node;

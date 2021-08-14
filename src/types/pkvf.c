@@ -11,12 +11,13 @@
 #include <stdio.h>
 #include <string.h>
 
-bool gtt_parse_pkvf(const char *pkvf, vec_keyval_t *vec) {
+bool gtt_parse_pkvf(const char *pkvf, GttVector_pkvf_token **vec) {
   size_t key_len, val_len;
   char *line_ptr, *seq_ptr, *key, *val;
-  GttKeyVal kv;
+  GttPKVFToken token;
+  GttPKVFTokenValue token_value;
 
-  vec_init(vec);
+  *vec = gtt_vector_pkvf_token_new();
 
   line_ptr = strtok((char *)pkvf, "\n");
   while (line_ptr != NULL) {
@@ -35,8 +36,13 @@ bool gtt_parse_pkvf(const char *pkvf, vec_keyval_t *vec) {
     // val starts 3 characters after the sequence
     sprintf(val, "%.*s", val_len, seq_ptr + 3);
 
-    kv = (GttKeyVal){key, val};
-    vec_push(vec, kv);
+    token_value.str = val;
+
+    token.key = key;
+    token.val = token_value;
+    token.type = GTT_PKVF_STRING_TOKEN;
+
+    gtt_vector_pkvf_token_push(*vec, token);
 
   skip:
     line_ptr = strtok(NULL, "\n");

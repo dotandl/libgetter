@@ -15,25 +15,26 @@ TEST(PKVF, ParsesValidPKVF) {
       "1st key@#@first value\n"
       "second key@#@and the value\n";
 
-  vec_keyval_t vec;
+  GttVector_pkvf_token *vec;
   bool res = gtt_parse_pkvf(pkvf, &vec);
 
   EXPECT_TRUE(res);
-  EXPECT_STREQ(vec.data[0].key, "1st key");
-  EXPECT_STREQ((char *)vec.data[0].val, "first value");
-  EXPECT_STREQ(vec.data[1].key, "second key");
-  EXPECT_STREQ((char *)vec.data[1].val, "and the value");
+  EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.key, "1st key");
+  EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.val.str, "first value");
+  EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 1)->value.key, "second key");
+  EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 1)->value.val.str,
+               "and the value");
 
-  vec_keyval_free(&vec);
+  gtt_vector_pkvf_token_delete(vec);
 }
 
 TEST(PKVF, DoesNotCreateInvalidPKVF) {
   const char pkvf[] = "asjkdahs\najksdj\n\n";
 
-  vec_keyval_t vec;
+  GttVector_pkvf_token *vec;
   bool res = gtt_parse_pkvf(pkvf, &vec);
 
   EXPECT_FALSE(res);
 
-  vec_keyval_free(&vec);
+  gtt_vector_pkvf_token_delete(vec);
 }
