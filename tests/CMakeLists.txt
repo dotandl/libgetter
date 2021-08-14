@@ -8,6 +8,7 @@
 set(SOURCE_FILES
   box/info.cpp
   types/pkvf.cpp
+  types/vector.cpp
 )
 
 add_executable(libgetter_test ${SOURCE_FILES})

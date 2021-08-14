@@ -16,6 +16,7 @@ set(HEADER_FILES
   getter.h
   decl.h
   types/array.h
+  types/vector.h
 
   # Headers WITH corresponding source files
   types/vec.h
