@@ -9,7 +9,6 @@
 
 #include <getter/box/info.h>
 #include <getter/types/array.h>
-#include <getter/types/vec.h>
 #include <jsmn.h>
 #include <stdbool.h>
 #include <stdlib.h>

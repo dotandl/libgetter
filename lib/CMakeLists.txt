@@ -11,4 +11,3 @@ set(gtest_force_shared_crt ON)
 add_subdirectory(googletest)
 
 include(jsmn.cmake)
-include(vec.cmake)

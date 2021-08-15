@@ -4,6 +4,3 @@
 [submodule "lib/jsmn"]
 	path = lib/jsmn
 	url = https://github.com/zserge/jsmn
-[submodule "lib/vec"]
-	path = lib/vec
-	url = https://github.com/rxi/vec

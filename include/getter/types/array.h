@@ -11,7 +11,6 @@
 #define ARRAY_H_
 
 #include <getter/decl.h>
-#include <vec.h>
 
 HEADER_BEGIN
 
