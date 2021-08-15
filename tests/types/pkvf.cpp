@@ -25,7 +25,7 @@ TEST(PKVF, ParsesValidPKVF) {
   EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 1)->value.val.str,
                "and the value");
 
-  gtt_vector_pkvf_token_delete(vec);
+  gtt_vector_pkvf_token_free(vec);
 }
 
 TEST(PKVF, DoesNotCreateInvalidPKVF) {
@@ -36,5 +36,5 @@ TEST(PKVF, DoesNotCreateInvalidPKVF) {
 
   EXPECT_FALSE(res);
 
-  gtt_vector_pkvf_token_delete(vec);
+  gtt_vector_pkvf_token_free(vec);
 }

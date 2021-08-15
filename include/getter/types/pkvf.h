@@ -21,7 +21,7 @@ HEADER_BEGIN
 #define gtt_vec_compare_elements(el1, el2) strcmp(el1, el2) == 0
 #include <getter/types/vector.h>
 
-enum GttPKVFTokenType { GTT_PKVF_STRING_TOKEN, GTT_PKVF_STRING_ARRAY_TOKEN };
+enum GttPKVFTokenType { GTT_PKVF_STRING_TOKEN, GTT_PKVF_STRING_VECTOR_TOKEN };
 
 typedef enum GttPKVFTokenType GttPKVFTokenType;
 typedef union GttPKVFTokenValue GttPKVFTokenValue;
@@ -69,6 +69,15 @@ struct GttPKVFToken {
  * in. \returns True if there was no errors while parsing PKVF.
  */
 WINDLL bool gtt_parse_pkvf(const char *pkvf, GttVector_pkvf_token **vec);
+
+/**
+ * Frees every key and value in PKVF token vector and then calls
+ * gtt_vector_pkvf_token_delete().
+ * Call this function instead of calling gtt_vector_pkvf_token_delete().
+ *
+ * \param vec Token vector to free.
+ */
+WINDLL void gtt_vector_pkvf_token_free(GttVector_pkvf_token *vec);
 
 HEADER_END
 

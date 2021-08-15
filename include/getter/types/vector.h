@@ -68,6 +68,9 @@
  * *self)`
  * - `void gtt_vector_<GTT_VEC_NAME>_remove(GttVector_<GTT_VEC_NAME> *self,
  * unsigned int idx)`
+ *
+ * Macros:
+ * - `gtt_vector_for_each(vec, node)`
  */
 
 #include <getter/decl.h>
@@ -94,6 +97,10 @@ HEADER_BEGIN
 #define __GTT_VECTOR_NODE __strcat(GttVectorNode_, GTT_VEC_NAME)
 #define __gtt_vector_func(func) \
   __strcat(gtt_vector_, __strcat(GTT_VEC_NAME, __strcat(_, func)))
+
+#define gtt_vector_for_each(vec, node) \
+  if ((vec)->length > 0)               \
+    for ((node) = (vec)->first; (node) != NULL; (node) = (node)->next)
 
 typedef struct __GTT_VECTOR __GTT_VECTOR;
 typedef struct __GTT_VECTOR_NODE __GTT_VECTOR_NODE;

@@ -132,7 +132,14 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   return bi;
 }
 
+#define free_all_strings(vec, node)                             \
+  if ((vec) != NULL)                                            \
+  gtt_vector_for_each((vec), (node)) if ((node)->value != NULL) \
+      free((node)->value)
+
 void gtt_box_info_delete(GttBoxInfo *self) {
+  GttVectorNode_string *node;
+
   if (self == NULL) return;
 
   if (self->name != NULL) free((char **)self->name);
@@ -146,7 +153,14 @@ void gtt_box_info_delete(GttBoxInfo *self) {
   if (self->readme != NULL) free((char **)self->readme);
   if (self->changelog != NULL) free((char **)self->changelog);
 
-  // BUG: memory leak: strings are not freed
+  free_all_strings(self->authors, node);
+  free_all_strings(self->categories, node);
+  free_all_strings(self->dependencies, node);
+  free_all_strings(self->build_dependencies, node);
+  free_all_strings(self->optional_dependencies, node);
+  free_all_strings(self->conflicts, node);
+  free_all_strings(self->replaces, node);
+
   gtt_vector_string_delete(self->authors);
   gtt_vector_string_delete(self->categories);
   gtt_vector_string_delete(self->dependencies);

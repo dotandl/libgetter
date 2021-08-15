@@ -50,3 +50,29 @@ bool gtt_parse_pkvf(const char *pkvf, GttVector_pkvf_token **vec) {
 
   return true;
 }
+
+void gtt_vector_pkvf_token_free(GttVector_pkvf_token *vec) {
+  GttVectorNode_pkvf_token *node_pkvf;
+  GttVectorNode_string *node_str;
+
+  if (vec == NULL) return;
+
+  gtt_vector_for_each(vec, node_pkvf) {
+    if (node_pkvf->value.key != NULL) free((char *)node_pkvf->value.key);
+
+    switch (node_pkvf->value.type) {
+      case GTT_PKVF_STRING_TOKEN:
+        if (node_pkvf->value.val.str != NULL)
+          free((char *)node_pkvf->value.val.str);
+        break;
+
+      case GTT_PKVF_STRING_VECTOR_TOKEN:
+        gtt_vector_for_each(node_pkvf->value.val.vec, node_str) {
+          if (node_str->value != NULL) free(node_str->value);
+        }
+        break;
+    }
+  }
+
+  gtt_vector_pkvf_token_delete(vec);
+}
