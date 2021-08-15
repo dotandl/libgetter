@@ -30,7 +30,7 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   jsmn_init(&parser);
 
   tokens_count = 32;
-  tokens = malloc(sizeof(jsmntok_t) * tokens_count);
+  tokens = calloc(tokens_count, sizeof(jsmntok_t));
   res = jsmn_parse(&parser, json, strlen(json), tokens, tokens_count);
 
   while (res == JSMN_ERROR_NOMEM) {
@@ -50,6 +50,7 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   }
 
   bi = malloc(sizeof(GttBoxInfo));
+  memset(bi, 0, sizeof(GttBoxInfo));
 
   for (i = 1; i < res; i++) {
     if (json_str_eq(json, &tokens[i], "name")) {  // STRINGS

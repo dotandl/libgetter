@@ -11,15 +11,18 @@
 #include <stdio.h>
 #include <string.h>
 
+static GttVector_string *pkvf_value_to_vec(const char *val);
+
 bool gtt_parse_pkvf(const char *pkvf, GttVector_pkvf_token **vec) {
   size_t key_len, val_len;
-  char *line_ptr, *seq_ptr, *key, *val;
+  char *line_ptr, *save_ptr, *seq_ptr, *key, *val;
+  GttVector_string *vals;
   GttPKVFToken token;
   GttPKVFTokenValue token_value;
 
   *vec = gtt_vector_pkvf_token_new();
 
-  line_ptr = strtok((char *)pkvf, "\n");
+  line_ptr = strtok_r((char *)pkvf, "\n", &save_ptr);
   while (line_ptr != NULL) {
     if (strcmp(line_ptr, "") == 0) goto skip;
 
@@ -36,16 +39,24 @@ bool gtt_parse_pkvf(const char *pkvf, GttVector_pkvf_token **vec) {
     // val starts 3 characters after the sequence
     sprintf(val, "%.*s", val_len, seq_ptr + 3);
 
-    token_value.str = val;
+    if (strstr(val, "@,@")) {
+      vals = pkvf_value_to_vec(val);
+      free(val);
+
+      token_value.vec = vals;
+      token.type = GTT_PKVF_STRING_VECTOR_TOKEN;
+    } else {
+      token_value.str = val;
+      token.type = GTT_PKVF_STRING_TOKEN;
+    }
 
     token.key = key;
     token.val = token_value;
-    token.type = GTT_PKVF_STRING_TOKEN;
 
     gtt_vector_pkvf_token_push(*vec, token);
 
   skip:
-    line_ptr = strtok(NULL, "\n");
+    line_ptr = strtok_r(NULL, "\n", &save_ptr);
   }
 
   return true;
@@ -67,12 +78,34 @@ void gtt_vector_pkvf_token_free(GttVector_pkvf_token *vec) {
         break;
 
       case GTT_PKVF_STRING_VECTOR_TOKEN:
-        gtt_vector_for_each(node_pkvf->value.val.vec, node_str) {
-          if (node_str->value != NULL) free(node_str->value);
+        if (node_pkvf->value.val.vec != NULL) {
+          gtt_vector_for_each(node_pkvf->value.val.vec, node_str) {
+            if (node_str->value != NULL) free(node_str->value);
+          }
+
+          gtt_vector_string_delete(node_pkvf->value.val.vec);
         }
         break;
     }
   }
 
   gtt_vector_pkvf_token_delete(vec);
+}
+
+GttVector_string *pkvf_value_to_vec(const char *val) {
+  char *el_ptr, *save_ptr, *el;
+  GttVector_string *vec;
+
+  vec = gtt_vector_string_new();
+
+  el_ptr = strtok_r((char *)val, "@,@", &save_ptr);
+  while (el_ptr != NULL) {
+    el = calloc(strlen(el_ptr) + 1, sizeof(char));
+    strcpy(el, el_ptr);
+    gtt_vector_string_push(vec, el);
+
+    el_ptr = strtok_r(NULL, "@,@", &save_ptr);
+  }
+
+  return vec;
 }
