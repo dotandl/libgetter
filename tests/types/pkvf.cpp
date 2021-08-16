@@ -31,7 +31,7 @@ TEST(PKVF, ParsesValidPKVF) {
 TEST(PKVF, ParsesValidPKVFWithArray) {
   const char pkvf[] =
       "1st key@#@string value\n"
-      "2nd key@#@array@,@of@,@strings\n";
+      "2nd key@#@array@,@of@,@strings@,@\n";
 
   GttVector_pkvf_token *vec;
   bool res = gtt_parse_pkvf(pkvf, &vec);

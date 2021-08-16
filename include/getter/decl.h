@@ -7,6 +7,9 @@
  * +----------------------------------------------------------+
  */
 
+#ifndef DECL_H_
+#define DECL_H_
+
 #ifdef __cplusplus
 #define HEADER_BEGIN extern "C" {
 #define HEADER_END }
@@ -24,3 +27,5 @@
 #else
 #define WINDLL
 #endif
+
+#endif /* DECL_H_ */

@@ -6,8 +6,9 @@
 # +----------------------------------------------------------+
 
 set(SOURCE_FILES
-  types/pkvf.c
   box/info.c
+  release/info.c
+  types/pkvf.c
 )
 
 set(HEADER_FILES
@@ -18,8 +19,9 @@ set(HEADER_FILES
   types/vector.h
 
   # Headers WITH corresponding source files
-  types/pkvf.h
   box/info.h
+  release/info.h
+  types/pkvf.h
 )
 
 list(TRANSFORM HEADER_FILES PREPEND ${PROJECT_SOURCE_DIR}/include/getter/)

@@ -13,6 +13,7 @@
 
 static GttVector_string *pkvf_value_to_vec(const char *val);
 
+// TODO: make gtt_parse_pkvf return GttVector_pkvf_token *
 bool gtt_parse_pkvf(const char *pkvf, GttVector_pkvf_token **vec) {
   size_t key_len, val_len;
   char *line_ptr, *save_ptr, *seq_ptr, *key, *val;
@@ -100,10 +101,13 @@ GttVector_string *pkvf_value_to_vec(const char *val) {
 
   el_ptr = strtok_r((char *)val, "@,@", &save_ptr);
   while (el_ptr != NULL) {
+    if (strcmp(el_ptr, "") == 0) goto skip;
+
     el = calloc(strlen(el_ptr) + 1, sizeof(char));
     strcpy(el, el_ptr);
     gtt_vector_string_push(vec, el);
 
+  skip:
     el_ptr = strtok_r(NULL, "@,@", &save_ptr);
   }
 

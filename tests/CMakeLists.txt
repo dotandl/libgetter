@@ -7,6 +7,7 @@
 
 set(SOURCE_FILES
   box/info.cpp
+  release/info.cpp
   types/pkvf.cpp
   types/vector.cpp
 )

@@ -14,8 +14,6 @@
 
 HEADER_BEGIN
 
-#include <getter/core.h>
-
 HEADER_END
 
 #endif /* GETTER_H_ */

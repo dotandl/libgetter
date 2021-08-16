@@ -7,31 +7,17 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef BOX_INFO_H_
-#define BOX_INFO_H_
-
-#include <string.h>
-
-#define GTT_VEC_TYPE char *
-#define GTT_VEC_NAME string
-#define gtt_vec_compare_elements(el1, el2) strcmp(el1, el2) == 0
+#ifndef RELEASE_INFO_H_
+#define RELEASE_INFO_H_
 
 #include <getter/decl.h>
-#include <getter/types/vector.h>
+#include <getter/types/pkvf.h>
 
 HEADER_BEGIN
 
-/** Representation of GetterBox.json file. */
-struct GttBoxInfo {
-  const char *name;
-  const char *full_name;
-  const char *summary;
-  const char *description;
-
-  const char *homepage;
+/** Representation of the info section of GetterRelease file. */
+struct GttReleaseInfo {
   const char *repository;
-  GttVector_string *authors;
-  GttVector_string *categories;
 
   const char *license_name;  ///< Name of the license (like MIT, GPLv3, etc.).
   const char *license;       ///< Path to the license file.
@@ -45,25 +31,26 @@ struct GttBoxInfo {
   GttVector_string *replaces;
 };
 
-typedef struct GttBoxInfo GttBoxInfo;
+typedef struct GttReleaseInfo GttReleaseInfo;
 
 /**
- * Creates new GttBoxInfo from the contents of GetterBox.json file.
+ * Creates new GttReleaseInfo from the PKVF generated from the GetterRelease
+ * file.
  *
- * \param json The contents of GetterBox.json file.
- * \returns Created GttBoxInfo.
- * \see GttBoxInfo
+ * \param pkvf PKVF generated from the contents of the GetterRelease file.
+ * \returns Created GttReleaseInfo.
+ * \see GttReleaseInfo
  */
-WINDLL GttBoxInfo *gtt_box_info_new_from_json(const char *json);
+WINDLL GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf);
 
 /**
- * Deletes existing GttBoxInfo.
+ * Deletes existing GttReleaseInfo.
  *
- * \param self Pointer to GttBoxInfo to delete.
- * \see GttBoxInfo
+ * \param self Pointer to GttReleaseInfo to delete.
+ * \see GttReleaseInfo
  */
-WINDLL void gtt_box_info_delete(GttBoxInfo *self);
+WINDLL void gtt_release_info_delete(GttReleaseInfo *self);
 
 HEADER_END
 
-#endif /* BOX_INFO_H_ */
+#endif /* RELEASE_INFO_H_ */
