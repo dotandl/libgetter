@@ -8,6 +8,7 @@
 set(SOURCE_FILES
   box/info.c
   release/info.c
+  release/release.c
   types/pkvf.c
 )
 
@@ -21,6 +22,7 @@ set(HEADER_FILES
   # Headers WITH corresponding source files
   box/info.h
   release/info.h
+  release/release.h
   types/pkvf.h
 )
 
@@ -28,13 +30,15 @@ list(TRANSFORM HEADER_FILES PREPEND ${PROJECT_SOURCE_DIR}/include/getter/)
 
 add_library(libgetter_object OBJECT ${SOURCE_FILES} ${HEADER_FILES})
 target_include_directories(libgetter_object PUBLIC ${PROJECT_SOURCE_DIR}/include)
-target_link_libraries(libgetter_object PUBLIC jsmn)
+target_link_libraries(libgetter_object PUBLIC jsmn tiny-regex-c)
 
 add_library(libgetter SHARED)
 add_library(libgetter_static STATIC)
 
 target_link_libraries(libgetter PUBLIC libgetter_object)
 target_link_libraries(libgetter_static PUBLIC libgetter_object)
+
+set_target_properties(libgetter libgetter_static PROPERTIES OUTPUT_NAME getter)
 
 if(WIN32)
   target_compile_definitions(libgetter PRIVATE WINDLLBUILD)

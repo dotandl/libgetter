@@ -11,3 +11,4 @@ set(gtest_force_shared_crt ON)
 add_subdirectory(googletest)
 
 include(jsmn.cmake)
+include(tiny-regex-c.cmake)

@@ -5,16 +5,5 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-set(SOURCE_FILES
-  box/info.cpp
-  release/info.cpp
-  release/release.cpp
-  types/pkvf.cpp
-  types/vector.cpp
-)
-
-add_executable(libgetter_test ${SOURCE_FILES})
-target_link_libraries(libgetter_test libgetter_static gtest_main)
-
-include(GoogleTest)
-gtest_discover_tests(libgetter_test)
+add_library(tiny-regex-c STATIC tiny-regex-c/re.c tiny-regex-c/re.h)
+target_include_directories(tiny-regex-c PUBLIC ${PROJECT_SOURCE_DIR}/lib/tiny-regex-c)

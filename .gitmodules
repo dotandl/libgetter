@@ -4,3 +4,6 @@
 [submodule "lib/jsmn"]
 	path = lib/jsmn
 	url = https://github.com/zserge/jsmn
+[submodule "lib/tiny-regex-c"]
+	path = lib/tiny-regex-c
+	url = https://github.com/kokke/tiny-regex-c
