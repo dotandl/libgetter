@@ -7,6 +7,7 @@
 
 set(SOURCE_FILES
   box/info.c
+  box/box.c
   release/info.c
   release/release.c
   types/pkvf.c
@@ -19,9 +20,11 @@ set(HEADER_FILES
   types/array.h
   types/vector.h
   types/vectors/string.h
+  types/vectors/release.h
 
   # Headers WITH corresponding source files
   box/info.h
+  box/box.h
   release/info.h
   release/release.h
   types/pkvf.h
