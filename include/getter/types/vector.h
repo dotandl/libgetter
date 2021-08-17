@@ -318,4 +318,9 @@ static void __gtt_vector_func(remove)(__GTT_VECTOR *self, unsigned int idx) {
 #undef __GTT_VECTOR_NODE
 #undef __gtt_vector_func
 
+#undef GTT_VEC_TYPE
+#undef GTT_VEC_NAME
+#undef GTT_VEC_DISABLE_INDEX_OF
+#undef gtt_vec_compare_elements
+
 HEADER_END

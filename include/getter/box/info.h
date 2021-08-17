@@ -10,14 +10,8 @@
 #ifndef BOX_INFO_H_
 #define BOX_INFO_H_
 
-#include <string.h>
-
-#define GTT_VEC_TYPE char *
-#define GTT_VEC_NAME string
-#define gtt_vec_compare_elements(el1, el2) strcmp(el1, el2) == 0
-
 #include <getter/decl.h>
-#include <getter/types/vector.h>
+#include <getter/types/vectors/string.h>
 
 HEADER_BEGIN
 

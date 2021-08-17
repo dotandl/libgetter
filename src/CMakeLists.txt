@@ -18,6 +18,7 @@ set(HEADER_FILES
   decl.h
   types/array.h
   types/vector.h
+  types/vectors/string.h
 
   # Headers WITH corresponding source files
   box/info.h

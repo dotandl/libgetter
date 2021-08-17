@@ -11,15 +11,10 @@
 #define TYPES_PKVF_H_
 
 #include <getter/decl.h>
+#include <getter/types/vectors/string.h>
 #include <stdbool.h>
-#include <string.h>
 
 HEADER_BEGIN
-
-#define GTT_VEC_TYPE char *
-#define GTT_VEC_NAME string
-#define gtt_vec_compare_elements(el1, el2) strcmp(el1, el2) == 0
-#include <getter/types/vector.h>
 
 enum GttPKVFTokenType { GTT_PKVF_STRING_TOKEN, GTT_PKVF_STRING_VECTOR_TOKEN };
 
@@ -36,10 +31,6 @@ struct GttPKVFToken {
   GttPKVFTokenValue val;
   GttPKVFTokenType type;
 };
-
-#undef GTT_VEC_TYPE
-#undef GTT_VEC_NAME
-#undef gtt_vec_compare_elements
 
 #define GTT_VEC_TYPE GttPKVFToken
 #define GTT_VEC_NAME pkvf_token

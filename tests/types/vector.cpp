@@ -7,13 +7,7 @@
  * +----------------------------------------------------------+
  */
 
-#include <cstring>
-
-#define GTT_VEC_TYPE char *
-#define GTT_VEC_NAME string
-#define gtt_vec_compare_elements(el1, el2) strcmp((el1), (el2)) == 0
-
-#include <getter/types/vector.h>
+#include <getter/types/vectors/string.h>
 #include <gtest/gtest.h>
 
 TEST(StringVector, GetsElement) {
