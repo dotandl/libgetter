@@ -8,7 +8,9 @@
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON)
 
+set(PCRE2_BUILD_TESTS OFF)
+
 add_subdirectory(googletest)
+add_subdirectory(pcre)
 
 include(jsmn.cmake)
-include(tiny-regex-c.cmake)
