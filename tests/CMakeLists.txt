@@ -9,6 +9,7 @@ set(SOURCE_FILES
   box/info.cpp
   release/info.cpp
   release/release.cpp
+  release/version.cpp
   types/pkvf.cpp
   types/vector.cpp
 )

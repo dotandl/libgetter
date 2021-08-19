@@ -10,6 +10,7 @@ set(SOURCE_FILES
   box/box.c
   release/info.c
   release/release.c
+  release/version.c
   types/pkvf.c
 )
 
@@ -21,12 +22,14 @@ set(HEADER_FILES
   types/vector.h
   types/vectors/string.h
   types/vectors/release.h
+  tools/platform.h
 
   # Headers WITH corresponding source files
   box/info.h
   box/box.h
   release/info.h
   release/release.h
+  release/version.h
   types/pkvf.h
 )
 
