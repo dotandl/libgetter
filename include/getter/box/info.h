@@ -7,8 +7,8 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef BOX_INFO_H_
-#define BOX_INFO_H_
+#ifndef INCLUDE_GETTER_BOX_INFO_H_
+#define INCLUDE_GETTER_BOX_INFO_H_
 
 #include <getter/types/vectors/string.h>
 
@@ -59,4 +59,4 @@ WINDLL void gtt_box_info_delete(GttBoxInfo *self);
 
 HEADER_END
 
-#endif /* BOX_INFO_H_ */
+#endif /* INCLUDE_GETTER_BOX_INFO_H_ */

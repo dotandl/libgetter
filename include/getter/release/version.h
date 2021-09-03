@@ -7,8 +7,8 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef RELEASE_VERSION_H_
-#define RELEASE_VERSION_H_
+#ifndef INCLUDE_GETTER_RELEASE_VERSION_H_
+#define INCLUDE_GETTER_RELEASE_VERSION_H_
 
 #include <getter/types/vectors/release.h>
 
@@ -28,4 +28,4 @@ WINDLL GttRelease *gtt_get_latest_release_version(GttVector_release *releases);
 
 HEADER_END
 
-#endif /* RELEASE_VERSION_H_ */
+#endif /* INCLUDE_GETTER_RELEASE_VERSION_H_ */

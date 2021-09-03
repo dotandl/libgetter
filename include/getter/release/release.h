@@ -7,8 +7,8 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef RELEASE_H_
-#define RELEASE_H_
+#ifndef INCLUDE_GETTER_RELEASE_RELEASE_H_
+#define INCLUDE_GETTER_RELEASE_RELEASE_H_
 
 #include <getter/release/info.h>
 
@@ -50,4 +50,4 @@ WINDLL void gtt_release_delete(GttRelease *self);
 
 HEADER_END
 
-#endif /* RELEASE_H_ */
+#endif /* INCLUDE_GETTER_RELEASE_RELEASE_H_ */

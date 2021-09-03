@@ -7,8 +7,8 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef BOX_H_
-#define BOX_H_
+#ifndef INCLUDE_GETTER_BOX_BOX_H_
+#define INCLUDE_GETTER_BOX_BOX_H_
 
 #include <getter/box/info.h>
 #include <getter/types/vectors/release.h>
@@ -45,4 +45,4 @@ WINDLL void gtt_box_delete(GttBox *self);
 
 HEADER_END
 
-#endif /* BOX_H_ */
+#endif /* INCLUDE_GETTER_BOX_BOX_H_ */

@@ -7,8 +7,8 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef RELEASE_INFO_H_
-#define RELEASE_INFO_H_
+#ifndef INCLUDE_GETTER_RELEASE_INFO_H_
+#define INCLUDE_GETTER_RELEASE_INFO_H_
 
 #include <getter/types/pkvf.h>
 
@@ -52,4 +52,4 @@ WINDLL void gtt_release_info_delete(GttReleaseInfo *self);
 
 HEADER_END
 
-#endif /* RELEASE_INFO_H_ */
+#endif /* INCLUDE_GETTER_RELEASE_INFO_H_ */

@@ -7,8 +7,8 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef TOOLS_PLATFORM_H_
-#define TOOLS_PLATFORM_H_
+#ifndef INCLUDE_GETTER_TOOLS_PLATFORM_H_
+#define INCLUDE_GETTER_TOOLS_PLATFORM_H_
 
 HEADER_BEGIN
 
@@ -59,4 +59,4 @@ HEADER_BEGIN
 
 HEADER_END
 
-#endif /* TOOLS_PLATFORM_H_ */
+#endif /* INCLUDE_GETTER_TOOLS_PLATFORM_H_ */

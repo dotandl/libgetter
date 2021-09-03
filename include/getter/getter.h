@@ -7,11 +7,10 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef GETTER_H_
-#define GETTER_H_
+#ifndef INCLUDE_GETTER_GETTER_H_
+#define INCLUDE_GETTER_GETTER_H_
 
 HEADER_BEGIN
-
 HEADER_END
 
-#endif /* GETTER_H_ */
+#endif /* INCLUDE_GETTER_GETTER_H_ */
