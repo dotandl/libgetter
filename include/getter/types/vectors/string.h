@@ -10,7 +10,6 @@
 #ifndef TYPES_VECTORS_STRING_H_
 #define TYPES_VECTORS_STRING_H_
 
-#include <getter/decl.h>
 #include <string.h>
 
 HEADER_BEGIN

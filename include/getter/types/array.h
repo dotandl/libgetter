@@ -10,8 +10,6 @@
 #ifndef TYPES_ARRAY_H_
 #define TYPES_ARRAY_H_
 
-#include <getter/decl.h>
-
 HEADER_BEGIN
 
 /**

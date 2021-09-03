@@ -17,7 +17,7 @@ set(SOURCE_FILES
 set(HEADER_FILES
   # Headers WITHOUT corresponding source files
   getter.h
-  decl.h
+  common.h
   types/array.h
   types/vector.h
   types/vectors/string.h
@@ -38,6 +38,14 @@ list(TRANSFORM HEADER_FILES PREPEND ${PROJECT_SOURCE_DIR}/include/getter/)
 add_library(libgetter_object OBJECT ${SOURCE_FILES} ${HEADER_FILES})
 target_include_directories(libgetter_object PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(libgetter_object PUBLIC jsmn pcre2-8-static)
+
+set(COMMON_HEADER ${PROJECT_SOURCE_DIR}/include/getter/common.h)
+
+if(MSVC)
+  target_compile_options(libgetter_object PUBLIC /FI"${COMMON_HEADER}")
+else()
+  target_compile_options(libgetter_object PUBLIC -include "${COMMON_HEADER}")
+endif()
 
 add_library(libgetter SHARED)
 add_library(libgetter_static STATIC)

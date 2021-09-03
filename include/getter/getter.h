@@ -10,8 +10,6 @@
 #ifndef GETTER_H_
 #define GETTER_H_
 
-#include <getter/decl.h>
-
 HEADER_BEGIN
 
 HEADER_END

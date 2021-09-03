@@ -10,7 +10,6 @@
 #ifndef RELEASE_VERSION_H_
 #define RELEASE_VERSION_H_
 
-#include <getter/decl.h>
 #include <getter/types/vectors/release.h>
 
 HEADER_BEGIN

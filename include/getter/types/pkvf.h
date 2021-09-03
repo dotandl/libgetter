@@ -10,7 +10,6 @@
 #ifndef TYPES_PKVF_H_
 #define TYPES_PKVF_H_
 
-#include <getter/decl.h>
 #include <getter/types/vectors/string.h>
 #include <stdbool.h>
 

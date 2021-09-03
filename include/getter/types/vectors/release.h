@@ -10,7 +10,6 @@
 #ifndef TYPES_VECTORS_RELEASE_H_
 #define TYPES_VECTORS_RELEASE_H_
 
-#include <getter/decl.h>
 #include <getter/release/release.h>
 
 HEADER_BEGIN

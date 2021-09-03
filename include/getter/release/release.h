@@ -10,7 +10,6 @@
 #ifndef RELEASE_H_
 #define RELEASE_H_
 
-#include <getter/decl.h>
 #include <getter/release/info.h>
 
 HEADER_BEGIN

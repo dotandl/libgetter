@@ -7,8 +7,8 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef DECL_H_
-#define DECL_H_
+#ifndef COMMON_H_
+#define COMMON_H_
 
 #ifdef __cplusplus
 #define HEADER_BEGIN extern "C" {
@@ -28,4 +28,4 @@
 #define WINDLL
 #endif
 
-#endif /* DECL_H_ */
+#endif /* COMMON_H_ */

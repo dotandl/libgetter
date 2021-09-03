@@ -73,7 +73,6 @@
  * - `gtt_vector_for_each(vec, node)`
  */
 
-#include <getter/decl.h>
 #include <stdlib.h>
 
 HEADER_BEGIN

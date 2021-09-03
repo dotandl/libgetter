@@ -11,7 +11,6 @@
 #define BOX_H_
 
 #include <getter/box/info.h>
-#include <getter/decl.h>
 #include <getter/types/vectors/release.h>
 
 HEADER_BEGIN

@@ -10,7 +10,6 @@
 #ifndef RELEASE_INFO_H_
 #define RELEASE_INFO_H_
 
-#include <getter/decl.h>
 #include <getter/types/pkvf.h>
 
 HEADER_BEGIN

@@ -10,8 +10,6 @@
 #ifndef TOOLS_PLATFORM_H_
 #define TOOLS_PLATFORM_H_
 
-#include <getter/decl.h>
-
 HEADER_BEGIN
 
 #pragma region GTT_PLATFORM

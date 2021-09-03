@@ -10,7 +10,6 @@
 #ifndef BOX_INFO_H_
 #define BOX_INFO_H_
 
-#include <getter/decl.h>
 #include <getter/types/vectors/string.h>
 
 HEADER_BEGIN
