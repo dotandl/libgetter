@@ -15,10 +15,9 @@ TEST(PKVF, ParsesValidPKVF) {
       "1st key@#@first value\n"
       "second key@#@and the value\n";
 
-  GttVector_pkvf_token *vec;
-  bool res = gtt_parse_pkvf(pkvf, &vec);
+  GttVector_pkvf_token *vec = gtt_parse_pkvf(pkvf);
 
-  EXPECT_TRUE(res);
+  ASSERT_TRUE(vec != NULL);
   EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.key, "1st key");
   EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.val.str, "first value");
   EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 1)->value.key, "second key");
@@ -33,13 +32,12 @@ TEST(PKVF, ParsesValidPKVFWithArray) {
       "1st key@#@string value\n"
       "2nd key@#@array@,@of@,@strings@,@\n";
 
-  GttVector_pkvf_token *vec;
-  bool res = gtt_parse_pkvf(pkvf, &vec);
+  GttVector_pkvf_token *vec = gtt_parse_pkvf(pkvf);
 
   GttVector_string *second_value =
       gtt_vector_pkvf_token_get(vec, 1)->value.val.vec;
 
-  EXPECT_TRUE(res);
+  ASSERT_TRUE(vec != NULL);
   EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.key, "1st key");
   EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.val.str,
                "string value");
@@ -54,10 +52,6 @@ TEST(PKVF, ParsesValidPKVFWithArray) {
 TEST(PKVF, DoesNotCreateInvalidPKVF) {
   const char pkvf[] = "asjkdahs\najksdj\n\n";
 
-  GttVector_pkvf_token *vec;
-  bool res = gtt_parse_pkvf(pkvf, &vec);
-
-  EXPECT_FALSE(res);
-
-  gtt_vector_pkvf_token_free(vec);
+  GttVector_pkvf_token *vec = gtt_parse_pkvf(pkvf);
+  EXPECT_TRUE(vec == NULL);
 }

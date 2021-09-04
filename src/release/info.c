@@ -17,11 +17,9 @@ GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
   GttPKVFToken *token;
   GttVector_pkvf_token *vec;
   GttVectorNode_pkvf_token *node;
-  bool res;
 
-  res = gtt_parse_pkvf(pkvf, &vec);
-
-  if (!res) return NULL;  // error while parsing
+  vec = gtt_parse_pkvf(pkvf);
+  if (vec == NULL) return NULL;  // error while parsing
 
   self = malloc(sizeof(GttReleaseInfo));
   memset(self, 0, sizeof(GttReleaseInfo));

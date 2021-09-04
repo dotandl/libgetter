@@ -13,21 +13,24 @@
 
 static GttVector_string *pkvf_value_to_vec(const char *val);
 
-// TODO: make gtt_parse_pkvf return GttVector_pkvf_token *
-bool gtt_parse_pkvf(const char *pkvf, GttVector_pkvf_token **vec) {
+GttVector_pkvf_token *gtt_parse_pkvf(const char *pkvf) {
   size_t key_len, val_len;
   char *line_ptr, *save_ptr, *seq_ptr, *key, *val;
+  GttVector_pkvf_token *vec;
   GttVector_string *vals;
   GttPKVFToken token;
   GttPKVFTokenValue token_value;
 
-  *vec = gtt_vector_pkvf_token_new();
+  vec = gtt_vector_pkvf_token_new();
 
   line_ptr = strtok_r((char *)pkvf, "\n", &save_ptr);
   while (line_ptr != NULL) {
     if (strcmp(line_ptr, "") == 0) goto skip;
 
-    if ((seq_ptr = strstr(line_ptr, "@#@")) == NULL) return false;
+    if ((seq_ptr = strstr(line_ptr, "@#@")) == NULL) {
+      gtt_vector_pkvf_token_free(vec);
+      return NULL;  // could not parse PKVF string
+    }
 
     key_len = seq_ptr - line_ptr;
     val_len = strlen(seq_ptr + 3);
@@ -54,13 +57,13 @@ bool gtt_parse_pkvf(const char *pkvf, GttVector_pkvf_token **vec) {
     token.key = key;
     token.val = token_value;
 
-    gtt_vector_pkvf_token_push(*vec, token);
+    gtt_vector_pkvf_token_push(vec, token);
 
   skip:
     line_ptr = strtok_r(NULL, "\n", &save_ptr);
   }
 
-  return true;
+  return vec;
 }
 
 void gtt_vector_pkvf_token_free(GttVector_pkvf_token *vec) {

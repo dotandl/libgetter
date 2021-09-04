@@ -12,6 +12,7 @@
 #include <getter/release/version.h>
 #include <getter/types/array.h>
 #include <pcre2.h>
+#include <stdbool.h>
 
 static inline bool is_newer(int l_major, int l_minor, int l_patch, int c_major,
                             int c_minor, int c_patch);

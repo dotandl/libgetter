@@ -11,7 +11,6 @@
 #define TYPES_PKVF_H_
 
 #include <getter/types/vectors/string.h>
-#include <stdbool.h>
 
 HEADER_BEGIN
 
@@ -55,10 +54,9 @@ struct GttPKVFToken {
  * `@,@` keys sequence.
  *
  * \param pkvf PKVF string. It must not be a string literal.
- * \param vec Pointer to a pointer to an uninitialized token vector to fill
- * in. \returns True if there was no errors while parsing PKVF.
+ * \returns Vector with tokens read from PKVF.
  */
-WINDLL bool gtt_parse_pkvf(const char *pkvf, GttVector_pkvf_token **vec);
+WINDLL GttVector_pkvf_token *gtt_parse_pkvf(const char *pkvf);
 
 /**
  * Frees every key and value in PKVF token vector and then calls
