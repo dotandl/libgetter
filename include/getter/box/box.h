@@ -11,6 +11,7 @@
 #define INCLUDE_GETTER_BOX_BOX_H_
 
 #include <getter/box/info.h>
+#include <getter/release/release.h>
 #include <getter/types/vectors/release.h>
 
 HEADER_BEGIN
@@ -42,6 +43,33 @@ WINDLL GttBox *gtt_box_new(GttBoxInfo *info, GttVector_release *releases);
  * \see GttBox
  */
 WINDLL void gtt_box_delete(GttBox *self);
+
+/**
+ * Returns selected version of the Release for a given platform and
+ * architecture.
+ *
+ * \param self Box to search for the Release in.
+ * \param version Version of the Release (or NULL for the latest one).
+ * \param platform Target platform of the Release (or NULL for the host one).
+ * \param arch Target processor architecture of the Release (or NULL for the
+ * host one).
+ * \returns Selected version of the Release for selected platform and
+ * architecture.
+ * \see GttBox
+ */
+WINDLL GttRelease *gtt_box_get_release(GttBox *self, const char *version,
+                                       const char *platform, const char *arch);
+
+/**
+ * Returns the latest Release for host platform and architecture.
+ *
+ * \param self Box to search for the Release in.
+ * \returns The latest Release for host platform and architecture.
+ * \see GttBox
+ */
+inline GttRelease *gtt_box_get_appropriate_release(GttBox *self) {
+  return gtt_box_get_release(self, NULL, NULL, NULL);
+}
 
 HEADER_END
 

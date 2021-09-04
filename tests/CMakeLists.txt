@@ -7,6 +7,7 @@
 
 set(SOURCE_FILES
   box/info.cpp
+  box/box.cpp
   release/info.cpp
   release/release.cpp
   release/version.cpp

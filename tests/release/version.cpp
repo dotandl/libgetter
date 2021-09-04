@@ -14,12 +14,10 @@
 TEST(ReleaseLatestVersionCalculator, ReturnsLatestRelease) {
   GttVector_release *releases = gtt_vector_release_new();
 
+  gtt_vector_release_push(releases, gtt_release_new("linux", "x86", "v1.0.0"));
   gtt_vector_release_push(releases,
-                          gtt_release_new(GTT_PLATFORM, GTT_ARCH, "v1.0.0"));
-  gtt_vector_release_push(
-      releases, gtt_release_new(GTT_PLATFORM, GTT_ARCH, "v1.11111.0"));
-  gtt_vector_release_push(releases,
-                          gtt_release_new(GTT_PLATFORM, GTT_ARCH, "v1.1.1"));
+                          gtt_release_new("linux", "x86", "v1.11111.0"));
+  gtt_vector_release_push(releases, gtt_release_new("linux", "x86", "v1.1.1"));
 
   GttRelease *latest = gtt_get_latest_release_version(releases);
 

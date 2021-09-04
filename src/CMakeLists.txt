@@ -12,6 +12,7 @@ set(SOURCE_FILES
   release/release.c
   release/version.c
   types/pkvf.c
+  tools/platform.c
 )
 
 set(HEADER_FILES
@@ -22,7 +23,6 @@ set(HEADER_FILES
   types/vector.h
   types/vectors/string.h
   types/vectors/release.h
-  tools/platform.h
 
   # Headers WITH corresponding source files
   box/info.h
@@ -31,6 +31,7 @@ set(HEADER_FILES
   release/release.h
   release/version.h
   types/pkvf.h
+  tools/platform.h
 )
 
 list(TRANSFORM HEADER_FILES PREPEND ${PROJECT_SOURCE_DIR}/include/getter/)
