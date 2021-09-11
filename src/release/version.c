@@ -10,12 +10,10 @@
 #define PCRE2_CODE_UNIT_WIDTH 8
 
 #include <getter/release/version.h>
+#include <getter/tools/version.h>
 #include <getter/types/array.h>
 #include <pcre2.h>
 #include <stdbool.h>
-
-static inline bool is_newer(int l_major, int l_minor, int l_patch, int c_major,
-                            int c_minor, int c_patch);
 
 GttRelease *gtt_get_latest_release_version(GttVector_release *releases) {
   GttVectorNode_release *node;
@@ -59,7 +57,7 @@ GttRelease *gtt_get_latest_release_version(GttVector_release *releases) {
     pcre2_substring_copy_bynumber(match_data, 3, buf, &buflen);
     c_patch = atoi(buf);
 
-    if (is_newer(l_major, l_minor, l_patch, c_major, c_minor, c_patch)) {
+    if (gtt_is_newer(c_major, c_minor, c_patch, l_major, l_minor, l_patch)) {
       l_major = c_major;
       l_minor = c_minor;
       l_patch = c_patch;
@@ -72,10 +70,4 @@ GttRelease *gtt_get_latest_release_version(GttVector_release *releases) {
 
   pcre2_code_free(regexp);
   return latest;
-}
-
-bool is_newer(int l_major, int l_minor, int l_patch, int c_major, int c_minor,
-              int c_patch) {
-  return (c_major > l_major) || (c_minor > l_minor && c_major == l_major) ||
-         (c_patch > l_patch && c_minor == l_minor && c_major == l_major);
 }

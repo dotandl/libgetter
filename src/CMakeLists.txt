@@ -13,6 +13,7 @@ set(SOURCE_FILES
   release/version.c
   types/pkvf.c
   tools/platform.c
+  tools/version.c
 )
 
 set(HEADER_FILES
@@ -32,13 +33,23 @@ set(HEADER_FILES
   release/version.h
   types/pkvf.h
   tools/platform.h
+  tools/version.h
 )
 
 list(TRANSFORM HEADER_FILES PREPEND ${PROJECT_SOURCE_DIR}/include/getter/)
 
 add_library(libgetter_object OBJECT ${SOURCE_FILES} ${HEADER_FILES})
+
 target_include_directories(libgetter_object PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(libgetter_object PUBLIC jsmn pcre2-8-static)
+
+target_compile_definitions(libgetter_object
+  PUBLIC GTT_VERSION="${LIBGETTER_VERSION}"
+  PUBLIC GTT_VERSION_SHORT="${LIBGETTER_VERSION_SHORT}"
+  PUBLIC GTT_VERSION_MAJOR=${LIBGETTER_VERSION_MAJOR}
+  PUBLIC GTT_VERSION_MINOR=${LIBGETTER_VERSION_MINOR}
+  PUBLIC GTT_VERSION_PATCH=${LIBGETTER_VERSION_PATCH}
+)
 
 set(COMMON_HEADER ${PROJECT_SOURCE_DIR}/include/getter/common.h)
 

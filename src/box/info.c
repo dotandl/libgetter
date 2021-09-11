@@ -7,9 +7,13 @@
  * +----------------------------------------------------------+
  */
 
+#define PCRE2_CODE_UNIT_WIDTH 8
+
 #include <getter/box/info.h>
+#include <getter/tools/version.h>
 #include <getter/types/array.h>
 #include <jsmn.h>
+#include <pcre2.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,6 +23,7 @@ static void json_str_alloc_copy(const char *json, jsmntok_t *token,
                                 char **dest);
 static void json_arr_to_vec(const char *json, jsmntok_t *token,
                             GttVector_string **vec);
+static bool gtt_meets_version(const char *version);
 
 GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   GttBoxInfo *bi;
@@ -53,66 +58,49 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   memset(bi, 0, sizeof(GttBoxInfo));
 
   for (i = 1; i < res; i++) {
-    if (json_str_eq(json, &tokens[i], "name")) {  // STRINGS
-      // Now i is the index of the value of the "name" property in the tokens
-      // array
-      i++;
-      json_str_alloc_copy(json, &tokens[i], (char **)&bi->name);
+    if (json_str_eq(json, &tokens[i], "getter")) {  // STRINGS
+      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->getter);
+    } else if (json_str_eq(json, &tokens[i], "name")) {
+      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->name);
     } else if (json_str_eq(json, &tokens[i], "full_name")) {
-      i++;
-      json_str_alloc_copy(json, &tokens[i], (char **)&bi->full_name);
+      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->full_name);
     } else if (json_str_eq(json, &tokens[i], "summary")) {
-      i++;
-      json_str_alloc_copy(json, &tokens[i], (char **)&bi->summary);
+      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->summary);
     } else if (json_str_eq(json, &tokens[i], "description")) {
-      i++;
-      json_str_alloc_copy(json, &tokens[i], (char **)&bi->description);
+      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->description);
     } else if (json_str_eq(json, &tokens[i], "homepage")) {
-      i++;
-      json_str_alloc_copy(json, &tokens[i], (char **)&bi->homepage);
+      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->homepage);
     } else if (json_str_eq(json, &tokens[i], "repository")) {
-      i++;
-      json_str_alloc_copy(json, &tokens[i], (char **)&bi->repository);
+      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->repository);
     } else if (json_str_eq(json, &tokens[i], "license_name")) {
-      i++;
-      json_str_alloc_copy(json, &tokens[i], (char **)&bi->license_name);
+      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->license_name);
     } else if (json_str_eq(json, &tokens[i], "license")) {
-      i++;
-      json_str_alloc_copy(json, &tokens[i], (char **)&bi->license);
+      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->license);
     } else if (json_str_eq(json, &tokens[i], "readme")) {
-      i++;
-      json_str_alloc_copy(json, &tokens[i], (char **)&bi->readme);
+      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->readme);
     } else if (json_str_eq(json, &tokens[i], "changelog")) {
-      i++;
-      json_str_alloc_copy(json, &tokens[i], (char **)&bi->changelog);
+      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->changelog);
 
     } else if (json_str_eq(json, &tokens[i], "authors")) {  // ARRAYS
-      i++;
-      json_arr_to_vec(json, &tokens[i], &bi->authors);
+      json_arr_to_vec(json, &tokens[++i], &bi->authors);
       i += tokens[i].size;
     } else if (json_str_eq(json, &tokens[i], "categories")) {
-      i++;
-      json_arr_to_vec(json, &tokens[i], &bi->categories);
+      json_arr_to_vec(json, &tokens[++i], &bi->categories);
       i += tokens[i].size;
     } else if (json_str_eq(json, &tokens[i], "dependencies")) {
-      i++;
-      json_arr_to_vec(json, &tokens[i], &bi->dependencies);
+      json_arr_to_vec(json, &tokens[++i], &bi->dependencies);
       i += tokens[i].size;
     } else if (json_str_eq(json, &tokens[i], "build_dependencies")) {
-      i++;
-      json_arr_to_vec(json, &tokens[i], &bi->build_dependencies);
+      json_arr_to_vec(json, &tokens[++i], &bi->build_dependencies);
       i += tokens[i].size;
     } else if (json_str_eq(json, &tokens[i], "optional_dependencies")) {
-      i++;
-      json_arr_to_vec(json, &tokens[i], &bi->optional_dependencies);
+      json_arr_to_vec(json, &tokens[++i], &bi->optional_dependencies);
       i += tokens[i].size;
     } else if (json_str_eq(json, &tokens[i], "conflicts")) {
-      i++;
-      json_arr_to_vec(json, &tokens[i], &bi->conflicts);
+      json_arr_to_vec(json, &tokens[++i], &bi->conflicts);
       i += tokens[i].size;
     } else if (json_str_eq(json, &tokens[i], "replaces")) {
-      i++;
-      json_arr_to_vec(json, &tokens[i], &bi->replaces);
+      json_arr_to_vec(json, &tokens[++i], &bi->replaces);
       i += tokens[i].size;
     } else {
       free(tokens);
@@ -129,6 +117,11 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
     return NULL;  // required fields missing
   }
 
+  if (bi->getter != NULL && !gtt_meets_version(bi->getter)) {
+    gtt_box_info_delete(bi);
+    return NULL;  // libgetter's too old for this Box
+  }
+
   return bi;
 }
 
@@ -142,6 +135,7 @@ void gtt_box_info_delete(GttBoxInfo *self) {
 
   if (self == NULL) return;
 
+  if (self->getter != NULL) free((char **)self->getter);
   if (self->name != NULL) free((char **)self->name);
   if (self->full_name != NULL) free((char **)self->full_name);
   if (self->summary != NULL) free((char **)self->summary);
@@ -201,4 +195,48 @@ void json_arr_to_vec(const char *json, jsmntok_t *token,
     json_str_alloc_copy(json, current_tok, &buf);
     gtt_vector_string_push(*vec, buf);
   }
+}
+
+bool gtt_meets_version(const char *version) {
+  pcre2_code *regexp;
+  pcre2_match_data *match_data;
+  PCRE2_SIZE error_offset;
+  int error_code, matches;
+  PCRE2_UCHAR buf[8];
+  PCRE2_SIZE buflen;
+  unsigned int major, minor, patch;
+
+  regexp =
+      pcre2_compile("^([0-9]+)\\.([0-9]+)\\.([0-9]+)$", PCRE2_ZERO_TERMINATED,
+                    0, &error_code, &error_offset, NULL);
+
+  if (regexp == NULL) return false;  // could not compile regexp
+
+  match_data = pcre2_match_data_create_from_pattern(regexp, NULL);
+  matches =
+      pcre2_match(regexp, version, strlen(version), 0, 0, match_data, NULL);
+
+  if (matches < 0) {
+    pcre2_match_data_free(match_data);
+    pcre2_code_free(regexp);
+    return false;  // version not matched
+  }
+
+  buflen = arrlen(buf);
+  pcre2_substring_copy_bynumber(match_data, 1, buf, &buflen);
+  major = atoi(buf);
+
+  buflen = arrlen(buf);
+  pcre2_substring_copy_bynumber(match_data, 2, buf, &buflen);
+  minor = atoi(buf);
+
+  buflen = arrlen(buf);
+  pcre2_substring_copy_bynumber(match_data, 3, buf, &buflen);
+  patch = atoi(buf);
+
+  pcre2_match_data_free(match_data);
+  pcre2_code_free(regexp);
+
+  return gtt_is_newer(GTT_VERSION_MAJOR, GTT_VERSION_MINOR, GTT_VERSION_PATCH,
+                      major, minor, patch);
 }

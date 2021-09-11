@@ -89,6 +89,22 @@ TEST(BoxInfo, CreatesFromJSONRequiredFields) {
   gtt_box_info_delete(bi);
 }
 
+TEST(BoxInfo, DoesNotCreateFromJSONGetterTooOld) {
+  const char *json =
+      "{"
+      // getter will (probably) never reach this version lmao
+      "  \"getter\": \"2137.666.420\","
+      "  \"name\": \"another-example\","
+      "  \"full_name\": \"Another Example\","
+      "  \"summary\": \"Yet another example box\","
+      "  \"authors\": [\"Jack\"],"
+      "  \"license_name\": \"GPLv3\""
+      "}";
+
+  GttBoxInfo *bi = gtt_box_info_new_from_json(json);
+  ASSERT_TRUE(bi == NULL);
+}
+
 TEST(BoxInfo, DoesNotCreateFromJSONMissingFields) {
   const char *json =
       "{"

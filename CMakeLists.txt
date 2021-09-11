@@ -5,10 +5,21 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-set(libgetter_VERSION 0.0.0)
-
 cmake_minimum_required(VERSION 3.12)
-project(libgetter VERSION ${libgetter_VERSION} LANGUAGES C CXX)
+
+set(LIBGETTER_VERSION "0.0.0-alpha")
+
+string(
+  REGEX MATCH
+  "([0-9])+\\.([0-9])+\\.([0-9])+"
+  LIBGETTER_VERSION_SHORT ${LIBGETTER_VERSION}
+)
+
+set(LIBGETTER_VERSION_MAJOR ${CMAKE_MATCH_1})
+set(LIBGETTER_VERSION_MINOR ${CMAKE_MATCH_2})
+set(LIBGETTER_VERSION_PATCH ${CMAKE_MATCH_3})
+
+project(libgetter VERSION ${LIBGETTER_VERSION_SHORT} LANGUAGES C CXX)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 11) # Required by GoogleTest

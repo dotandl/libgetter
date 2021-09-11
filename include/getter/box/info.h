@@ -16,20 +16,24 @@ HEADER_BEGIN
 
 /** Representation of GetterBox.json file. */
 struct GttBoxInfo {
-  const char *name;
-  const char *full_name;
-  const char *summary;
+  const char *getter;  ///< Minimum libgetter version reuired by the Box (must
+                       ///< match `/^[0-9]+\.[0-9]+\.[0-9]+$/`).
+
+  const char *name;       ///< Required.
+  const char *full_name;  ///< Required.
+  const char *summary;    ///< Required.
   const char *description;
 
   const char *homepage;
   const char *repository;
-  GttVector_string *authors;
+  GttVector_string *authors;  ///< Required.
   GttVector_string *categories;
 
-  const char *license_name;  ///< Name of the license (like MIT, GPLv3, etc.).
-  const char *license;       ///< Path to the license file.
-  const char *readme;        ///< Path to the readme file.
-  const char *changelog;     ///< Path to the changelog file.
+  const char *
+      license_name;  ///< Name of the license (like MIT, GPLv3, etc.); required.
+  const char *license;    ///< Path to the license file.
+  const char *readme;     ///< Path to the readme file.
+  const char *changelog;  ///< Path to the changelog file.
 
   GttVector_string *dependencies;
   GttVector_string *build_dependencies;
