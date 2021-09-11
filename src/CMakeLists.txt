@@ -14,6 +14,7 @@ set(SOURCE_FILES
   types/pkvf.c
   tools/platform.c
   tools/version.c
+  tools/error.c
 )
 
 set(HEADER_FILES
@@ -34,6 +35,7 @@ set(HEADER_FILES
   types/pkvf.h
   tools/platform.h
   tools/version.h
+  tools/error.h
 )
 
 list(TRANSFORM HEADER_FILES PREPEND ${PROJECT_SOURCE_DIR}/include/getter/)
