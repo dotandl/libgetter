@@ -15,7 +15,7 @@
 HEADER_BEGIN
 
 /**
- * Gets the latest Release from the Vector of Releases.
+ * **[E]** Gets the latest Release from the Vector of Releases.
  *
  * Loops for each Release in the Vector, searches for MAJOR.MINOR.PATCH string
  * in Release's version using /[0-9]+\.[0-9]+\.[0-9]+/ regexp, compares each

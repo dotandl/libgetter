@@ -8,6 +8,7 @@
  */
 
 #include <getter/box/info.h>
+#include <getter/tools/error.h>
 #include <gtest/gtest.h>
 
 TEST(BoxInfo, CreatesFromJSONAllFields) {
@@ -36,6 +37,9 @@ TEST(BoxInfo, CreatesFromJSONAllFields) {
       "}";
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);
+
+  ASSERT_TRUE(bi != NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_OK);
 
   EXPECT_STREQ(bi->name, "example");
   EXPECT_STREQ(bi->full_name, "Example");
@@ -80,6 +84,9 @@ TEST(BoxInfo, CreatesFromJSONRequiredFields) {
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);
 
+  ASSERT_TRUE(bi != NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_OK);
+
   EXPECT_STREQ(bi->name, "another-example");
   EXPECT_STREQ(bi->full_name, "Another Example");
   EXPECT_STREQ(bi->summary, "Yet another example box");
@@ -103,6 +110,7 @@ TEST(BoxInfo, DoesNotCreateFromJSONGetterTooOld) {
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);
   ASSERT_TRUE(bi == NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_LIBGETTER_TOO_OLD);
 }
 
 TEST(BoxInfo, DoesNotCreateFromJSONMissingFields) {
@@ -113,6 +121,7 @@ TEST(BoxInfo, DoesNotCreateFromJSONMissingFields) {
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);
   ASSERT_TRUE(bi == NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_PARSE_ERROR);
 }
 
 TEST(BoxInfo, DoesNotCreateFromJSONInvalidField) {
@@ -123,4 +132,5 @@ TEST(BoxInfo, DoesNotCreateFromJSONInvalidField) {
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);
   ASSERT_TRUE(bi == NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_PARSE_ERROR);
 }

@@ -8,6 +8,7 @@
  */
 
 #include <getter/box/box.h>
+#include <getter/tools/error.h>
 #include <getter/tools/platform.h>
 #include <gtest/gtest.h>
 
@@ -42,6 +43,8 @@ TEST(Box, IsAbleToSearchForAppropriateRelease) {
   GttRelease *release = gtt_box_get_appropriate_release(box);
 
   ASSERT_TRUE(release != NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_OK);
+
   EXPECT_STREQ(release->version, "v1.0.0");
   EXPECT_STREQ(release->platform, "win32");
   EXPECT_STREQ(release->arch, "x86_64");
@@ -80,6 +83,8 @@ TEST(Box, IsAbleToSearchForRelease) {
   GttRelease *release = gtt_box_get_release(box, "v1.1.0", "darwin", "arm64");
 
   ASSERT_TRUE(release != NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_OK);
+
   EXPECT_STREQ(release->version, "v1.1.0");
   EXPECT_STREQ(release->platform, "darwin");
   EXPECT_STREQ(release->arch, "arm64");

@@ -37,7 +37,7 @@ struct GttPKVFToken {
 #include <getter/types/vector.h>
 
 /**
- * Parses PKVF to the form of token vector.
+ * **[E]** Parses PKVF to the form of token vector.
  *
  * PKVF (Primitive Key-Value Format) is a simple internal data format.
  * It is used while reading the information stored in GetterRelease files.

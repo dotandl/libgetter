@@ -7,6 +7,7 @@
  * +----------------------------------------------------------+
  */
 
+#include <getter/tools/error.h>
 #include <getter/types/pkvf.h>
 #include <stdio.h>
 #include <string.h>
@@ -29,7 +30,9 @@ GttVector_pkvf_token *gtt_parse_pkvf(const char *pkvf) {
 
     if ((seq_ptr = strstr(line_ptr, "@#@")) == NULL) {
       gtt_vector_pkvf_token_free(vec);
-      return NULL;  // could not parse PKVF string
+
+      gtt_error(GTT_PARSE_ERROR, "Could not parse PKVF string");
+      return NULL;
     }
 
     key_len = seq_ptr - line_ptr;
@@ -63,6 +66,7 @@ GttVector_pkvf_token *gtt_parse_pkvf(const char *pkvf) {
     line_ptr = strtok_r(NULL, "\n", &save_ptr);
   }
 
+  gtt_ok();
   return vec;
 }
 

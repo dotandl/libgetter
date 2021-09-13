@@ -29,7 +29,7 @@ struct GttRelease {
 typedef struct GttRelease GttRelease;
 
 /**
- * Creates new GttRelease.
+ * **[E]** Creates new GttRelease.
  *
  * \param platform Release's platform.
  * \param arch Platform's processor architecture.

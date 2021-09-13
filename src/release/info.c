@@ -8,6 +8,7 @@
  */
 
 #include <getter/release/info.h>
+#include <getter/tools/error.h>
 
 static void pkvf_str_alloc_copy(GttPKVFToken *token, char **dest);
 static void pkvf_arr_to_vec(GttPKVFToken *token, GttVector_string **vec);
@@ -19,7 +20,7 @@ GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
   GttVectorNode_pkvf_token *node;
 
   vec = gtt_parse_pkvf(pkvf);
-  if (vec == NULL) return NULL;  // error while parsing
+  if (GTT_FAILED) return NULL;  // forward the error
 
   self = malloc(sizeof(GttReleaseInfo));
   memset(self, 0, sizeof(GttReleaseInfo));
@@ -42,7 +43,9 @@ GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
         } else {
           gtt_vector_pkvf_token_free(vec);
           gtt_release_info_delete(self);
-          return NULL;  // unexpected token
+
+          gtt_error(GTT_INVALID_DATA, "Unexpected token found");
+          return NULL;
         }
         break;
 
@@ -60,13 +63,16 @@ GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
         } else {
           gtt_vector_pkvf_token_free(vec);
           gtt_release_info_delete(self);
-          return NULL;  // unexpected token
+
+          gtt_error(GTT_INVALID_DATA, "Unexpected token found");
+          return NULL;
         }
         break;
     }
   }
 
   gtt_vector_pkvf_token_free(vec);
+  gtt_ok();
   return self;
 }
 

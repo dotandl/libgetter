@@ -45,7 +45,7 @@ struct GttBoxInfo {
 typedef struct GttBoxInfo GttBoxInfo;
 
 /**
- * Creates new GttBoxInfo from the contents of GetterBox.json file.
+ * **[E]** Creates new GttBoxInfo from the contents of GetterBox.json file.
  *
  * \param json The contents of GetterBox.json file.
  * \returns Created GttBoxInfo.

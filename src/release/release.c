@@ -10,6 +10,7 @@
 #define PCRE2_CODE_UNIT_WIDTH 8
 
 #include <getter/release/release.h>
+#include <getter/tools/error.h>
 #include <pcre2.h>
 
 GttRelease *gtt_release_new(const char *platform, const char *arch,
@@ -24,7 +25,10 @@ GttRelease *gtt_release_new(const char *platform, const char *arch,
   regexp = pcre2_compile("[0-9]+\\.[0-9]+\\.[0-9]+", PCRE2_ZERO_TERMINATED, 0,
                          &error_code, &error_offset, NULL);
 
-  if (regexp == NULL) return NULL;  // could not compile regexp
+  if (regexp == NULL) {
+    gtt_error(GTT_REGEXP_COMPILATION_FAILED, "Could not compile regexp");
+    return NULL;
+  }
 
   match_data = pcre2_match_data_create_from_pattern(regexp, NULL);
   matches =
@@ -33,7 +37,10 @@ GttRelease *gtt_release_new(const char *platform, const char *arch,
   if (matches < 0) {
     pcre2_match_data_free(match_data);
     pcre2_code_free(regexp);
-    return NULL;  // version not matched
+
+    gtt_error(GTT_INVALID_VERSION,
+              "Version not matched MAJOR.MINOR.PATCH pattern");
+    return NULL;
   }
 
   self = malloc(sizeof(GttRelease));
@@ -50,6 +57,7 @@ GttRelease *gtt_release_new(const char *platform, const char *arch,
   pcre2_match_data_free(match_data);
   pcre2_code_free(regexp);
 
+  gtt_ok();
   return self;
 }
 

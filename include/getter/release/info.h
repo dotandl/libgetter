@@ -33,8 +33,8 @@ struct GttReleaseInfo {
 typedef struct GttReleaseInfo GttReleaseInfo;
 
 /**
- * Creates new GttReleaseInfo from the PKVF generated from the GetterRelease
- * file.
+ * **[E]** Creates new GttReleaseInfo from the PKVF generated from the
+ * GetterRelease file.
  *
  * \param pkvf PKVF generated from the contents of the GetterRelease file.
  * \returns Created GttReleaseInfo.

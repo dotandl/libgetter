@@ -9,6 +9,7 @@
 
 #include <getter/box/box.h>
 #include <getter/release/version.h>
+#include <getter/tools/error.h>
 #include <getter/tools/platform.h>
 
 GttBox *gtt_box_new(GttBoxInfo *info, GttVector_release *releases) {
@@ -55,7 +56,9 @@ GttRelease *gtt_box_get_release(GttBox *self, const char *version,
 
   if (strncmp(__platform, "", __BUFSIZE - 1) == 0 ||
       strncmp(__arch, "", __BUFSIZE - 1) == 0) {
-    return NULL;  // platform/arch not given and the host's one not supported
+    gtt_error(GTT_UNSUPPORTED_HOST,
+              "Platform/arch not given; host's platform/arch not supported");
+    return NULL;
   }
 
   gtt_vector_for_each(self->releases, node) {
@@ -77,6 +80,6 @@ GttRelease *gtt_box_get_release(GttBox *self, const char *version,
   }
 
   gtt_vector_release_delete(vec);
-
+  gtt_ok();
   return res;
 }

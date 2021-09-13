@@ -7,6 +7,7 @@
  * +----------------------------------------------------------+
  */
 
+#include <getter/tools/error.h>
 #include <getter/types/pkvf.h>
 #include <gtest/gtest.h>
 
@@ -18,6 +19,8 @@ TEST(PKVF, ParsesValidPKVF) {
   GttVector_pkvf_token *vec = gtt_parse_pkvf(pkvf);
 
   ASSERT_TRUE(vec != NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_OK);
+
   EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.key, "1st key");
   EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.val.str, "first value");
   EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 1)->value.key, "second key");
@@ -38,6 +41,8 @@ TEST(PKVF, ParsesValidPKVFWithArray) {
       gtt_vector_pkvf_token_get(vec, 1)->value.val.vec;
 
   ASSERT_TRUE(vec != NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_OK);
+
   EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.key, "1st key");
   EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.val.str,
                "string value");
@@ -51,7 +56,8 @@ TEST(PKVF, ParsesValidPKVFWithArray) {
 
 TEST(PKVF, DoesNotCreateInvalidPKVF) {
   const char pkvf[] = "asjkdahs\najksdj\n\n";
-
   GttVector_pkvf_token *vec = gtt_parse_pkvf(pkvf);
-  EXPECT_TRUE(vec == NULL);
+
+  ASSERT_TRUE(vec == NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_PARSE_ERROR);
 }

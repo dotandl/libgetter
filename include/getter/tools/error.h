@@ -17,7 +17,15 @@ HEADER_BEGIN
 /** List of possible errors. */
 enum GttErrorCode {
   GTT_UNIDENTIFIED_ERROR = -1,
-  GTT_OK,
+  GTT_OK = 0,
+
+  GTT_PARSE_ERROR,      ///< Error parsing any type of data (JSON, PKVF, etc.).
+  GTT_INVALID_DATA,     ///< Invalid data found while parsing any type of data.
+  GTT_INVALID_VERSION,  ///< Not a semantic versioned version.
+  GTT_REGEXP_COMPILATION_FAILED,  ///< Error compiling regular expression.
+  GTT_UNSUPPORTED_HOST,   ///< Unsupported platform or processor architecture.
+  GTT_LIBGETTER_TOO_OLD,  ///< Box requires newer version of libgetter to
+                          ///< install itself properly.
 };
 
 typedef enum GttErrorCode GttErrorCode;

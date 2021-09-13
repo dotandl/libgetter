@@ -10,6 +10,7 @@
 #define PCRE2_CODE_UNIT_WIDTH 8
 
 #include <getter/box/info.h>
+#include <getter/tools/error.h>
 #include <getter/tools/version.h>
 #include <getter/types/array.h>
 #include <jsmn.h>
@@ -46,16 +47,21 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
 
   if (res == JSMN_ERROR_INVAL || res == JSMN_ERROR_PART) {
     free(tokens);
-    return NULL;  // error while parsing
+    gtt_error(GTT_PARSE_ERROR, "Error parsing JSON string");
+    return NULL;
   }
 
   if (res == 0 || tokens[0].type != JSMN_OBJECT) {
     free(tokens);
-    return NULL;  // object expected
+    gtt_error(GTT_PARSE_ERROR,
+              "Not a valid Box JSON - expected object as root token");
+    return NULL;
   }
 
   bi = malloc(sizeof(GttBoxInfo));
   memset(bi, 0, sizeof(GttBoxInfo));
+
+  gtt_ok();  // If all JSON read successfully, error code will be GTT_OK
 
   for (i = 1; i < res; i++) {
     if (json_str_eq(json, &tokens[i], "getter")) {  // STRINGS
@@ -102,26 +108,39 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
     } else if (json_str_eq(json, &tokens[i], "replaces")) {
       json_arr_to_vec(json, &tokens[++i], &bi->replaces);
       i += tokens[i].size;
-    } else {
-      free(tokens);
-      gtt_box_info_delete(bi);
-      return NULL;  // unexpected token
+
+    } else {  // UNEXPECTED FIELD
+      gtt_error(GTT_PARSE_ERROR, "Not a valid Box JSON - unexpected token");
     }
   }
 
   free(tokens);
 
+  // Check if there were any errors while reading JSON
+  if (GTT_FAILED) {
+    // Error is already set, no need to set it again
+
+    gtt_box_info_delete(bi);
+    return NULL;
+  }
+
   if (bi->name == NULL || bi->full_name == NULL || bi->summary == NULL ||
       bi->authors == NULL || bi->license_name == NULL) {
     gtt_box_info_delete(bi);
-    return NULL;  // required fields missing
+
+    gtt_error(GTT_PARSE_ERROR,
+              "Not a valid Box JSON - some of the required fields are missing");
+    return NULL;
   }
 
   if (bi->getter != NULL && !gtt_meets_version(bi->getter)) {
     gtt_box_info_delete(bi);
-    return NULL;  // libgetter's too old for this Box
+
+    gtt_error(GTT_LIBGETTER_TOO_OLD, "libgetter is too old for this Box");
+    return NULL;
   }
 
+  gtt_ok();
   return bi;
 }
 
@@ -173,7 +192,11 @@ bool json_str_eq(const char *json, jsmntok_t *token, const char *str) {
 }
 
 void json_str_alloc_copy(const char *json, jsmntok_t *token, char **dest) {
-  if (token->type != JSMN_STRING) return;
+  if (token->type != JSMN_STRING) {
+    gtt_error(GTT_PARSE_ERROR,
+              "Not a valid Box JSON - found a token with incorrect type");
+    return;
+  }
 
   *dest = calloc((token->end - token->start) + 1, sizeof(char));
   memcpy(*dest, json + token->start, token->end - token->start);
@@ -185,7 +208,11 @@ void json_arr_to_vec(const char *json, jsmntok_t *token,
   char *buf;
   int i;
 
-  if (token->type != JSMN_ARRAY) return;
+  if (token->type != JSMN_ARRAY) {
+    gtt_error(GTT_PARSE_ERROR,
+              "Not a valid Box JSON - found a token with incorrect type");
+    return;
+  }
 
   *vec = gtt_vector_string_new();
 

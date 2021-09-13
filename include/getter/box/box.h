@@ -45,7 +45,7 @@ WINDLL GttBox *gtt_box_new(GttBoxInfo *info, GttVector_release *releases);
 WINDLL void gtt_box_delete(GttBox *self);
 
 /**
- * Returns selected version of the Release for a given platform and
+ * **[E]** Returns selected version of the Release for a given platform and
  * architecture.
  *
  * \param self Box to search for the Release in.

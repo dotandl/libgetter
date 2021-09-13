@@ -8,6 +8,7 @@
  */
 
 #include <getter/release/info.h>
+#include <getter/tools/error.h>
 #include <gtest/gtest.h>
 
 TEST(ReleaseInfo, CreatesFromPKVFAllFields) {
@@ -26,6 +27,9 @@ TEST(ReleaseInfo, CreatesFromPKVFAllFields) {
       "replaces@#@box9@,@box10@,@\n";
 
   GttReleaseInfo *ri = gtt_release_info_new_from_pkvf(pkvf);
+
+  ASSERT_TRUE(ri != NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_OK);
 
   EXPECT_STREQ(ri->repository, "example/release");
 
@@ -52,5 +56,7 @@ TEST(ReleaseInfo, CreatesFromPKVFAllFields) {
 TEST(ReleaseInfo, DoesNotCreateFromPKVFInvalidField) {
   const char pkvf[] = "invalid@#@field\n";
   GttReleaseInfo *ri = gtt_release_info_new_from_pkvf(pkvf);
-  EXPECT_TRUE(ri == NULL);
+
+  ASSERT_TRUE(ri == NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_INVALID_DATA);
 }

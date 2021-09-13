@@ -8,6 +8,7 @@
  */
 
 #include <getter/release/version.h>
+#include <getter/tools/error.h>
 #include <getter/tools/platform.h>
 #include <gtest/gtest.h>
 
@@ -21,7 +22,8 @@ TEST(ReleaseLatestVersionCalculator, ReturnsLatestRelease) {
 
   GttRelease *latest = gtt_get_latest_release_version(releases);
 
-  EXPECT_STREQ(latest->version, "v1.11111.0");
+  ASSERT_EQ(gtt_last_error.code, GTT_OK);
+  ASSERT_STREQ(latest->version, "v1.11111.0");
 
   gtt_release_delete(gtt_vector_release_get(releases, 0)->value);
   gtt_release_delete(gtt_vector_release_get(releases, 1)->value);

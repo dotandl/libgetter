@@ -10,6 +10,7 @@
 #define PCRE2_CODE_UNIT_WIDTH 8
 
 #include <getter/release/version.h>
+#include <getter/tools/error.h>
 #include <getter/tools/version.h>
 #include <getter/types/array.h>
 #include <pcre2.h>
@@ -33,7 +34,10 @@ GttRelease *gtt_get_latest_release_version(GttVector_release *releases) {
       pcre2_compile("([0-9]+)\\.([0-9]+)\\.([0-9]+)", PCRE2_ZERO_TERMINATED, 0,
                     &error_code, &error_offset, NULL);
 
-  if (regexp == NULL) return NULL;  // could not compile regexp
+  if (regexp == NULL) {
+    gtt_error(GTT_REGEXP_COMPILATION_FAILED, "Could not compile regexp");
+    return NULL;
+  }
 
   l_major = 0;
   l_minor = 0;
@@ -69,5 +73,7 @@ GttRelease *gtt_get_latest_release_version(GttVector_release *releases) {
   }
 
   pcre2_code_free(regexp);
+
+  gtt_ok();
   return latest;
 }
