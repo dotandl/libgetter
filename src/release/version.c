@@ -18,7 +18,7 @@
 
 GttRelease *gtt_get_latest_release_version(GttVector_release *releases) {
   GttVectorNode_release *node;
-  GttRelease *latest;
+  GttRelease *latest = NULL;
   pcre2_code *regexp;
   pcre2_match_data *match_data;
   PCRE2_SIZE error_offset;

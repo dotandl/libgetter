@@ -12,7 +12,7 @@
 
 HEADER_BEGIN
 
-#define __BUFSIZE 32
+#define __BUFSIZE 64
 
 /** List of possible errors. */
 enum GttErrorCode {

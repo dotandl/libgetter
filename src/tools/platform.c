@@ -69,7 +69,7 @@ void gtt_mock_arch(const char *arch);
 #pragma endregion GTT_ARCH
 
 const char *gtt_get_platform(void) {
-  if (gtt_platform != NULL) return gtt_platform;
+  if (*gtt_platform != 0) return gtt_platform;
 
 #ifdef GTT_PLATFORM
   return GTT_PLATFORM;
@@ -79,7 +79,7 @@ const char *gtt_get_platform(void) {
 }
 
 const char *gtt_get_arch(void) {
-  if (gtt_arch != NULL) return gtt_arch;
+  if (*gtt_platform != 0) return gtt_arch;
 
 #ifdef GTT_ARCH
   return GTT_ARCH;
