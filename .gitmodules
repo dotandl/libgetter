@@ -4,6 +4,6 @@
 [submodule "lib/jsmn"]
 	path = lib/jsmn
 	url = https://github.com/zserge/jsmn
-[submodule "lib/pcre"]
-	path = lib/pcre
-	url = https://github.com/rurban/pcre
+[submodule "lib/pcre2"]
+	path = lib/pcre2
+	url = https://github.com/PhilipHazel/pcre2.git

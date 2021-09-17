@@ -5,6 +5,7 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-include(googletest.cmake)
-include(pcre2.cmake)
-include(jsmn.cmake)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON)
+
+add_subdirectory(googletest)

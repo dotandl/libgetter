@@ -5,6 +5,6 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-include(googletest.cmake)
-include(pcre2.cmake)
-include(jsmn.cmake)
+set(PCRE2_BUILD_TESTS OFF)
+
+add_subdirectory(pcre2)
