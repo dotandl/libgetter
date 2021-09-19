@@ -24,6 +24,7 @@ project(libgetter VERSION ${LIBGETTER_VERSION_SHORT} LANGUAGES C CXX)
 
 set(BUILD_SHARED_LIBS ON CACHE BOOL "Builds shared version of libgetter and its dependencies")
 option(LIBGETTER_BUILD_TESTS "Builds libgetter's tests" ON)
+option(LIBGETTER_BUILD_DOCS "Build libgetter's documentation" ON)
 
 set(CMAKE_C_STANDARD 11) # TODO: convert project to be C89 compatible
 
@@ -37,4 +38,8 @@ add_subdirectory(src)
 if(LIBGETTER_BUILD_TESTS)
   enable_testing()
   add_subdirectory(tests)
+endif()
+
+if(LIBGETTER_BUILD_DOCS)
+  include(cmake/docs.cmake)
 endif()
