@@ -29,7 +29,7 @@ struct GttRelease {
 typedef struct GttRelease GttRelease;
 
 /**
- * **[E]** Creates new GttRelease.
+ * Creates new GttRelease.
  *
  * \param platform Release's platform.
  * \param arch Platform's processor architecture.
@@ -37,8 +37,9 @@ typedef struct GttRelease GttRelease;
  * \returns Created GttRelease.
  * \see GttRelease
  */
-WINDLL GttRelease *gtt_release_new(const char *platform, const char *arch,
-                                   const char *version);
+GTT_ERROR_EMITTER WINDLL GttRelease *gtt_release_new(const char *platform,
+                                                     const char *arch,
+                                                     const char *version);
 
 /**
  * Deletes existing GttRelease.

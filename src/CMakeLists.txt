@@ -21,6 +21,7 @@ set(LIBGETTER_HEADERS
   # Headers WITHOUT corresponding source files
   getter.h
   common.h
+  attributes.h
   types/array.h
   types/vector.h
   types/vectors/string.h

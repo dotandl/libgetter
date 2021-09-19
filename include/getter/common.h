@@ -10,6 +10,8 @@
 #ifndef INCLUDE_GETTER_COMMON_H_
 #define INCLUDE_GETTER_COMMON_H_
 
+#include <getter/attributes.h>
+
 #ifdef __cplusplus
 #define HEADER_BEGIN extern "C" {
 #define HEADER_END }

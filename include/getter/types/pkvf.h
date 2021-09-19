@@ -37,7 +37,7 @@ struct GttPKVFToken {
 #include <getter/types/vector.h>
 
 /**
- * **[E]** Parses PKVF to the form of token vector.
+ * Parses PKVF to the form of token vector.
  *
  * PKVF (Primitive Key-Value Format) is a simple internal data format.
  * It is used while reading the information stored in GetterRelease files.
@@ -56,7 +56,7 @@ struct GttPKVFToken {
  * \param pkvf PKVF string. It must not be a string literal.
  * \returns Vector with tokens read from PKVF.
  */
-WINDLL GttVector_pkvf_token *gtt_parse_pkvf(const char *pkvf);
+GTT_ERROR_EMITTER WINDLL GttVector_pkvf_token *gtt_parse_pkvf(const char *pkvf);
 
 /**
  * Frees every key and value in PKVF token vector and then calls

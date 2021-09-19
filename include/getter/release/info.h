@@ -33,14 +33,15 @@ struct GttReleaseInfo {
 typedef struct GttReleaseInfo GttReleaseInfo;
 
 /**
- * **[E]** Creates new GttReleaseInfo from the PKVF generated from the
+ * Creates new GttReleaseInfo from the PKVF generated from the
  * GetterRelease file.
  *
  * \param pkvf PKVF generated from the contents of the GetterRelease file.
  * \returns Created GttReleaseInfo.
  * \see GttReleaseInfo
  */
-WINDLL GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf);
+GTT_ERROR_EMITTER WINDLL GttReleaseInfo *gtt_release_info_new_from_pkvf(
+    const char *pkvf);
 
 /**
  * Deletes existing GttReleaseInfo.

@@ -15,7 +15,7 @@
 HEADER_BEGIN
 
 /**
- * **[E]** Gets the latest Release from the Vector of Releases.
+ * Gets the latest Release from the Vector of Releases.
  *
  * Loops for each Release in the Vector, searches for MAJOR.MINOR.PATCH string
  * in Release's version using /[0-9]+\.[0-9]+\.[0-9]+/ regexp, compares each
@@ -24,7 +24,8 @@ HEADER_BEGIN
  * \param releases Vector of Releases in which to search for the latest Release.
  * \returns The latest Release.
  */
-WINDLL GttRelease *gtt_get_latest_release_version(GttVector_release *releases);
+GTT_ERROR_EMITTER WINDLL GttRelease *gtt_get_latest_release_version(
+    GttVector_release *releases);
 
 HEADER_END
 

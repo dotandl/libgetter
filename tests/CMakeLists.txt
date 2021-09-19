@@ -5,7 +5,7 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-set(CMAKE_CXX_STANDARD 11) # Required by GoogleTest
+set(CMAKE_CXX_STANDARD 11)
 
 set(LIBGETTER_TESTS_SOURCES
   box/info.cpp

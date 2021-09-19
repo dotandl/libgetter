@@ -19,18 +19,18 @@ struct GttBoxInfo {
   const char *getter;  ///< Minimum libgetter version reuired by the Box (must
                        ///< match `/^[0-9]+\.[0-9]+\.[0-9]+$/`).
 
-  const char *name;       ///< Required.
-  const char *full_name;  ///< Required.
-  const char *summary;    ///< Required.
+  GTT_REQUIRED const char *name;
+  GTT_REQUIRED const char *full_name;
+  GTT_REQUIRED const char *summary;
   const char *description;
 
   const char *homepage;
   const char *repository;
-  GttVector_string *authors;  ///< Required.
+  GTT_REQUIRED GttVector_string *authors;
   GttVector_string *categories;
 
-  const char *
-      license_name;  ///< Name of the license (like MIT, GPLv3, etc.); required.
+  GTT_REQUIRED const char
+      *license_name;      ///< Name of the license (like MIT, GPLv3, etc.).
   const char *license;    ///< Path to the license file.
   const char *readme;     ///< Path to the readme file.
   const char *changelog;  ///< Path to the changelog file.
@@ -45,13 +45,14 @@ struct GttBoxInfo {
 typedef struct GttBoxInfo GttBoxInfo;
 
 /**
- * **[E]** Creates new GttBoxInfo from the contents of GetterBox.json file.
+ * Creates new GttBoxInfo from the contents of GetterBox.json file.
  *
  * \param json The contents of GetterBox.json file.
  * \returns Created GttBoxInfo.
  * \see GttBoxInfo
  */
-WINDLL GttBoxInfo *gtt_box_info_new_from_json(const char *json);
+GTT_ERROR_EMITTER WINDLL GttBoxInfo *gtt_box_info_new_from_json(
+    const char *json);
 
 /**
  * Deletes existing GttBoxInfo.
