@@ -5,7 +5,9 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-set(SOURCE_FILES
+set(CMAKE_CXX_STANDARD 11) # Required by GoogleTest
+
+set(LIBGETTER_TESTS_SOURCES
   box/info.cpp
   box/box.cpp
   release/info.cpp
@@ -15,8 +17,8 @@ set(SOURCE_FILES
   types/vector.cpp
 )
 
-add_executable(libgetter_test ${SOURCE_FILES})
-target_link_libraries(libgetter_test libgetter_static gtest_main)
+add_executable(libgetter_test ${LIBGETTER_TESTS_SOURCES})
+target_link_libraries(libgetter_test getter gtest_main)
 
 include(GoogleTest)
 gtest_discover_tests(libgetter_test)

@@ -5,7 +5,7 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-set(SOURCE_FILES
+set(LIBGETTER_SOURCES
   box/info.c
   box/box.c
   release/info.c
@@ -17,7 +17,7 @@ set(SOURCE_FILES
   tools/error.c
 )
 
-set(HEADER_FILES
+set(LIBGETTER_HEADERS
   # Headers WITHOUT corresponding source files
   getter.h
   common.h
@@ -38,14 +38,36 @@ set(HEADER_FILES
   tools/error.h
 )
 
-list(TRANSFORM HEADER_FILES PREPEND ${PROJECT_SOURCE_DIR}/include/getter/)
+# All header files are in "<libgetter>/include/getter/" directory, so their
+# location need to be prepended with that location
+list(TRANSFORM LIBGETTER_HEADERS PREPEND ${PROJECT_SOURCE_DIR}/include/getter/)
 
-add_library(libgetter_object OBJECT ${SOURCE_FILES} ${HEADER_FILES})
+# Common header contains some constants used everywhere such as WINDLL, HEADER_BEGIN or HEADER_END
+set(LIBGETTER_COMMON_HEADER ${PROJECT_SOURCE_DIR}/include/getter/common.h)
 
-target_include_directories(libgetter_object PUBLIC ${PROJECT_SOURCE_DIR}/include)
-target_link_libraries(libgetter_object PUBLIC jsmn pcre2-8-static)
+# Location of bundle (directory containing all files required by libgetter to work)
+set(LIBGETTER_BUNDLE_OUTPUT ${PROJECT_BINARY_DIR}/libgetter-bundle)
 
-target_compile_definitions(libgetter_object
+if(BUILD_SHARED_LIBS)
+  add_library(getter SHARED ${LIBGETTER_SOURCES} ${LIBGETTER_HEADERS})
+
+  set(LIBGETTER_DEPENDENCIES
+    jsmn
+    pcre2-8-shared
+  )
+else()
+  add_library(getter STATIC ${LIBGETTER_SOURCES} ${LIBGETTER_HEADERS})
+
+  set(LIBGETTER_DEPENDENCIES
+    jsmn
+    pcre2-8-static
+  )
+endif()
+
+target_include_directories(getter PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(getter PUBLIC ${LIBGETTER_DEPENDENCIES})
+
+target_compile_definitions(getter
   PUBLIC GTT_VERSION="${LIBGETTER_VERSION}"
   PUBLIC GTT_VERSION_SHORT="${LIBGETTER_VERSION_SHORT}"
   PUBLIC GTT_VERSION_MAJOR=${LIBGETTER_VERSION_MAJOR}
@@ -53,22 +75,22 @@ target_compile_definitions(libgetter_object
   PUBLIC GTT_VERSION_PATCH=${LIBGETTER_VERSION_PATCH}
 )
 
-set(COMMON_HEADER ${PROJECT_SOURCE_DIR}/include/getter/common.h)
-
+# Force include common header
 if(MSVC)
-  target_compile_options(libgetter_object PUBLIC /FI"${COMMON_HEADER}")
+  target_compile_options(getter PUBLIC /FI"${LIBGETTER_COMMON_HEADER}")
 else()
-  target_compile_options(libgetter_object PUBLIC -include "${COMMON_HEADER}")
+  target_compile_options(getter PUBLIC -include "${LIBGETTER_COMMON_HEADER}")
 endif()
 
-add_library(libgetter SHARED)
-add_library(libgetter_static STATIC)
-
-target_link_libraries(libgetter PUBLIC libgetter_object)
-target_link_libraries(libgetter_static PUBLIC libgetter_object)
-
-set_target_properties(libgetter libgetter_static PROPERTIES OUTPUT_NAME getter)
-
-if(WIN32)
-  target_compile_definitions(libgetter PRIVATE WINDLLBUILD)
+# Enable WINDLL constant which takes care of exporting symbols in DLLs on Windows
+if(WIN32 AND BUILD_SHARED_LIBS)
+  target_compile_definitions(getter PUBLIC WINDLLBUILD)
 endif()
+
+# Copy every file into libgetter bundle
+set_target_properties(getter ${LIBGETTER_DEPENDENCIES} PROPERTIES
+  ARCHIVE_OUTPUT_DIRECTORY ${LIBGETTER_BUNDLE_OUTPUT}
+  LIBRARY_OUTPUT_DIRECTORY ${LIBGETTER_BUNDLE_OUTPUT}
+  RUNTIME_OUTPUT_DIRECTORY ${LIBGETTER_BUNDLE_OUTPUT}
+)
+
