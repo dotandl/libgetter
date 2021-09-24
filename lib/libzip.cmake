@@ -5,7 +5,9 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-include(googletest.cmake)
-include(pcre2.cmake)
-include(libzip.cmake)
-include(jsmn.cmake)
+set(BUILD_TOOLS OFF)
+set(BUILD_REGRESS OFF) # tests
+set(BUILD_EXAMPLES OFF)
+set(BUILD_DOC OFF)
+
+add_subdirectory(libzip)

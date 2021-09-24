@@ -7,3 +7,6 @@
 [submodule "lib/pcre2"]
 	path = lib/pcre2
 	url = https://github.com/PhilipHazel/pcre2.git
+[submodule "lib/libzip"]
+	path = lib/libzip
+	url = https://github.com/nih-at/libzip.git

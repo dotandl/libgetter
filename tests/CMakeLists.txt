@@ -15,10 +15,15 @@ set(LIBGETTER_TESTS_SOURCES
   release/version.cpp
   types/pkvf.cpp
   types/vector.cpp
+  files/zip/box_info.cpp
 )
 
 add_executable(libgetter_test ${LIBGETTER_TESTS_SOURCES})
 target_link_libraries(libgetter_test getter gtest_main)
+
+target_compile_definitions(libgetter_test
+  PRIVATE GTT_TESTS_DIR="${PROJECT_SOURCE_DIR}/tests"
+)
 
 include(GoogleTest)
 gtest_discover_tests(libgetter_test)

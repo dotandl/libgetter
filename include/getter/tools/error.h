@@ -26,6 +26,7 @@ enum GttErrorCode {
   GTT_UNSUPPORTED_HOST,   ///< Unsupported platform or processor architecture.
   GTT_LIBGETTER_TOO_OLD,  ///< Box requires newer version of libgetter to
                           ///< install itself properly.
+  GTT_ZIP_ERROR,          ///< Error opening/processing zip file.
 };
 
 typedef enum GttErrorCode GttErrorCode;

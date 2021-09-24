@@ -15,6 +15,7 @@ set(LIBGETTER_SOURCES
   tools/platform.c
   tools/version.c
   tools/error.c
+  files/zip/box_info.c
 )
 
 set(LIBGETTER_HEADERS
@@ -37,6 +38,13 @@ set(LIBGETTER_HEADERS
   tools/platform.h
   tools/version.h
   tools/error.h
+  files/zip/box_info.h
+)
+
+# Common dependencies (no matter if building shared or static lib)
+set(LIBGETTER_DEPENDENCIES
+  jsmn
+  zip
 )
 
 # All header files are in "<libgetter>/include/getter/" directory, so their
@@ -49,22 +57,18 @@ set(LIBGETTER_COMMON_HEADER ${PROJECT_SOURCE_DIR}/include/getter/common.h)
 # Location of bundle (directory containing all files required by libgetter to work)
 set(LIBGETTER_BUNDLE_OUTPUT ${PROJECT_BINARY_DIR}/libgetter-bundle)
 
+# Dependencies depending on that if static or shared lib is built
 if(BUILD_SHARED_LIBS)
-  add_library(getter SHARED ${LIBGETTER_SOURCES} ${LIBGETTER_HEADERS})
-
-  set(LIBGETTER_DEPENDENCIES
-    jsmn
+  list(APPEND LIBGETTER_DEPENDENCIES
     pcre2-8-shared
   )
 else()
-  add_library(getter STATIC ${LIBGETTER_SOURCES} ${LIBGETTER_HEADERS})
-
-  set(LIBGETTER_DEPENDENCIES
-    jsmn
+  list(APPEND LIBGETTER_DEPENDENCIES
     pcre2-8-static
   )
 endif()
 
+add_library(getter ${LIBGETTER_SOURCES} ${LIBGETTER_HEADERS})
 target_include_directories(getter PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(getter PUBLIC ${LIBGETTER_DEPENDENCIES})
 
