@@ -10,14 +10,20 @@
 #include <getter/release/info.h>
 #include <getter/tools/error.h>
 
+#define CVECTOR_LOGARITHMIC_GROWTH
+
+#include <cvector.h>
+#include <string.h>
+
 static void pkvf_str_alloc_copy(GttPKVFToken *token, char **dest);
-static void pkvf_arr_to_vec(GttPKVFToken *token, GttVector_string **vec);
+static void pkvf_arr_to_vec(GttPKVFToken *token,
+                            cvector_vector_type(char *) * vec);
 
 GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
   GttReleaseInfo *self;
   GttPKVFToken *token;
-  GttVector_pkvf_token *vec;
-  GttVectorNode_pkvf_token *node;
+  cvector_vector_type(GttPKVFToken) vec;
+  int i;
 
   vec = gtt_parse_pkvf(pkvf);
   if (GTT_FAILED) return NULL;  // forward the error
@@ -25,8 +31,8 @@ GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
   self = malloc(sizeof(GttReleaseInfo));
   memset(self, 0, sizeof(GttReleaseInfo));
 
-  gtt_vector_for_each(vec, node) {
-    token = &node->value;
+  for (i = 0; i < cvector_size(vec); i++) {
+    token = &vec[i];
 
     switch (token->type) {
       case GTT_PKVF_STRING_TOKEN:
@@ -76,13 +82,13 @@ GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
   return self;
 }
 
-#define free_all_strings(vec, node)                             \
-  if ((vec) != NULL)                                            \
-  gtt_vector_for_each((vec), (node)) if ((node)->value != NULL) \
-      free((node)->value)
+#define free_all_strings(vec, i)                    \
+  if ((vec) != NULL)                                \
+    for ((i) = 0; (i) < cvector_size((vec)); (i)++) \
+      if ((vec)[(i)] != NULL) free((vec)[(i)])
 
 void gtt_release_info_delete(GttReleaseInfo *self) {
-  GttVectorNode_string *node;
+  int i;
 
   if (self == NULL) return;
 
@@ -92,17 +98,17 @@ void gtt_release_info_delete(GttReleaseInfo *self) {
   if (self->readme != NULL) free((char *)self->readme);
   if (self->changelog != NULL) free((char *)self->changelog);
 
-  free_all_strings(self->dependencies, node);
-  free_all_strings(self->build_dependencies, node);
-  free_all_strings(self->optional_dependencies, node);
-  free_all_strings(self->conflicts, node);
-  free_all_strings(self->replaces, node);
+  free_all_strings(self->dependencies, i);
+  free_all_strings(self->build_dependencies, i);
+  free_all_strings(self->optional_dependencies, i);
+  free_all_strings(self->conflicts, i);
+  free_all_strings(self->replaces, i);
 
-  gtt_vector_string_delete(self->dependencies);
-  gtt_vector_string_delete(self->build_dependencies);
-  gtt_vector_string_delete(self->optional_dependencies);
-  gtt_vector_string_delete(self->conflicts);
-  gtt_vector_string_delete(self->replaces);
+  cvector_free(self->dependencies);
+  cvector_free(self->build_dependencies);
+  cvector_free(self->optional_dependencies);
+  cvector_free(self->conflicts);
+  cvector_free(self->replaces);
 
   free(self);
 }
@@ -112,15 +118,17 @@ void pkvf_str_alloc_copy(GttPKVFToken *token, char **dest) {
   strcpy(*dest, token->val.str);
 }
 
-void pkvf_arr_to_vec(GttPKVFToken *token, GttVector_string **vec) {
-  GttVectorNode_string *node;
+void pkvf_arr_to_vec(GttPKVFToken *token, cvector_vector_type(char *) * vec) {
+  int i;
   char *str;
 
-  *vec = gtt_vector_string_new();
+  *vec = NULL;
 
-  gtt_vector_for_each(token->val.vec, node) {
-    str = calloc(strlen(node->value) + 1, sizeof(char));
-    strcpy(str, node->value);
-    gtt_vector_string_push(*vec, str);
+  for (i = 0; i < cvector_size(token->val.vec); i++) {
+    str = calloc(strlen(token->val.vec[i]) + 1, sizeof(char));
+    strcpy(str, token->val.vec[i]);
+
+    // *vec needs to be surrounded by () because of bug in the c-vector lib
+    cvector_push_back((*vec), str);
   }
 }

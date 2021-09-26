@@ -28,14 +28,12 @@ TEST(Box, IsAbleToSearchForAppropriateRelease) {
       "  \"license_name\": \"MIT\""
       "}";
 
-  GttVector_release *releases = gtt_vector_release_new();
+  cvector_vector_type(GttRelease *) releases = NULL;
 
-  gtt_vector_release_push(releases,
-                          gtt_release_new("win32", "x86_64", "v1.0.0"));
-  gtt_vector_release_push(releases,
-                          gtt_release_new("darwin", "arm64", "v1.1.0"));
-  gtt_vector_release_push(releases, gtt_release_new("linux", "x86", "v1.1.5"));
-  gtt_vector_release_push(releases, gtt_release_new("win32", "x86", "v2.2.0"));
+  cvector_push_back(releases, gtt_release_new("win32", "x86_64", "v1.0.0"));
+  cvector_push_back(releases, gtt_release_new("darwin", "arm64", "v1.1.0"));
+  cvector_push_back(releases, gtt_release_new("linux", "x86", "v1.1.5"));
+  cvector_push_back(releases, gtt_release_new("win32", "x86", "v2.2.0"));
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);
   GttBox *box = gtt_box_new(bi, releases);
@@ -62,20 +60,15 @@ TEST(Box, IsAbleToSearchForRelease) {
       "  \"license_name\": \"MIT\""
       "}";
 
-  GttVector_release *releases = gtt_vector_release_new();
+  cvector_vector_type(GttRelease *) releases = NULL;
 
-  gtt_vector_release_push(releases,
-                          gtt_release_new("win32", "x86_64", "v0.9.0"));
-  gtt_vector_release_push(releases,
-                          gtt_release_new("win32", "x86_64", "v1.0.0"));
-  gtt_vector_release_push(releases,
-                          gtt_release_new("darwin", "arm64", "v1.0.5"));
-  gtt_vector_release_push(releases,
-                          gtt_release_new("darwin", "arm64", "v1.1.0"));
-  gtt_vector_release_push(releases, gtt_release_new("linux", "x86", "v1.1.5"));
-  gtt_vector_release_push(releases, gtt_release_new("win32", "x86", "v2.2.0"));
-  gtt_vector_release_push(releases,
-                          gtt_release_new("darwin", "arm64", "v2.2.0"));
+  cvector_push_back(releases, (gtt_release_new("win32", "x86_64", "v0.9.0")));
+  cvector_push_back(releases, (gtt_release_new("win32", "x86_64", "v1.0.0")));
+  cvector_push_back(releases, (gtt_release_new("darwin", "arm64", "v1.0.5")));
+  cvector_push_back(releases, (gtt_release_new("darwin", "arm64", "v1.1.0")));
+  cvector_push_back(releases, (gtt_release_new("linux", "x86", "v1.1.5")));
+  cvector_push_back(releases, (gtt_release_new("win32", "x86", "v2.2.0")));
+  cvector_push_back(releases, (gtt_release_new("darwin", "arm64", "v2.2.0")));
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);
   GttBox *box = gtt_box_new(bi, releases);

@@ -12,6 +12,7 @@
 #include <getter/release/release.h>
 #include <getter/tools/error.h>
 #include <pcre2.h>
+#include <string.h>
 
 GttRelease *gtt_release_new(const char *platform, const char *arch,
                             const char *version) {

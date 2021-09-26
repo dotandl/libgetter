@@ -16,16 +16,15 @@ TEST(PKVF, ParsesValidPKVF) {
       "1st key@#@first value\n"
       "second key@#@and the value\n";
 
-  GttVector_pkvf_token *vec = gtt_parse_pkvf(pkvf);
+  cvector_vector_type(GttPKVFToken) vec = gtt_parse_pkvf(pkvf);
 
   ASSERT_TRUE(vec != NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_OK);
 
-  EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.key, "1st key");
-  EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.val.str, "first value");
-  EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 1)->value.key, "second key");
-  EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 1)->value.val.str,
-               "and the value");
+  EXPECT_STREQ(vec[0].key, "1st key");
+  EXPECT_STREQ(vec[0].val.str, "first value");
+  EXPECT_STREQ(vec[1].key, "second key");
+  EXPECT_STREQ(vec[1].val.str, "and the value");
 
   gtt_vector_pkvf_token_free(vec);
 }
@@ -35,28 +34,26 @@ TEST(PKVF, ParsesValidPKVFWithArray) {
       "1st key@#@string value\n"
       "2nd key@#@array@,@of@,@strings@,@\n";
 
-  GttVector_pkvf_token *vec = gtt_parse_pkvf(pkvf);
+  cvector_vector_type(GttPKVFToken) vec = gtt_parse_pkvf(pkvf);
 
-  GttVector_string *second_value =
-      gtt_vector_pkvf_token_get(vec, 1)->value.val.vec;
+  cvector_vector_type(char *) second_value = vec[1].val.vec;
 
   ASSERT_TRUE(vec != NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_OK);
 
-  EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.key, "1st key");
-  EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 0)->value.val.str,
-               "string value");
-  EXPECT_STREQ(gtt_vector_pkvf_token_get(vec, 1)->value.key, "2nd key");
-  EXPECT_STREQ(gtt_vector_string_get(second_value, 0)->value, "array");
-  EXPECT_STREQ(gtt_vector_string_get(second_value, 1)->value, "of");
-  EXPECT_STREQ(gtt_vector_string_get(second_value, 2)->value, "strings");
+  EXPECT_STREQ(vec[0].key, "1st key");
+  EXPECT_STREQ(vec[0].val.str, "string value");
+  EXPECT_STREQ(vec[1].key, "2nd key");
+  EXPECT_STREQ(second_value[0], "array");
+  EXPECT_STREQ(second_value[1], "of");
+  EXPECT_STREQ(second_value[2], "strings");
 
   gtt_vector_pkvf_token_free(vec);
 }
 
 TEST(PKVF, DoesNotCreateInvalidPKVF) {
   const char pkvf[] = "asjkdahs\najksdj\n\n";
-  GttVector_pkvf_token *vec = gtt_parse_pkvf(pkvf);
+  cvector_vector_type(GttPKVFToken) vec = gtt_parse_pkvf(pkvf);
 
   ASSERT_TRUE(vec == NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_PARSE_ERROR);

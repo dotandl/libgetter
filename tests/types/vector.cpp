@@ -7,7 +7,6 @@
  * +----------------------------------------------------------+
  */
 
-#include <getter/types/vectors/string.h>
 #include <gtest/gtest.h>
 
 TEST(StringVector, GetsElement) {

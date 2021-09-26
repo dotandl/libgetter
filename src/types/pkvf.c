@@ -7,22 +7,25 @@
  * +----------------------------------------------------------+
  */
 
+#define CVECTOR_LOGARITHMIC_GROWTH
+
+#include <cvector.h>
 #include <getter/tools/error.h>
 #include <getter/types/pkvf.h>
 #include <stdio.h>
 #include <string.h>
 
-static GttVector_string *pkvf_value_to_vec(const char *val);
+static cvector_vector_type(char *) pkvf_value_to_vec(const char *val);
 
-GttVector_pkvf_token *gtt_parse_pkvf(const char *pkvf) {
+cvector_vector_type(GttPKVFToken) gtt_parse_pkvf(const char *pkvf) {
   size_t key_len, val_len;
   char *line_ptr, *save_ptr, *seq_ptr, *key, *val;
-  GttVector_pkvf_token *vec;
-  GttVector_string *vals;
+  cvector_vector_type(GttPKVFToken) vec;
+  cvector_vector_type(char *) vals;
   GttPKVFToken token;
   GttPKVFTokenValue token_value;
 
-  vec = gtt_vector_pkvf_token_new();
+  vec = NULL;
 
   line_ptr = strtok_r((char *)pkvf, "\n", &save_ptr);
   while (line_ptr != NULL) {
@@ -60,7 +63,7 @@ GttVector_pkvf_token *gtt_parse_pkvf(const char *pkvf) {
     token.key = key;
     token.val = token_value;
 
-    gtt_vector_pkvf_token_push(vec, token);
+    cvector_push_back(vec, token);
 
   skip:
     line_ptr = strtok_r(NULL, "\n", &save_ptr);
@@ -70,41 +73,39 @@ GttVector_pkvf_token *gtt_parse_pkvf(const char *pkvf) {
   return vec;
 }
 
-void gtt_vector_pkvf_token_free(GttVector_pkvf_token *vec) {
-  GttVectorNode_pkvf_token *node_pkvf;
-  GttVectorNode_string *node_str;
+void gtt_vector_pkvf_token_free(cvector_vector_type(GttPKVFToken) vec) {
+  int i, j;
 
   if (vec == NULL) return;
 
-  gtt_vector_for_each(vec, node_pkvf) {
-    if (node_pkvf->value.key != NULL) free((char *)node_pkvf->value.key);
+  for (i = 0; i < cvector_size(vec); i++) {
+    if (vec[i].key != NULL) free((char *)vec[i].key);
 
-    switch (node_pkvf->value.type) {
+    switch (vec[i].type) {
       case GTT_PKVF_STRING_TOKEN:
-        if (node_pkvf->value.val.str != NULL)
-          free((char *)node_pkvf->value.val.str);
+        if (vec[i].val.str != NULL) free((char *)vec[i].val.str);
         break;
 
       case GTT_PKVF_STRING_VECTOR_TOKEN:
-        if (node_pkvf->value.val.vec != NULL) {
-          gtt_vector_for_each(node_pkvf->value.val.vec, node_str) {
-            if (node_str->value != NULL) free(node_str->value);
+        if (vec[i].val.vec != NULL) {
+          for (j = 0; j < cvector_size(vec[i].val.vec); j++) {
+            if (vec[i].val.vec[j] != NULL) free(vec[i].val.vec[j]);
           }
 
-          gtt_vector_string_delete(node_pkvf->value.val.vec);
+          cvector_free(vec[i].val.vec);
         }
         break;
     }
   }
 
-  gtt_vector_pkvf_token_delete(vec);
+  cvector_free(vec);
 }
 
-GttVector_string *pkvf_value_to_vec(const char *val) {
+cvector_vector_type(char *) pkvf_value_to_vec(const char *val) {
   char *el_ptr, *save_ptr, *el;
-  GttVector_string *vec;
+  cvector_vector_type(char *) vec;
 
-  vec = gtt_vector_string_new();
+  vec = NULL;
 
   el_ptr = strtok_r((char *)val, "@,@", &save_ptr);
   while (el_ptr != NULL) {
@@ -112,7 +113,7 @@ GttVector_string *pkvf_value_to_vec(const char *val) {
 
     el = calloc(strlen(el_ptr) + 1, sizeof(char));
     strcpy(el, el_ptr);
-    gtt_vector_string_push(vec, el);
+    cvector_push_back(vec, el);
 
   skip:
     el_ptr = strtok_r(NULL, "@,@", &save_ptr);

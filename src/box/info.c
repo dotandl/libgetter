@@ -23,7 +23,7 @@ static bool json_str_eq(const char *json, jsmntok_t *token, const char *str);
 static void json_str_alloc_copy(const char *json, jsmntok_t *token,
                                 char **dest);
 static void json_arr_to_vec(const char *json, jsmntok_t *token,
-                            GttVector_string **vec);
+                            cvector_vector_type(char *) * vec);
 static bool gtt_meets_version(const char *version);
 
 GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
@@ -144,13 +144,13 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   return bi;
 }
 
-#define free_all_strings(vec, node)                             \
-  if ((vec) != NULL)                                            \
-  gtt_vector_for_each((vec), (node)) if ((node)->value != NULL) \
-      free((node)->value)
+#define free_all_strings(vec, i)                    \
+  if ((vec) != NULL)                                \
+    for ((i) = 0; (i) < cvector_size((vec)); (i)++) \
+      if ((vec)[(i)] != NULL) free((vec)[(i)])
 
 void gtt_box_info_delete(GttBoxInfo *self) {
-  GttVectorNode_string *node;
+  int i;
 
   if (self == NULL) return;
 
@@ -166,21 +166,21 @@ void gtt_box_info_delete(GttBoxInfo *self) {
   if (self->readme != NULL) free((char **)self->readme);
   if (self->changelog != NULL) free((char **)self->changelog);
 
-  free_all_strings(self->authors, node);
-  free_all_strings(self->categories, node);
-  free_all_strings(self->dependencies, node);
-  free_all_strings(self->build_dependencies, node);
-  free_all_strings(self->optional_dependencies, node);
-  free_all_strings(self->conflicts, node);
-  free_all_strings(self->replaces, node);
+  free_all_strings(self->authors, i);
+  free_all_strings(self->categories, i);
+  free_all_strings(self->dependencies, i);
+  free_all_strings(self->build_dependencies, i);
+  free_all_strings(self->optional_dependencies, i);
+  free_all_strings(self->conflicts, i);
+  free_all_strings(self->replaces, i);
 
-  gtt_vector_string_delete(self->authors);
-  gtt_vector_string_delete(self->categories);
-  gtt_vector_string_delete(self->dependencies);
-  gtt_vector_string_delete(self->build_dependencies);
-  gtt_vector_string_delete(self->optional_dependencies);
-  gtt_vector_string_delete(self->conflicts);
-  gtt_vector_string_delete(self->replaces);
+  cvector_free(self->authors);
+  cvector_free(self->categories);
+  cvector_free(self->dependencies);
+  cvector_free(self->build_dependencies);
+  cvector_free(self->optional_dependencies);
+  cvector_free(self->conflicts);
+  cvector_free(self->replaces);
 
   free(self);
 }
@@ -203,7 +203,7 @@ void json_str_alloc_copy(const char *json, jsmntok_t *token, char **dest) {
 }
 
 void json_arr_to_vec(const char *json, jsmntok_t *token,
-                     GttVector_string **vec) {
+                     cvector_vector_type(char *) * vec) {
   jsmntok_t *current_tok;
   char *buf;
   int i;
@@ -214,13 +214,15 @@ void json_arr_to_vec(const char *json, jsmntok_t *token,
     return;
   }
 
-  *vec = gtt_vector_string_new();
+  *vec = NULL;
 
   for (i = 0; i < token->size; i++) {
     current_tok = token + i + 1;
 
     json_str_alloc_copy(json, current_tok, &buf);
-    gtt_vector_string_push(*vec, buf);
+
+    // *vec needs to be surrounded by () because of bug in the c-vector lib
+    cvector_push_back((*vec), buf);
   }
 }
 

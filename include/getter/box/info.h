@@ -10,7 +10,9 @@
 #ifndef INCLUDE_GETTER_BOX_INFO_H_
 #define INCLUDE_GETTER_BOX_INFO_H_
 
-#include <getter/types/vectors/string.h>
+#define CVECTOR_LOGARITHMIC_GROWTH
+
+#include <cvector.h>
 
 HEADER_BEGIN
 
@@ -26,8 +28,8 @@ struct GttBoxInfo {
 
   const char *homepage;
   const char *repository;
-  GTT_REQUIRED GttVector_string *authors;
-  GttVector_string *categories;
+  GTT_REQUIRED cvector_vector_type(char *) authors;
+  cvector_vector_type(char *) categories;
 
   GTT_REQUIRED const char
       *license_name;      ///< Name of the license (like MIT, GPLv3, etc.).
@@ -35,11 +37,11 @@ struct GttBoxInfo {
   const char *readme;     ///< Path to the readme file.
   const char *changelog;  ///< Path to the changelog file.
 
-  GttVector_string *dependencies;
-  GttVector_string *build_dependencies;
-  GttVector_string *optional_dependencies;
-  GttVector_string *conflicts;
-  GttVector_string *replaces;
+  cvector_vector_type(char *) dependencies;
+  cvector_vector_type(char *) build_dependencies;
+  cvector_vector_type(char *) optional_dependencies;
+  cvector_vector_type(char *) conflicts;
+  cvector_vector_type(char *) replaces;
 };
 
 typedef struct GttBoxInfo GttBoxInfo;

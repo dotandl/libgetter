@@ -38,17 +38,16 @@ TEST(ReleaseInfo, CreatesFromPKVFAllFields) {
   EXPECT_STREQ(ri->readme, "README.txt");
   EXPECT_STREQ(ri->changelog, "CHANGELOG.txt");
 
-  EXPECT_STREQ(gtt_vector_string_get(ri->dependencies, 0)->value, "box1");
-  EXPECT_STREQ(gtt_vector_string_get(ri->dependencies, 1)->value, "box2");
-  EXPECT_STREQ(gtt_vector_string_get(ri->build_dependencies, 0)->value, "box3");
-  EXPECT_STREQ(gtt_vector_string_get(ri->build_dependencies, 1)->value, "box4");
-  EXPECT_STREQ(gtt_vector_string_get(ri->build_dependencies, 2)->value, "box5");
-  EXPECT_STREQ(gtt_vector_string_get(ri->optional_dependencies, 0)->value,
-               "box6");
-  EXPECT_STREQ(gtt_vector_string_get(ri->conflicts, 0)->value, "box7");
-  EXPECT_STREQ(gtt_vector_string_get(ri->conflicts, 1)->value, "box8");
-  EXPECT_STREQ(gtt_vector_string_get(ri->replaces, 0)->value, "box9");
-  EXPECT_STREQ(gtt_vector_string_get(ri->replaces, 1)->value, "box10");
+  EXPECT_STREQ(ri->dependencies[0], "box1");
+  EXPECT_STREQ(ri->dependencies[1], "box2");
+  EXPECT_STREQ(ri->build_dependencies[0], "box3");
+  EXPECT_STREQ(ri->build_dependencies[1], "box4");
+  EXPECT_STREQ(ri->build_dependencies[2], "box5");
+  EXPECT_STREQ(ri->optional_dependencies[0], "box6");
+  EXPECT_STREQ(ri->conflicts[0], "box7");
+  EXPECT_STREQ(ri->conflicts[1], "box8");
+  EXPECT_STREQ(ri->replaces[0], "box9");
+  EXPECT_STREQ(ri->replaces[1], "box10");
 
   gtt_release_info_delete(ri);
 }

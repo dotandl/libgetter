@@ -7,10 +7,12 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef TYPES_PKVF_H_
-#define TYPES_PKVF_H_
+#ifndef INCLUDE_GETTER_TYPES_PKVF_H_
+#define INCLUDE_GETTER_TYPES_PKVF_H_
 
-#include <getter/types/vectors/string.h>
+#define CVECTOR_LOGARITHMIC_GROWTH
+
+#include <cvector.h>
 
 HEADER_BEGIN
 
@@ -22,19 +24,13 @@ typedef struct GttPKVFToken GttPKVFToken;
 
 union GttPKVFTokenValue {
   const char *str;
-  GttVector_string *vec;
+  cvector_vector_type(char *) vec;
 };
 struct GttPKVFToken {
   const char *key;
   GttPKVFTokenValue val;
   GttPKVFTokenType type;
 };
-
-#define GTT_VEC_TYPE GttPKVFToken
-#define GTT_VEC_NAME pkvf_token
-#define GTT_VEC_DISABLE_INDEX_OF
-
-#include <getter/types/vector.h>
 
 /**
  * Parses PKVF to the form of token vector.
@@ -56,7 +52,8 @@ struct GttPKVFToken {
  * \param pkvf PKVF string. It must not be a string literal.
  * \returns Vector with tokens read from PKVF.
  */
-GTT_ERROR_EMITTER WINDLL GttVector_pkvf_token *gtt_parse_pkvf(const char *pkvf);
+GTT_ERROR_EMITTER WINDLL cvector_vector_type(GttPKVFToken)
+    gtt_parse_pkvf(const char *pkvf);
 
 /**
  * Frees every key and value in PKVF token vector and then calls
@@ -65,8 +62,8 @@ GTT_ERROR_EMITTER WINDLL GttVector_pkvf_token *gtt_parse_pkvf(const char *pkvf);
  *
  * \param vec Token vector to free.
  */
-WINDLL void gtt_vector_pkvf_token_free(GttVector_pkvf_token *vec);
+WINDLL void gtt_vector_pkvf_token_free(cvector_vector_type(GttPKVFToken) vec);
 
 HEADER_END
 
-#endif /* TYPES_PKVF_H_ */
+#endif /* INCLUDE_GETTER_TYPES_PKVF_H_ */

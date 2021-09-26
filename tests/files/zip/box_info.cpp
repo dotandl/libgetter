@@ -27,7 +27,7 @@ TEST(Zip, ReadsBoxInfoFile) {
   EXPECT_STREQ(bi->name, "example-box");
   EXPECT_STREQ(bi->full_name, "Example Box");
   EXPECT_STREQ(bi->summary, "testtest");
-  EXPECT_STREQ(gtt_vector_string_get(bi->authors, 0)->value, "dotandl");
+  EXPECT_STREQ(bi->authors[0], "dotandl");
   EXPECT_STREQ(bi->license_name, "MIT");
 
   gtt_box_info_delete(bi);

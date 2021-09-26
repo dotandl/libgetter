@@ -10,7 +10,10 @@
 #ifndef INCLUDE_GETTER_RELEASE_VERSION_H_
 #define INCLUDE_GETTER_RELEASE_VERSION_H_
 
-#include <getter/types/vectors/release.h>
+#define CVECTOR_LOGARITHMIC_GROWTH
+
+#include <cvector.h>
+#include <getter/release/release.h>
 
 HEADER_BEGIN
 
@@ -25,7 +28,7 @@ HEADER_BEGIN
  * \returns The latest Release.
  */
 GTT_ERROR_EMITTER WINDLL GttRelease *gtt_get_latest_release_version(
-    GttVector_release *releases);
+    cvector_vector_type(GttRelease *) releases);
 
 HEADER_END
 

@@ -24,9 +24,6 @@ set(LIBGETTER_HEADERS
   common.h
   attributes.h
   types/array.h
-  types/vector.h
-  types/vectors/string.h
-  types/vectors/release.h
 
   # Headers WITH corresponding source files
   box/info.h
@@ -43,8 +40,9 @@ set(LIBGETTER_HEADERS
 
 # Common dependencies (no matter if building shared or static lib)
 set(LIBGETTER_DEPENDENCIES
-  jsmn
   zip
+  jsmn
+  c-vector
 )
 
 # All header files are in "<libgetter>/include/getter/" directory, so their

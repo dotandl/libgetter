@@ -12,21 +12,22 @@
 #include <getter/tools/platform.h>
 #include <gtest/gtest.h>
 
-TEST(ReleaseLatestVersionCalculator, ReturnsLatestRelease) {
-  GttVector_release *releases = gtt_vector_release_new();
+#include <cstdlib>
 
-  gtt_vector_release_push(releases, gtt_release_new("linux", "x86", "v1.0.0"));
-  gtt_vector_release_push(releases,
-                          gtt_release_new("linux", "x86", "v1.11111.0"));
-  gtt_vector_release_push(releases, gtt_release_new("linux", "x86", "v1.1.1"));
+TEST(ReleaseLatestVersionCalculator, ReturnsLatestRelease) {
+  cvector_vector_type(GttRelease *) releases = NULL;
+
+  cvector_push_back(releases, gtt_release_new("linux", "x86", "v1.0.0"));
+  cvector_push_back(releases, gtt_release_new("linux", "x86", "v1.11111.0"));
+  cvector_push_back(releases, gtt_release_new("linux", "x86", "v1.1.1"));
 
   GttRelease *latest = gtt_get_latest_release_version(releases);
 
   ASSERT_EQ(gtt_last_error.code, GTT_OK);
   ASSERT_STREQ(latest->version, "v1.11111.0");
 
-  gtt_release_delete(gtt_vector_release_get(releases, 0)->value);
-  gtt_release_delete(gtt_vector_release_get(releases, 1)->value);
-  gtt_release_delete(gtt_vector_release_get(releases, 2)->value);
-  gtt_vector_release_delete(releases);
+  gtt_release_delete(releases[0]);
+  gtt_release_delete(releases[1]);
+  gtt_release_delete(releases[2]);
+  cvector_free(releases);
 }

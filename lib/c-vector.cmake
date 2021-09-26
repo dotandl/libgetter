@@ -5,8 +5,5 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-include(googletest.cmake)
-include(pcre2.cmake)
-include(libzip.cmake)
-include(c-vector.cmake)
-include(jsmn.cmake)
+add_library(c-vector INTERFACE)
+target_include_directories(c-vector INTERFACE ${PROJECT_SOURCE_DIR}/lib/c-vector)

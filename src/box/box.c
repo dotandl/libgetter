@@ -7,12 +7,19 @@
  * +----------------------------------------------------------+
  */
 
+#define CVECTOR_LOGARITHMIC_GROWTH
+
+#include <cvector.h>
 #include <getter/box/box.h>
 #include <getter/release/version.h>
 #include <getter/tools/error.h>
 #include <getter/tools/platform.h>
+#include <string.h>
 
-GttBox *gtt_box_new(GttBoxInfo *info, GttVector_release *releases) {
+#define __BUFSIZE 16
+
+GttBox *gtt_box_new(GttBoxInfo *info,
+                    cvector_vector_type(GttRelease *) releases) {
   GttBox *self;
 
   self = malloc(sizeof(GttBox));
@@ -25,31 +32,29 @@ GttBox *gtt_box_new(GttBoxInfo *info, GttVector_release *releases) {
 }
 
 void gtt_box_delete(GttBox *self) {
-  GttVectorNode_release *node;
+  int i;
 
   if (self == NULL) return;
 
-  gtt_vector_for_each(self->releases, node) {
-    if (node->value != NULL) gtt_release_delete(node->value);
+  for (i = 0; i < cvector_size(self->releases); i++) {
+    if (self->releases[i] != NULL) gtt_release_delete(self->releases[i]);
   }
 
   if (self->info != NULL) gtt_box_info_delete(self->info);
-  if (self->releases != NULL) gtt_vector_release_delete(self->releases);
+  if (self->releases != NULL) cvector_free(self->releases);
 
   free(self);
 }
-
-#define __BUFSIZE 16
 
 GttRelease *gtt_box_get_release(GttBox *self, const char *version,
                                 const char *platform, const char *arch) {
   char __platform[__BUFSIZE], __arch[__BUFSIZE];
   GttRelease *res;
-  GttVector_release *vec;
-  GttVectorNode_release *node;
+  cvector_vector_type(GttRelease *) vec;
+  int i;
 
   res = NULL;
-  vec = gtt_vector_release_new();
+  vec = NULL;
 
   strncpy(__platform, platform ? platform : gtt_get_platform(), __BUFSIZE - 1);
   strncpy(__arch, arch ? arch : gtt_get_arch(), __BUFSIZE - 1);
@@ -61,25 +66,27 @@ GttRelease *gtt_box_get_release(GttBox *self, const char *version,
     return NULL;
   }
 
-  gtt_vector_for_each(self->releases, node) {
-    if (strncmp(node->value->platform, __platform, __BUFSIZE - 1) == 0 &&
-        strncmp(node->value->arch, __arch, __BUFSIZE - 1) == 0) {
-      gtt_vector_release_push(vec, node->value);
+  for (i = 0; i < cvector_size(self->releases); i++) {
+    if (strncmp(self->releases[i]->platform, __platform, __BUFSIZE - 1) == 0 &&
+        strncmp(self->releases[i]->arch, __arch, __BUFSIZE - 1) == 0) {
+      cvector_push_back(vec, self->releases[i]);
     }
   }
+
+  i = cvector_size(vec);
 
   if (version == NULL) {
     res = gtt_get_latest_release_version(vec);
   } else {
-    gtt_vector_for_each(vec, node) {
-      if (strncmp(node->value->version, version, __BUFSIZE - 1) == 0) {
-        res = node->value;
+    for (i = 0; i < cvector_size(vec); i++) {
+      if (strncmp(vec[i]->version, version, __BUFSIZE - 1) == 0) {
+        res = vec[i];
         break;
       }
     }
   }
 
-  gtt_vector_release_delete(vec);
+  cvector_free(vec);
   gtt_ok();
   return res;
 }

@@ -14,12 +14,13 @@ set(LIBGETTER_TESTS_SOURCES
   release/release.cpp
   release/version.cpp
   types/pkvf.cpp
-  types/vector.cpp
+  # types/vector.cpp
   files/zip/box_info.cpp
 )
 
 add_executable(libgetter_test ${LIBGETTER_TESTS_SOURCES})
 target_link_libraries(libgetter_test getter gtest_main)
+target_compile_options(libgetter_test PRIVATE "-fpermissive")
 
 target_compile_definitions(libgetter_test
   PRIVATE GTT_TESTS_DIR="${PROJECT_SOURCE_DIR}/tests"

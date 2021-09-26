@@ -23,11 +23,11 @@ struct GttReleaseInfo {
   const char *readme;        ///< Path to the readme file.
   const char *changelog;     ///< Path to the changelog file.
 
-  GttVector_string *dependencies;
-  GttVector_string *build_dependencies;
-  GttVector_string *optional_dependencies;
-  GttVector_string *conflicts;
-  GttVector_string *replaces;
+  cvector_vector_type(char *) dependencies;
+  cvector_vector_type(char *) build_dependencies;
+  cvector_vector_type(char *) optional_dependencies;
+  cvector_vector_type(char *) conflicts;
+  cvector_vector_type(char *) replaces;
 };
 
 typedef struct GttReleaseInfo GttReleaseInfo;

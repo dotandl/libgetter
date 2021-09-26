@@ -8,21 +8,24 @@
  */
 
 #define PCRE2_CODE_UNIT_WIDTH 8
+#define CVECTOR_LOGARITHMIC_GROWTH
 
+#include <cvector.h>
 #include <getter/release/version.h>
 #include <getter/tools/error.h>
 #include <getter/tools/version.h>
 #include <getter/types/array.h>
 #include <pcre2.h>
 #include <stdbool.h>
+#include <string.h>
 
-GttRelease *gtt_get_latest_release_version(GttVector_release *releases) {
-  GttVectorNode_release *node;
+GttRelease *gtt_get_latest_release_version(cvector_vector_type(GttRelease *)
+                                               releases) {
   GttRelease *latest = NULL;
   pcre2_code *regexp;
   pcre2_match_data *match_data;
   PCRE2_SIZE error_offset;
-  int error_code, matches;
+  int error_code, matches, i;
 
   PCRE2_UCHAR buf[8];
   PCRE2_SIZE buflen;
@@ -43,11 +46,12 @@ GttRelease *gtt_get_latest_release_version(GttVector_release *releases) {
   l_minor = 0;
   l_patch = 0;
 
-  gtt_vector_for_each(releases, node) {
+  // gtt_vector_for_each(releases, node) {
+  for (i = 0; i < cvector_size(releases); i++) {
     match_data = pcre2_match_data_create_from_pattern(regexp, NULL);
 
-    matches = pcre2_match(regexp, node->value->version,
-                          strlen(node->value->version), 0, 0, match_data, NULL);
+    matches = pcre2_match(regexp, releases[i]->version,
+                          strlen(releases[i]->version), 0, 0, match_data, NULL);
 
     buflen = arrlen(buf);
     pcre2_substring_copy_bynumber(match_data, 1, buf, &buflen);
@@ -66,7 +70,7 @@ GttRelease *gtt_get_latest_release_version(GttVector_release *releases) {
       l_minor = c_minor;
       l_patch = c_patch;
 
-      latest = node->value;
+      latest = releases[i];
     }
 
     pcre2_match_data_free(match_data);
