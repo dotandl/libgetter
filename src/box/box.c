@@ -59,27 +59,28 @@ GttRelease *gtt_box_get_release(GttBox *self, const char *version,
   strncpy(__platform, platform ? platform : gtt_get_platform(), __BUFSIZE - 1);
   strncpy(__arch, arch ? arch : gtt_get_arch(), __BUFSIZE - 1);
 
-  if (strncmp(__platform, "", __BUFSIZE - 1) == 0 ||
-      strncmp(__arch, "", __BUFSIZE - 1) == 0) {
+  __platform[__BUFSIZE - 1] = 0;
+  __arch[__BUFSIZE - 1] = 0;
+
+  if (strncmp(__platform, "", __BUFSIZE) == 0 ||
+      strncmp(__arch, "", __BUFSIZE) == 0) {
     gtt_error(GTT_UNSUPPORTED_HOST,
               "Platform/arch not given; host's platform/arch not supported");
     return NULL;
   }
 
   for (i = 0; i < cvector_size(self->releases); i++) {
-    if (strncmp(self->releases[i]->platform, __platform, __BUFSIZE - 1) == 0 &&
-        strncmp(self->releases[i]->arch, __arch, __BUFSIZE - 1) == 0) {
+    if (strncmp(self->releases[i]->platform, __platform, __BUFSIZE) == 0 &&
+        strncmp(self->releases[i]->arch, __arch, __BUFSIZE) == 0) {
       cvector_push_back(vec, self->releases[i]);
     }
   }
-
-  i = cvector_size(vec);
 
   if (version == NULL) {
     res = gtt_get_latest_release_version(vec);
   } else {
     for (i = 0; i < cvector_size(vec); i++) {
-      if (strncmp(vec[i]->version, version, __BUFSIZE - 1) == 0) {
+      if (strncmp(vec[i]->version, version, __BUFSIZE) == 0) {
         res = vec[i];
         break;
       }

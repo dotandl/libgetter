@@ -49,7 +49,7 @@ GttBoxInfo *gtt_zip_read_box_info(const char *filename) {
   bufsize = file_stat.size + 1;
   buf = calloc(bufsize, sizeof(char));
 
-  status = zip_fread(file, buf, bufsize);
+  status = zip_fread(file, buf, bufsize - 1);
 
   if (status < 0) {
     gtt_error(GTT_ZIP_ERROR,

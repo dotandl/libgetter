@@ -57,8 +57,8 @@ GTT_ERROR_EMITTER WINDLL cvector_vector_type(GttPKVFToken)
 
 /**
  * Frees every key and value in PKVF token vector and then calls
- * gtt_vector_pkvf_token_delete().
- * Call this function instead of calling gtt_vector_pkvf_token_delete().
+ * cvector_free().
+ * Call this function instead of calling cvector_free().
  *
  * \param vec Token vector to free.
  */

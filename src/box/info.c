@@ -144,14 +144,15 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   return bi;
 }
 
-#define free_all_strings(vec, i)                    \
-  if ((vec) != NULL)                                \
-    for ((i) = 0; (i) < cvector_size((vec)); (i)++) \
-      if ((vec)[(i)] != NULL) free((vec)[(i)])
+#define free_all_strings(vec)                 \
+  do {                                        \
+    int i;                                    \
+    if ((vec) != NULL)                        \
+      for (i = 0; i < cvector_size(vec); i++) \
+        if ((vec)[i] != NULL) free(vec[i]);   \
+  } while (0)
 
 void gtt_box_info_delete(GttBoxInfo *self) {
-  int i;
-
   if (self == NULL) return;
 
   if (self->getter != NULL) free((char **)self->getter);
@@ -166,13 +167,13 @@ void gtt_box_info_delete(GttBoxInfo *self) {
   if (self->readme != NULL) free((char **)self->readme);
   if (self->changelog != NULL) free((char **)self->changelog);
 
-  free_all_strings(self->authors, i);
-  free_all_strings(self->categories, i);
-  free_all_strings(self->dependencies, i);
-  free_all_strings(self->build_dependencies, i);
-  free_all_strings(self->optional_dependencies, i);
-  free_all_strings(self->conflicts, i);
-  free_all_strings(self->replaces, i);
+  free_all_strings(self->authors);
+  free_all_strings(self->categories);
+  free_all_strings(self->dependencies);
+  free_all_strings(self->build_dependencies);
+  free_all_strings(self->optional_dependencies);
+  free_all_strings(self->conflicts);
+  free_all_strings(self->replaces);
 
   cvector_free(self->authors);
   cvector_free(self->categories);

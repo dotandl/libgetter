@@ -14,7 +14,6 @@ set(LIBGETTER_TESTS_SOURCES
   release/release.cpp
   release/version.cpp
   types/pkvf.cpp
-  # types/vector.cpp
   files/zip/box_info.cpp
 )
 

@@ -90,6 +90,10 @@ const char *gtt_get_arch(void) {
 
 void gtt_mock_platform(const char *platform) {
   strncpy(gtt_platform, platform, __BUFSIZE - 1);
+  gtt_platform[__BUFSIZE - 1] = 0;
 }
 
-void gtt_mock_arch(const char *arch) { strncpy(gtt_arch, arch, __BUFSIZE - 1); }
+void gtt_mock_arch(const char *arch) {
+  strncpy(gtt_arch, arch, __BUFSIZE - 1);
+  gtt_arch[__BUFSIZE - 1] = 0;
+}
