@@ -16,6 +16,7 @@ set(LIBGETTER_SOURCES
   tools/version.c
   tools/error.c
   files/zip/box_info.c
+  files/zip/box.c
 )
 
 set(LIBGETTER_HEADERS
@@ -36,6 +37,7 @@ set(LIBGETTER_HEADERS
   tools/version.h
   tools/error.h
   files/zip/box_info.h
+  files/zip/box.h
 )
 
 # Common dependencies (no matter if building shared or static lib)

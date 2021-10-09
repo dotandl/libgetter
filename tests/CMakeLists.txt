@@ -15,6 +15,7 @@ set(LIBGETTER_TESTS_SOURCES
   release/version.cpp
   types/pkvf.cpp
   files/zip/box_info.cpp
+  files/zip/box.cpp
 )
 
 add_executable(libgetter_test ${LIBGETTER_TESTS_SOURCES})
