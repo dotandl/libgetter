@@ -1,0 +1,40 @@
+name: Generate & Publish Documentation
+
+on:
+  push: { branches: [main] }
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  generate-and-pulish-docs-libgetter:
+    name: Generate & Publish Documentation - libgetter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+        with: { submodules: recursive }
+
+      - name: Install Doxygen
+        run: sudo apt-get install -y doxygen
+
+      - name: Configure the CMake project (prepare Doxyfile)
+        run: |
+          cmake \
+          -S ${{github.workspace}} \
+          -B ${{github.workspace}}/build \
+          -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+      - name: Generate Documentation
+        run: |
+          cmake \
+          --build ${{github.workspace}}/build \
+          --target docs \
+          --config ${{env.BUILD_TYPE}}
+
+      - name: Deploy the documentation to Github Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: ${{github.workspace}}/docs/html
