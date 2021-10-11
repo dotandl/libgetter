@@ -15,6 +15,7 @@ set(LIBGETTER_SOURCES
   tools/platform.c
   tools/version.c
   tools/error.c
+  tools/tmp.c
   files/zip/box_info.c
   files/zip/box.c
 )
@@ -36,6 +37,7 @@ set(LIBGETTER_HEADERS
   tools/platform.h
   tools/version.h
   tools/error.h
+  tools/tmp.h
   files/zip/box_info.h
   files/zip/box.h
 )

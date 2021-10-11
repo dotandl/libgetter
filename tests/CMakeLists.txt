@@ -5,7 +5,7 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 set(LIBGETTER_TESTS_SOURCES
   box/info.cpp
@@ -14,6 +14,7 @@ set(LIBGETTER_TESTS_SOURCES
   release/release.cpp
   release/version.cpp
   types/pkvf.cpp
+  tools/tmp.cpp
   files/zip/box_info.cpp
   files/zip/box.cpp
 )
