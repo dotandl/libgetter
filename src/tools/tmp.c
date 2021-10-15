@@ -7,9 +7,11 @@
  * +----------------------------------------------------------+
  */
 
+#include <dirent.h>
 #include <getter/tools/tmp.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -26,9 +28,9 @@ char *gtt_mktmpdir(char *buf, size_t bufsize) {
 #else
   char *tmp_root = getenv("TMPDIR");
 
-  /* fallback to /tmp/ if $TMPDIR isn't present or is empty */
+  /* fallback to /tmp if $TMPDIR isn't present or is empty */
   if (tmp_root == NULL || tmp_root[0] == 0) {
-    tmp_root = "/tmp/";
+    tmp_root = "/tmp";
   }
 
   strncpy(tmp_dir, tmp_root, __BUFSIZE - 1);
@@ -44,4 +46,43 @@ char *gtt_mktmpdir(char *buf, size_t bufsize) {
 
   strncpy(buf, tmp_dir, bufsize - 1);
   return buf;
+}
+
+void gtt_rmtmpdir(const char *path) {
+  char full_path[__BUFSIZE] = {0};
+  DIR *dir;
+  struct dirent *dir_ent;
+
+  dir = opendir(path);
+
+  if (dir == NULL) return;
+
+  while ((dir_ent = readdir(dir)) != NULL) {
+    if (strncmp(dir_ent->d_name, ".", __BUFSIZE) == 0 ||
+        strncmp(dir_ent->d_name, "..", __BUFSIZE) == 0)
+      continue;
+
+    strncpy(full_path, path, __BUFSIZE - 1);
+
+    /* `path` may or may not terminate with a slash, but 2 slashes aren't a
+     * problem */
+    strncat(full_path, "/", __BUFSIZE - strlen(full_path) - 1);
+    strncat(full_path, dir_ent->d_name, __BUFSIZE - strlen(full_path) - 1);
+
+    switch (dir_ent->d_type) {
+      case DT_DIR:
+        gtt_rmtmpdir(full_path);
+        break;
+
+      case DT_REG: /* regular file */
+        unlink(full_path);
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  closedir(dir);
+  rmdir(path);
 }

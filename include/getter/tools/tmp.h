@@ -15,13 +15,20 @@ HEADER_BEGIN
 #include <stddef.h>
 
 /**
- * Creates a temporary directory
+ * Creates a temporary directory.
  *
- * \param buf Buffer to write the directory path to
- * \param bufsize Size of the `buf` buffer
- * \returns The same pointer as you pass as a `buf` pointer
+ * \param buf Buffer to write the directory path to.
+ * \param bufsize Size of the `buf` buffer.
+ * \returns The same pointer as you pass as a `buf` pointer.
  */
 WINDLL char *gtt_mktmpdir(char *buf, size_t bufsize);
+
+/**
+ * Recursively removes a temporary directory.
+ *
+ * \param path Path to the temporary directory.
+ */
+WINDLL void gtt_rmtmpdir(const char *path);
 
 HEADER_END
 
