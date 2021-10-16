@@ -9,10 +9,7 @@
 
 #include <getter/release/info.h>
 #include <getter/tools/error.h>
-
-#define CVECTOR_LOGARITHMIC_GROWTH
-
-#include <cvector.h>
+#include <getter/types/json.h>
 #include <string.h>
 
 static void pkvf_str_alloc_copy(GttPKVFToken *token, char **dest);
@@ -80,6 +77,96 @@ GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
   gtt_vector_pkvf_token_free(vec);
   gtt_ok();
   return self;
+}
+
+GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
+  GttReleaseInfo *ri;
+  jsmn_parser parser;
+  jsmntok_t *tokens;
+  size_t tokens_count;
+  int res, i;
+
+  jsmn_init(&parser);
+
+  tokens_count = 32;
+  tokens = calloc(tokens_count, sizeof(jsmntok_t));
+  res = jsmn_parse(&parser, json, strlen(json), tokens, tokens_count);
+
+  while (res == JSMN_ERROR_NOMEM) {
+    tokens_count += 32;
+    tokens = reallocarray(tokens, tokens_count, sizeof(jsmntok_t));
+    res = jsmn_parse(&parser, json, strlen(json), tokens, tokens_count);
+  }
+
+  if (res == JSMN_ERROR_INVAL || res == JSMN_ERROR_PART) {
+    free(tokens);
+    gtt_error(GTT_PARSE_ERROR, "Error parsing JSON string");
+    return NULL;
+  }
+
+  // `res` contains number of found tokens
+  if (res == 0 || tokens[0].type != JSMN_OBJECT) {
+    free(tokens);
+    gtt_error(GTT_PARSE_ERROR,
+              "Not a valid Release JSON - expected object as root token");
+    return NULL;
+  }
+
+  ri = malloc(sizeof(GttReleaseInfo));
+  memset(ri, 0, sizeof(GttReleaseInfo));
+
+  gtt_ok();  // If all JSON read successfully, error code will be GTT_OK
+
+  for (i = 1; i < res; i++) {
+    // STRINGS
+    if (gtt_json_str_eq(json, &tokens[i], "repository")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->repository);
+    } else if (gtt_json_str_eq(json, &tokens[i], "license_name")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->license_name);
+    } else if (gtt_json_str_eq(json, &tokens[i], "license")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->license);
+    } else if (gtt_json_str_eq(json, &tokens[i], "readme")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->readme);
+    } else if (gtt_json_str_eq(json, &tokens[i], "changelog")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->changelog);
+
+      // ARRAYS
+    } else if (gtt_json_str_eq(json, &tokens[i], "dependencies")) {
+      gtt_json_arr_to_vec(json, &tokens[++i], &ri->dependencies);
+      i += tokens[i].size;
+    } else if (gtt_json_str_eq(json, &tokens[i], "build_dependencies")) {
+      gtt_json_arr_to_vec(json, &tokens[++i], &ri->build_dependencies);
+      i += tokens[i].size;
+    } else if (gtt_json_str_eq(json, &tokens[i], "optional_dependencies")) {
+      gtt_json_arr_to_vec(json, &tokens[++i], &ri->optional_dependencies);
+      i += tokens[i].size;
+    } else if (gtt_json_str_eq(json, &tokens[i], "conflicts")) {
+      gtt_json_arr_to_vec(json, &tokens[++i], &ri->conflicts);
+      i += tokens[i].size;
+    } else if (gtt_json_str_eq(json, &tokens[i], "replaces")) {
+      gtt_json_arr_to_vec(json, &tokens[++i], &ri->replaces);
+      i += tokens[i].size;
+
+      // UNEXPECTED FIELD
+    } else {
+      gtt_error(GTT_PARSE_ERROR, "Not a valid Release JSON - unexpected token");
+      // TODO: change some of GTT_PARSE_ERRORs to GTT_INVALID_DATA
+    }
+  }
+
+  free(tokens);
+
+  // Check if there were any errors while parsing JSON
+  if (GTT_FAILED) {
+    // Error is already set, no need to set it again
+    gtt_release_info_delete(ri);
+    return NULL;
+  }
+
+  // TODO: check for required fields
+
+  gtt_ok();
+  return ri;
 }
 
 #define free_all_strings(vec)                 \

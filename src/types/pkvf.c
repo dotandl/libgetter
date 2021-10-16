@@ -15,6 +15,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifdef _WIN32
+#define strtok_r strtok_s
+#endif
+
 static cvector_vector_type(char *) pkvf_value_to_vec(const char *val);
 
 cvector_vector_type(GttPKVFToken) gtt_parse_pkvf(const char *pkvf) {

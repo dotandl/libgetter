@@ -16,6 +16,8 @@ HEADER_BEGIN
 
 /** Representation of the info section of GetterRelease file. */
 struct GttReleaseInfo {
+  // GTT_REQUIRED const char *script; // TODO: implement this field
+
   const char *repository;
 
   const char *license_name;  ///< Name of the license (like MIT, GPLv3, etc.).
@@ -42,6 +44,17 @@ typedef struct GttReleaseInfo GttReleaseInfo;
  */
 GTT_ERROR_EMITTER WINDLL GttReleaseInfo *gtt_release_info_new_from_pkvf(
     const char *pkvf);
+
+/**
+ * Creates new GttReleaseInfo from the PKVF generated from the
+ * GetterRelease.json file.
+ *
+ * \param json The contents of GetterRelease.json file.
+ * \returns Created GttReleaseInfo.
+ * \see GttReleaseInfo
+ */
+GTT_ERROR_EMITTER WINDLL GttReleaseInfo *gtt_release_info_new_from_json(
+    const char *json);
 
 /**
  * Deletes existing GttReleaseInfo.

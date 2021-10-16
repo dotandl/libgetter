@@ -13,17 +13,12 @@
 #include <getter/tools/error.h>
 #include <getter/tools/version.h>
 #include <getter/types/array.h>
-#include <jsmn.h>
+#include <getter/types/json.h>
 #include <pcre2.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 
-static bool json_str_eq(const char *json, jsmntok_t *token, const char *str);
-static void json_str_alloc_copy(const char *json, jsmntok_t *token,
-                                char **dest);
-static void json_arr_to_vec(const char *json, jsmntok_t *token,
-                            cvector_vector_type(char *) * vec);
 static bool gtt_meets_version(const char *version);
 
 GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
@@ -64,49 +59,49 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   gtt_ok();  // If all JSON read successfully, error code will be GTT_OK
 
   for (i = 1; i < res; i++) {
-    if (json_str_eq(json, &tokens[i], "getter")) {  // STRINGS
-      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->getter);
-    } else if (json_str_eq(json, &tokens[i], "name")) {
-      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->name);
-    } else if (json_str_eq(json, &tokens[i], "full_name")) {
-      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->full_name);
-    } else if (json_str_eq(json, &tokens[i], "summary")) {
-      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->summary);
-    } else if (json_str_eq(json, &tokens[i], "description")) {
-      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->description);
-    } else if (json_str_eq(json, &tokens[i], "homepage")) {
-      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->homepage);
-    } else if (json_str_eq(json, &tokens[i], "repository")) {
-      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->repository);
-    } else if (json_str_eq(json, &tokens[i], "license_name")) {
-      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->license_name);
-    } else if (json_str_eq(json, &tokens[i], "license")) {
-      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->license);
-    } else if (json_str_eq(json, &tokens[i], "readme")) {
-      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->readme);
-    } else if (json_str_eq(json, &tokens[i], "changelog")) {
-      json_str_alloc_copy(json, &tokens[++i], (char **)&bi->changelog);
+    if (gtt_json_str_eq(json, &tokens[i], "getter")) {  // STRINGS
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->getter);
+    } else if (gtt_json_str_eq(json, &tokens[i], "name")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->name);
+    } else if (gtt_json_str_eq(json, &tokens[i], "full_name")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->full_name);
+    } else if (gtt_json_str_eq(json, &tokens[i], "summary")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->summary);
+    } else if (gtt_json_str_eq(json, &tokens[i], "description")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->description);
+    } else if (gtt_json_str_eq(json, &tokens[i], "homepage")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->homepage);
+    } else if (gtt_json_str_eq(json, &tokens[i], "repository")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->repository);
+    } else if (gtt_json_str_eq(json, &tokens[i], "license_name")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->license_name);
+    } else if (gtt_json_str_eq(json, &tokens[i], "license")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->license);
+    } else if (gtt_json_str_eq(json, &tokens[i], "readme")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->readme);
+    } else if (gtt_json_str_eq(json, &tokens[i], "changelog")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->changelog);
 
-    } else if (json_str_eq(json, &tokens[i], "authors")) {  // ARRAYS
-      json_arr_to_vec(json, &tokens[++i], &bi->authors);
+    } else if (gtt_json_str_eq(json, &tokens[i], "authors")) {  // ARRAYS
+      gtt_json_arr_to_vec(json, &tokens[++i], &bi->authors);
       i += tokens[i].size;
-    } else if (json_str_eq(json, &tokens[i], "categories")) {
-      json_arr_to_vec(json, &tokens[++i], &bi->categories);
+    } else if (gtt_json_str_eq(json, &tokens[i], "categories")) {
+      gtt_json_arr_to_vec(json, &tokens[++i], &bi->categories);
       i += tokens[i].size;
-    } else if (json_str_eq(json, &tokens[i], "dependencies")) {
-      json_arr_to_vec(json, &tokens[++i], &bi->dependencies);
+    } else if (gtt_json_str_eq(json, &tokens[i], "dependencies")) {
+      gtt_json_arr_to_vec(json, &tokens[++i], &bi->dependencies);
       i += tokens[i].size;
-    } else if (json_str_eq(json, &tokens[i], "build_dependencies")) {
-      json_arr_to_vec(json, &tokens[++i], &bi->build_dependencies);
+    } else if (gtt_json_str_eq(json, &tokens[i], "build_dependencies")) {
+      gtt_json_arr_to_vec(json, &tokens[++i], &bi->build_dependencies);
       i += tokens[i].size;
-    } else if (json_str_eq(json, &tokens[i], "optional_dependencies")) {
-      json_arr_to_vec(json, &tokens[++i], &bi->optional_dependencies);
+    } else if (gtt_json_str_eq(json, &tokens[i], "optional_dependencies")) {
+      gtt_json_arr_to_vec(json, &tokens[++i], &bi->optional_dependencies);
       i += tokens[i].size;
-    } else if (json_str_eq(json, &tokens[i], "conflicts")) {
-      json_arr_to_vec(json, &tokens[++i], &bi->conflicts);
+    } else if (gtt_json_str_eq(json, &tokens[i], "conflicts")) {
+      gtt_json_arr_to_vec(json, &tokens[++i], &bi->conflicts);
       i += tokens[i].size;
-    } else if (json_str_eq(json, &tokens[i], "replaces")) {
-      json_arr_to_vec(json, &tokens[++i], &bi->replaces);
+    } else if (gtt_json_str_eq(json, &tokens[i], "replaces")) {
+      gtt_json_arr_to_vec(json, &tokens[++i], &bi->replaces);
       i += tokens[i].size;
 
     } else {  // UNEXPECTED FIELD
@@ -116,7 +111,7 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
 
   free(tokens);
 
-  // Check if there were any errors while reading JSON
+  // Check if there were any errors while parsing JSON
   if (GTT_FAILED) {
     // Error is already set, no need to set it again
 
@@ -149,7 +144,7 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
     int i;                                    \
     if ((vec) != NULL)                        \
       for (i = 0; i < cvector_size(vec); i++) \
-        if ((vec)[i] != NULL) free(vec[i]);   \
+        if ((vec)[i] != NULL) free((vec)[i]); \
   } while (0)
 
 void gtt_box_info_delete(GttBoxInfo *self) {
@@ -184,47 +179,6 @@ void gtt_box_info_delete(GttBoxInfo *self) {
   cvector_free(self->replaces);
 
   free(self);
-}
-
-bool json_str_eq(const char *json, jsmntok_t *token, const char *str) {
-  return token->type == JSMN_STRING &&
-         token->end - token->start == strlen(str) &&
-         strncmp(json + token->start, str, token->end - token->start) == 0;
-}
-
-void json_str_alloc_copy(const char *json, jsmntok_t *token, char **dest) {
-  if (token->type != JSMN_STRING) {
-    gtt_error(GTT_PARSE_ERROR,
-              "Not a valid Box JSON - found a token with incorrect type");
-    return;
-  }
-
-  *dest = calloc((token->end - token->start) + 1, sizeof(char));
-  memcpy(*dest, json + token->start, token->end - token->start);
-}
-
-void json_arr_to_vec(const char *json, jsmntok_t *token,
-                     cvector_vector_type(char *) * vec) {
-  jsmntok_t *current_tok;
-  char *buf;
-  int i;
-
-  if (token->type != JSMN_ARRAY) {
-    gtt_error(GTT_PARSE_ERROR,
-              "Not a valid Box JSON - found a token with incorrect type");
-    return;
-  }
-
-  *vec = NULL;
-
-  for (i = 0; i < token->size; i++) {
-    current_tok = token + i + 1;
-
-    json_str_alloc_copy(json, current_tok, &buf);
-
-    // *vec needs to be surrounded by () because of bug in the c-vector lib
-    cvector_push_back((*vec), buf);
-  }
 }
 
 bool gtt_meets_version(const char *version) {
