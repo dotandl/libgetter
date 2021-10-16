@@ -105,7 +105,7 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
       i += tokens[i].size;
 
     } else {  // UNEXPECTED FIELD
-      gtt_error(GTT_PARSE_ERROR, "Not a valid Box JSON - unexpected token");
+      gtt_error(GTT_INVALID_DATA, "Not a valid Box JSON - unexpected token");
     }
   }
 

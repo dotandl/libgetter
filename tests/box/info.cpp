@@ -131,5 +131,5 @@ TEST(BoxInfo, DoesNotCreateFromJSONInvalidField) {
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);
   ASSERT_TRUE(bi == NULL);
-  ASSERT_EQ(gtt_last_error.code, GTT_PARSE_ERROR);
+  ASSERT_EQ(gtt_last_error.code, GTT_INVALID_DATA);
 }

@@ -33,7 +33,9 @@ GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
 
     switch (token->type) {
       case GTT_PKVF_STRING_TOKEN:
-        if (strcmp(token->key, "repository") == 0) {
+        if (strcmp(token->key, "script") == 0) {
+          pkvf_str_alloc_copy(token, (char **)&self->script);
+        } else if (strcmp(token->key, "repository") == 0) {
           pkvf_str_alloc_copy(token, (char **)&self->repository);
         } else if (strcmp(token->key, "license_name") == 0) {
           pkvf_str_alloc_copy(token, (char **)&self->license_name);
@@ -75,6 +77,13 @@ GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
   }
 
   gtt_vector_pkvf_token_free(vec);
+
+  if (self->script == NULL) {
+    gtt_release_info_delete(self);
+    gtt_error(GTT_PARSE_ERROR, "Some of the required fields is missing");
+    return NULL;
+  }
+
   gtt_ok();
   return self;
 }
@@ -119,7 +128,9 @@ GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
 
   for (i = 1; i < res; i++) {
     // STRINGS
-    if (gtt_json_str_eq(json, &tokens[i], "repository")) {
+    if (gtt_json_str_eq(json, &tokens[i], "script")) {
+      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->script);
+    } else if (gtt_json_str_eq(json, &tokens[i], "repository")) {
       gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->repository);
     } else if (gtt_json_str_eq(json, &tokens[i], "license_name")) {
       gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->license_name);
@@ -149,8 +160,8 @@ GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
 
       // UNEXPECTED FIELD
     } else {
-      gtt_error(GTT_PARSE_ERROR, "Not a valid Release JSON - unexpected token");
-      // TODO: change some of GTT_PARSE_ERRORs to GTT_INVALID_DATA
+      gtt_error(GTT_INVALID_DATA,
+                "Not a valid Release JSON - unexpected token");
     }
   }
 
@@ -163,7 +174,14 @@ GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
     return NULL;
   }
 
-  // TODO: check for required fields
+  if (ri->script == NULL) {
+    gtt_release_info_delete(ri);
+    gtt_error(
+        GTT_PARSE_ERROR,
+        "Not a valid Release JSON - some of the required fields are missing");
+
+    return NULL;
+  }
 
   gtt_ok();
   return ri;

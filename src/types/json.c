@@ -21,7 +21,7 @@ bool gtt_json_str_eq(const char *json, jsmntok_t *token, const char *str) {
 
 void gtt_json_str_alloc_copy(const char *json, jsmntok_t *token, char **dest) {
   if (token->type != JSMN_STRING) {
-    gtt_error(GTT_PARSE_ERROR,
+    gtt_error(GTT_INVALID_DATA,
               "Not a valid JSON - found a token with incorrect type");
     return;
   }
@@ -37,7 +37,7 @@ void gtt_json_arr_to_vec(const char *json, jsmntok_t *token,
   int i;
 
   if (token->type != JSMN_ARRAY) {
-    gtt_error(GTT_PARSE_ERROR,
+    gtt_error(GTT_INVALID_DATA,
               "Not a valid JSON - found a token with incorrect type");
     return;
   }

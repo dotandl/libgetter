@@ -13,6 +13,7 @@
 
 TEST(ReleaseInfo, CreatesFromPKVFAllFields) {
   const char pkvf[] =
+      "script@#@GetterReleaseScript.sh\n"
       "repository@#@example/release\n"
 
       "license_name@#@MIT\n"
@@ -52,6 +53,28 @@ TEST(ReleaseInfo, CreatesFromPKVFAllFields) {
   gtt_release_info_delete(ri);
 }
 
+TEST(ReleaseInfo, CreatesFromPKVFRequiredFields) {
+  const char pkvf[] = "script@#@GetterReleaseScript.sh\n";
+  GttReleaseInfo *ri = gtt_release_info_new_from_pkvf(pkvf);
+
+  ASSERT_TRUE(ri != NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_OK);
+  EXPECT_STREQ(ri->script, "GetterReleaseScript.sh");
+
+  gtt_release_info_delete(ri);
+}
+
+TEST(ReleaseInfo, DoesNotCreateFromPKVFMissingFields) {
+  const char pkvf[] =
+      "license_name@#@MIT\n"
+      "license@#@LICENSE.txt\n";
+
+  GttReleaseInfo *ri = gtt_release_info_new_from_pkvf(pkvf);
+
+  ASSERT_TRUE(ri == NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_PARSE_ERROR);
+}
+
 TEST(ReleaseInfo, DoesNotCreateFromPKVFInvalidField) {
   const char pkvf[] = "invalid@#@field\n";
   GttReleaseInfo *ri = gtt_release_info_new_from_pkvf(pkvf);
@@ -63,6 +86,7 @@ TEST(ReleaseInfo, DoesNotCreateFromPKVFInvalidField) {
 TEST(ReleaseInfo, CreatesFromJSONAllFields) {
   const char json[] =
       "{"
+      "  \"script\": \"GetterReleaseScript.sh\","
       "  \"repository\": \"example/release\","
 
       "  \"license_name\": \"MIT\","
@@ -82,6 +106,7 @@ TEST(ReleaseInfo, CreatesFromJSONAllFields) {
   ASSERT_TRUE(ri != NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_OK);
 
+  EXPECT_STREQ(ri->script, "GetterReleaseScript.sh");
   EXPECT_STREQ(ri->repository, "example/release");
 
   EXPECT_STREQ(ri->license_name, "MIT");
@@ -103,10 +128,34 @@ TEST(ReleaseInfo, CreatesFromJSONAllFields) {
   gtt_release_info_delete(ri);
 }
 
+TEST(ReleaseInfo, CreatesFromJSONRequiredFields) {
+  const char json[] = "{ \"script\": \"GetterReleaseScript.sh\" }";
+  GttReleaseInfo *ri = gtt_release_info_new_from_json(json);
+
+  ASSERT_TRUE(ri != NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_OK);
+  EXPECT_STREQ(ri->script, "GetterReleaseScript.sh");
+
+  gtt_release_info_delete(ri);
+}
+
+TEST(ReleaseInfo, DoesNotCreateFromJSONMissingFields) {
+  const char json[] =
+      "{"
+      "  \"license_name\": \"MIT\","
+      "  \"license\": \"LICENSE.txt\","
+      "}";
+
+  GttReleaseInfo *ri = gtt_release_info_new_from_json(json);
+
+  ASSERT_TRUE(ri == NULL);
+  ASSERT_EQ(gtt_last_error.code, GTT_PARSE_ERROR);
+}
+
 TEST(ReleaseInfo, DoesNotCreateFromJSONInvalidField) {
   const char json[] = "{ \"invalid\": \"field\" }";
   GttReleaseInfo *ri = gtt_release_info_new_from_json(json);
 
   ASSERT_TRUE(ri == NULL);
-  ASSERT_EQ(gtt_last_error.code, GTT_PARSE_ERROR);
+  ASSERT_EQ(gtt_last_error.code, GTT_INVALID_DATA);
 }

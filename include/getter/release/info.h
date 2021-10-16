@@ -16,7 +16,7 @@ HEADER_BEGIN
 
 /** Representation of the info section of GetterRelease file. */
 struct GttReleaseInfo {
-  // GTT_REQUIRED const char *script; // TODO: implement this field
+  GTT_REQUIRED const char *script;
 
   const char *repository;
 
