@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('box_2info_8c.html',''); initResizable(
 <code>#include &lt;<a class="el" href="error_8h_source.html">getter/tools/error.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="tools_2version_8h_source.html">getter/tools/version.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="array_8h_source.html">getter/types/array.h</a>&gt;</code><br />
-<code>#include &lt;jsmn.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="json_8h_source.html">getter/types/json.h</a>&gt;</code><br />
 <code>#include &lt;pcre2.h&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
@@ -134,7 +134,7 @@ Functions</h2></td></tr>
 <div class="line">    int i;                                    \</div>
 <div class="line">    if ((vec) != NULL)                        \</div>
 <div class="line">      for (i = 0; i &lt; cvector_size(vec); i++) \</div>
-<div class="line">        <span class="keywordflow">if</span> ((vec)[i] != NULL) free(vec[i]);   \</div>
+<div class="line">        <span class="keywordflow">if</span> ((vec)[i] != NULL) free((vec)[i]); \</div>
 <div class="line">  } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
 </div>

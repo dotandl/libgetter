@@ -92,13 +92,11 @@ $(document).ready(function(){initNavTree('release_2info_8c.html',''); initResiza
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="release_2info_8h_source.html">getter/release/info.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="error_8h_source.html">getter/tools/error.h</a>&gt;</code><br />
-<code>#include &lt;cvector.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="json_8h_source.html">getter/types/json.h</a>&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ae2a7bfb49f59fe17b1d96958ea979406"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8c.html#ae2a7bfb49f59fe17b1d96958ea979406">CVECTOR_LOGARITHMIC_GROWTH</a></td></tr>
-<tr class="separator:ae2a7bfb49f59fe17b1d96958ea979406"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c781d8e1874b318a96fd14ccfdab674"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8c.html#a3c781d8e1874b318a96fd14ccfdab674">free_all_strings</a>(vec)</td></tr>
 <tr class="separator:a3c781d8e1874b318a96fd14ccfdab674"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -106,24 +104,12 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:acf9d5e016d796a6b7a4f481414b8c829"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8c.html#acf9d5e016d796a6b7a4f481414b8c829">gtt_release_info_new_from_pkvf</a> (const char *pkvf)</td></tr>
 <tr class="separator:acf9d5e016d796a6b7a4f481414b8c829"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7dc9380b57fb62cc0e1a49da5cf814a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8c.html#ac7dc9380b57fb62cc0e1a49da5cf814a">gtt_release_info_new_from_json</a> (const char *json)</td></tr>
+<tr class="separator:ac7dc9380b57fb62cc0e1a49da5cf814a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe0f1534fbef26251bdc800e654ffdd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8c.html#afe0f1534fbef26251bdc800e654ffdd7">gtt_release_info_delete</a> (<a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> *self)</td></tr>
 <tr class="separator:afe0f1534fbef26251bdc800e654ffdd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ae2a7bfb49f59fe17b1d96958ea979406"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2a7bfb49f59fe17b1d96958ea979406">&#9670;&nbsp;</a></span>CVECTOR_LOGARITHMIC_GROWTH</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CVECTOR_LOGARITHMIC_GROWTH</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a3c781d8e1874b318a96fd14ccfdab674"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c781d8e1874b318a96fd14ccfdab674">&#9670;&nbsp;</a></span>free_all_strings</h2>
 
@@ -171,6 +157,33 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> </dd></dl>
+
+</div>
+</div>
+<a id="ac7dc9380b57fb62cc0e1a49da5cf814a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7dc9380b57fb62cc0e1a49da5cf814a">&#9670;&nbsp;</a></span>gtt_release_info_new_from_json()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a>* gtt_release_info_new_from_json </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates new <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> from the PKVF generated from the GetterRelease.json file.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json</td><td>The contents of GetterRelease.json file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Created <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a>. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> </dd></dl>
 
 </div>

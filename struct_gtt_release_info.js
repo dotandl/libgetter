@@ -9,5 +9,6 @@ var struct_gtt_release_info =
     [ "license", "struct_gtt_release_info.html#ae93dfc518ee062ca4fa9e0b2f471de19", null ],
     [ "license_name", "struct_gtt_release_info.html#adee7a66ab8bd1f2e486b2b86b2860276", null ],
     [ "readme", "struct_gtt_release_info.html#a01ba00655ce0129e57e7c769e013ade4", null ],
-    [ "repository", "struct_gtt_release_info.html#af03e50f2c44607e3f58fc3fb96f56178", null ]
+    [ "repository", "struct_gtt_release_info.html#af03e50f2c44607e3f58fc3fb96f56178", null ],
+    [ "script", "struct_gtt_release_info.html#a37a19b9f66625f9e531c9476edc45576", null ]
 ];
