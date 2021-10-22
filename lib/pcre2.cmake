@@ -5,18 +5,13 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-set(PCRE2_BUILD_TESTS OFF)
+find_path(PCRE2_INCLUDE pcre2.h)
+find_library(PCRE2_LIB pcre2-8)
 
-add_subdirectory(pcre2)
+if(NOT PCRE2_INCLUDE OR NOT PCRE2_LIB)
+  message(FATAL_ERROR "Could not find pcre2 library")
+endif()
 
-set(PCRE2_TARGETS
-  pcre2-8-static
-  pcre2-8-shared
-)
-
-foreach(TARGET ${PCRE2_TARGETS})
-  target_include_directories(${TARGET}
-    PUBLIC "${PCRE2_BINARY_DIR}" # for pcre2.h (generated from pcre2.h.in)
-    PUBLIC "${PCRE2_SOURCE_DIR}/src" # for other internal .h files
-  )
-endforeach()
+add_library(pcre2 INTERFACE)
+target_include_directories(pcre2 INTERFACE ${PCRE2_INCLUDE})
+target_link_libraries(pcre2 INTERFACE ${PCRE2_LIB})

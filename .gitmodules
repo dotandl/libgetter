@@ -4,12 +4,6 @@
 [submodule "lib/jsmn"]
 	path = lib/jsmn
 	url = https://github.com/zserge/jsmn
-[submodule "lib/pcre2"]
-	path = lib/pcre2
-	url = https://github.com/PhilipHazel/pcre2.git
-[submodule "lib/libzip"]
-	path = lib/libzip
-	url = https://github.com/nih-at/libzip.git
 [submodule "lib/c-vector"]
 	path = lib/c-vector
 	url = https://github.com/eteran/c-vector.git

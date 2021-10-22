@@ -47,6 +47,7 @@ set(LIBGETTER_HEADERS
 # Common dependencies (no matter if building shared or static lib)
 set(LIBGETTER_DEPENDENCIES
   zip
+  pcre2
   jsmn
   c-vector
 )
@@ -60,17 +61,6 @@ set(LIBGETTER_COMMON_HEADER ${PROJECT_SOURCE_DIR}/include/getter/common.h)
 
 # Location of bundle (directory containing all files required by libgetter to work)
 set(LIBGETTER_BUNDLE_OUTPUT ${PROJECT_BINARY_DIR}/libgetter-bundle)
-
-# Dependencies depending on that if static or shared lib is built
-if(BUILD_SHARED_LIBS)
-  list(APPEND LIBGETTER_DEPENDENCIES
-    pcre2-8-shared
-  )
-else()
-  list(APPEND LIBGETTER_DEPENDENCIES
-    pcre2-8-static
-  )
-endif()
 
 add_library(getter ${LIBGETTER_SOURCES} ${LIBGETTER_HEADERS})
 target_include_directories(getter PUBLIC ${PROJECT_SOURCE_DIR}/include)
