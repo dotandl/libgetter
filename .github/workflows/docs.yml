@@ -33,7 +33,7 @@ jobs:
         run: |
           cmake \
           --build ${{github.workspace}}/build \
-          --target docs \
+          --target libgetter_docs \
           --config ${{env.BUILD_TYPE}}
 
       - name: Deploy the documentation to Github Pages

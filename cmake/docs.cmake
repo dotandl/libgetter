@@ -13,11 +13,11 @@ if(DOXYGEN_FOUND)
 
   configure_file(${LIBGETTER_DOXYFILE_TEMPLATE} ${LIBGETTER_DOXYFILE} @ONLY)
 
-  add_custom_target(docs
+  add_custom_target(libgetter_docs
     COMMAND ${DOXYGEN_EXECUTABLE} ${LIBGETTER_DOXYFILE}
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     COMMENT "Generating documentation..."
   )
 else()
-  message(WARNING "Doxygen not found. Could not generate documentation.")
+  message(WARNING "Doxygen not found. Cannot generate documentation.")
 endif()

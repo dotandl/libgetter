@@ -59,9 +59,6 @@ list(TRANSFORM LIBGETTER_HEADERS PREPEND ${PROJECT_SOURCE_DIR}/include/getter/)
 # Common header contains some constants used everywhere such as WINDLL, HEADER_BEGIN or HEADER_END
 set(LIBGETTER_COMMON_HEADER ${PROJECT_SOURCE_DIR}/include/getter/common.h)
 
-# Location of bundle (directory containing all files required by libgetter to work)
-set(LIBGETTER_BUNDLE_OUTPUT ${PROJECT_BINARY_DIR}/libgetter-bundle)
-
 add_library(getter ${LIBGETTER_SOURCES} ${LIBGETTER_HEADERS})
 target_include_directories(getter PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(getter PUBLIC ${LIBGETTER_DEPENDENCIES})
@@ -86,10 +83,15 @@ if(WIN32 AND BUILD_SHARED_LIBS)
   target_compile_definitions(getter PUBLIC WINDLLBUILD)
 endif()
 
-# Copy every file into libgetter bundle
-set_target_properties(getter ${LIBGETTER_DEPENDENCIES} PROPERTIES
-  ARCHIVE_OUTPUT_DIRECTORY ${LIBGETTER_BUNDLE_OUTPUT}
-  LIBRARY_OUTPUT_DIRECTORY ${LIBGETTER_BUNDLE_OUTPUT}
-  RUNTIME_OUTPUT_DIRECTORY ${LIBGETTER_BUNDLE_OUTPUT}
-)
+# Decide whether to enable position independent code or not
+if(BUILD_SHARED_LIBS)
+  set(LIBGETTER_PIC ON)
+else()
+  set(LIBGETTER_PIC OFF)
+endif()
 
+# Set C standard; enable -fPIC if needed
+set_target_properties(getter PROPERTIES
+  C_STANDARD 11 # TODO: convert the project to be C89 compatible
+  POSITION_INDEPENDENT_CODE ${LIBGETTER_PIC}
+)

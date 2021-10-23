@@ -14,12 +14,17 @@
 
 #include <cstdlib>
 
+#include "../cppvector.h"
+
 TEST(ReleaseLatestVersionCalculator, ReturnsLatestRelease) {
   cvector_vector_type(GttRelease *) releases = NULL;
 
-  cvector_push_back(releases, gtt_release_new("linux", "x86", "v1.0.0"));
-  cvector_push_back(releases, gtt_release_new("linux", "x86", "v1.11111.0"));
-  cvector_push_back(releases, gtt_release_new("linux", "x86", "v1.1.1"));
+  cppvector_push_back((void **)releases,
+                      gtt_release_new("linux", "x86", "v1.0.0"));
+  cppvector_push_back((void **)releases,
+                      gtt_release_new("linux", "x86", "v1.11111.0"));
+  cppvector_push_back((void **)releases,
+                      gtt_release_new("linux", "x86", "v1.1.1"));
 
   GttRelease *latest = gtt_get_latest_release_version(releases);
 

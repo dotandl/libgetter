@@ -22,15 +22,9 @@ set(LIBGETTER_VERSION_PATCH ${CMAKE_MATCH_3})
 
 project(libgetter VERSION ${LIBGETTER_VERSION_SHORT} LANGUAGES C CXX)
 
-set(BUILD_SHARED_LIBS ON CACHE BOOL "Builds shared version of libgetter and its dependencies")
+set(BUILD_SHARED_LIBS ON CACHE BOOL "Builds shared version of libgetter")
 option(LIBGETTER_BUILD_TESTS "Builds libgetter's tests" ON)
-option(LIBGETTER_GENERATE_DOCS "Generate libgetter's documentation" ON)
-
-set(CMAKE_C_STANDARD 11) # TODO: convert project to be C89 compatible
-
-if(BUILD_SHARED_LIBS)
-  set(CMAKE_POSITION_INDEPENDENT_CODE ON) # -fPIC is recommended while building shared libs
-endif()
+option(LIBGETTER_GENERATE_DOCS "Allows to generate libgetter's documentation" ON)
 
 add_subdirectory(lib)
 add_subdirectory(src)
