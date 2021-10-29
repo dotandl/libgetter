@@ -103,8 +103,8 @@ void gtt_rmtmpdir(const char *path) {
         break;
     }
 #endif
-
-    closedir(dir);
-    rmdir(path);
   }
+
+  closedir(dir);
+  rmdir(path);
 }
