@@ -32,13 +32,13 @@ TEST(Box, IsAbleToSearchForAppropriateRelease) {
 
   cvector_vector_type(GttRelease *) releases = NULL;
 
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("win32", "x86_64", "v1.0.0"));
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("darwin", "arm64", "v1.1.0"));
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("linux", "x86", "v1.1.5"));
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("win32", "x86", "v2.2.0"));
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);
@@ -68,19 +68,19 @@ TEST(Box, IsAbleToSearchForRelease) {
 
   cvector_vector_type(GttRelease *) releases = NULL;
 
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("win32", "x86_64", "v0.9.0"));
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("win32", "x86_64", "v1.0.0"));
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("darwin", "arm64", "v1.0.5"));
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("darwin", "arm64", "v1.1.0"));
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("linux", "x86", "v1.1.5"));
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("win32", "x86", "v2.2.0"));
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("darwin", "arm64", "v2.2.0"));
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);

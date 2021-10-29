@@ -27,7 +27,7 @@
 extern "C" {
 #endif
 
-void cppvector_push_back(cvector_vector_type(void *) vec, void *obj);
+void cppvector_push_back(cvector_vector_type(void *) * vec, void *obj);
 
 #ifdef __cplusplus
 }

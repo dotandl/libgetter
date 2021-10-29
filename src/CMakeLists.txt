@@ -90,8 +90,12 @@ else()
   set(LIBGETTER_PIC OFF)
 endif()
 
-# Set C standard; enable -fPIC if needed
+# Set output directory; set C standard; enable -fPIC if needed
 set_target_properties(getter PROPERTIES
+  ARCHIVE_OUTPUT_DIRECTORY ${LIBGETTER_OUTDIR}
+  LIBRARY_OUTPUT_DIRECTORY ${LIBGETTER_OUTDIR}
+  RUNTIME_OUTPUT_DIRECTORY ${LIBGETTER_OUTDIR} # For Windows DLLs RUNTIME_... should be used
+
   C_STANDARD 11 # TODO: convert the project to be C89 compatible
   POSITION_INDEPENDENT_CODE ${LIBGETTER_PIC}
 )

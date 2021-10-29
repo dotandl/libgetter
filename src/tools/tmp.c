@@ -15,9 +15,22 @@
 
 #ifdef _WIN32
 #include <windows.h>
+#define mkdtemp(dir)                    \
+  do {                                  \
+    char *final_dirname = _mktemp(dir); \
+    mkdir(final_dirname);               \
+  } while (0)
 #endif
 
 #define __BUFSIZE 128
+
+#ifdef _WIN32
+#define mkdtemp(dir)             \
+  do {                           \
+    char *name = _mktemp((dir)); \
+    mkdir(name);                 \
+  } while (0)
+#endif
 
 char *gtt_mktmpdir(char *buf, size_t bufsize) {
   char tmp_dir[__BUFSIZE] = {0};
@@ -69,20 +82,29 @@ void gtt_rmtmpdir(const char *path) {
     strncat(full_path, "/", __BUFSIZE - strlen(full_path) - 1);
     strncat(full_path, dir_ent->d_name, __BUFSIZE - strlen(full_path) - 1);
 
+#ifdef _WIN32
+    DWORD attr = GetFileAttributesA(full_path);
+
+    if (attr & FILE_ATTRIBUTE_DIRECTORY) {
+      gtt_rmtmpdir(full_path);
+    } else {
+      /* regular file */
+      unlink(full_path);
+    }
+#else
     switch (dir_ent->d_type) {
       case DT_DIR:
         gtt_rmtmpdir(full_path);
         break;
 
-      case DT_REG: /* regular file */
+      default:
+        /* regular file */
         unlink(full_path);
         break;
-
-      default:
-        break;
     }
-  }
+#endif
 
-  closedir(dir);
-  rmdir(path);
+    closedir(dir);
+    rmdir(path);
+  }
 }

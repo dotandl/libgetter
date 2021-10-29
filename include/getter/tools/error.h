@@ -44,7 +44,7 @@ typedef struct GttError GttError;
  *
  * \see GttError
  */
-extern GttError gtt_last_error;
+WINDLL extern GttError gtt_last_error;
 
 /**
  * Shortcut for the `gtt_last_error.code != GTT_OK` condition checking whether

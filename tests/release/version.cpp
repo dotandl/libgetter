@@ -19,11 +19,11 @@
 TEST(ReleaseLatestVersionCalculator, ReturnsLatestRelease) {
   cvector_vector_type(GttRelease *) releases = NULL;
 
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("linux", "x86", "v1.0.0"));
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("linux", "x86", "v1.11111.0"));
-  cppvector_push_back((void **)releases,
+  cppvector_push_back((void ***)&releases,
                       gtt_release_new("linux", "x86", "v1.1.1"));
 
   GttRelease *latest = gtt_get_latest_release_version(releases);

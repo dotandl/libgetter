@@ -9,6 +9,6 @@
 
 #include "cppvector.h"
 
-void cppvector_push_back(cvector_vector_type(void *) vec, void *obj) {
-  cvector_push_back(vec, obj);
+void cppvector_push_back(cvector_vector_type(void *) * vec, void *obj) {
+  cvector_push_back((*vec), (obj));
 }

@@ -10,6 +10,7 @@
 #include <getter/release/info.h>
 #include <getter/tools/error.h>
 #include <getter/types/json.h>
+#include <stdlib.h>
 #include <string.h>
 
 static void pkvf_str_alloc_copy(GttPKVFToken *token, char **dest);
@@ -103,7 +104,7 @@ GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
 
   while (res == JSMN_ERROR_NOMEM) {
     tokens_count += 32;
-    tokens = reallocarray(tokens, tokens_count, sizeof(jsmntok_t));
+    tokens = realloc(tokens, sizeof(jsmntok_t) * tokens_count);
     res = jsmn_parse(&parser, json, strlen(json), tokens, tokens_count);
   }
 

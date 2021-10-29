@@ -26,6 +26,9 @@ set(BUILD_SHARED_LIBS ON CACHE BOOL "Builds shared version of libgetter")
 option(LIBGETTER_BUILD_TESTS "Builds libgetter's tests" ON)
 option(LIBGETTER_GENERATE_DOCS "Allows to generate libgetter's documentation" ON)
 
+# All libgetter files (including `googletest`) will be placed in "build/libgetter"
+set(LIBGETTER_OUTDIR "${PROJECT_BINARY_DIR}/libgetter")
+
 add_subdirectory(lib)
 add_subdirectory(src)
 

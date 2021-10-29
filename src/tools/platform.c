@@ -20,8 +20,8 @@ static char gtt_arch[__BUFSIZE] = {0};
  * Mocking functions are not exposed in header file. They must be explicitly
  * declared in tests' source files.
  */
-void gtt_mock_platform(const char *platform);
-void gtt_mock_arch(const char *arch);
+WINDLL void gtt_mock_platform(const char *platform);
+WINDLL void gtt_mock_arch(const char *arch);
 
 #pragma region GTT_PLATFORM
 

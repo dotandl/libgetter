@@ -25,6 +25,9 @@ add_executable(libgetter_test ${LIBGETTER_TESTS_SOURCES})
 target_link_libraries(libgetter_test getter gtest_main)
 
 set_target_properties(libgetter_test PROPERTIES
+  # For Windows: Test executable has to be in the same directory as DLL is
+  RUNTIME_OUTPUT_DIRECTORY ${LIBGETTER_OUTDIR}
+
   C_STANDARD 90
   CXX_STANDARD 17 # for std::filesystem
 )
