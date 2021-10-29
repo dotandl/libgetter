@@ -18,5 +18,5 @@ var error_8h =
       [ "GTT_ZIP_ERROR", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79ad213b4248fb67540dea43f1847472289", null ]
     ] ],
     [ "gtt_error", "error_8h.html#a0f131f54113263e0ac282b2e67481c9a", null ],
-    [ "gtt_last_error", "error_8h.html#a37873af41fc61935173f903f506d2f78", null ]
+    [ "gtt_last_error", "error_8h.html#a0e9ba344fbf63c8d323904825d6f892a", null ]
 ];
