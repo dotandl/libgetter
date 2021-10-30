@@ -19,7 +19,7 @@
 
 #define __BUFSIZE 16
 
-GttBox *gtt_zip_read_box(const char *filename) {
+GttBox *gtt_zip_read_box(zip_t *zip) {
   /* common */
   int status, i;
 
@@ -30,7 +30,6 @@ GttBox *gtt_zip_read_box(const char *filename) {
   /* libzip */
   int entries;
   char *entry_name;
-  zip_t *zip;
 
   /* pcre2 */
   pcre2_code *regexp;
@@ -39,6 +38,11 @@ GttBox *gtt_zip_read_box(const char *filename) {
   PCRE2_UCHAR version_buf[__BUFSIZE], platform_buf[__BUFSIZE],
       arch_buf[__BUFSIZE];
   int matches;
+
+  if (zip == NULL) {
+    gtt_error(GTT_ZIP_ERROR, "Zip object is NULL");
+    return NULL;
+  }
 
   regexp =
       pcre2_compile("(?i)^Releases\\/(.+)\\/(.+)\\/(.+)\\/$",
@@ -49,14 +53,6 @@ GttBox *gtt_zip_read_box(const char *filename) {
     return NULL;
   }
 
-  zip = zip_open(filename, ZIP_RDONLY, NULL);
-
-  if (zip == NULL) {
-    pcre2_code_free(regexp);
-    gtt_error(GTT_ZIP_ERROR, "Error opening zip file");
-    return NULL;
-  }
-
   entries = zip_get_num_entries(zip, 0);
 
   for (i = 0; i < entries; i++) {
@@ -64,7 +60,6 @@ GttBox *gtt_zip_read_box(const char *filename) {
 
     if (entry_name == NULL) {
       pcre2_code_free(regexp);
-      zip_close(zip);
       gtt_error(GTT_ZIP_ERROR, "Error resolving the name of zip file's entry");
       return NULL;
     }
@@ -92,12 +87,10 @@ GttBox *gtt_zip_read_box(const char *filename) {
   }
 
   pcre2_code_free(regexp);
-  zip_close(zip);
 
-  // TODO: transform gtt_zip_read_box_info to take the zip object as an arg
-  bi = gtt_zip_read_box_info(filename);
-
+  bi = gtt_zip_read_box_info(zip);
   if (GTT_FAILED) return NULL; /* pass the error on */
 
+  gtt_ok();
   return gtt_box_new(bi, releases);
 }

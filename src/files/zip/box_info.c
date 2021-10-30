@@ -12,19 +12,16 @@
 #include <stdlib.h>
 #include <zip.h>
 
-GttBoxInfo *gtt_zip_read_box_info(const char *filename) {
+GttBoxInfo *gtt_zip_read_box_info(zip_t *zip) {
   GttBoxInfo *bi;
   int status;
-  zip_t *zip;
   zip_stat_t file_stat;
   zip_file_t *file;
   size_t bufsize;
   char *buf;
 
-  zip = zip_open(filename, ZIP_RDONLY, NULL);
-
   if (zip == NULL) {
-    gtt_error(GTT_ZIP_ERROR, "Error opening zip file");
+    gtt_error(GTT_ZIP_ERROR, "Zip object is NULL");
     return NULL;
   }
 
@@ -33,7 +30,6 @@ GttBoxInfo *gtt_zip_read_box_info(const char *filename) {
   if (status != 0) {
     gtt_error(GTT_ZIP_ERROR,
               "Error reading info about GetterBox.json file within Box file");
-    zip_close(zip);
     return NULL;
   }
 
@@ -42,7 +38,6 @@ GttBoxInfo *gtt_zip_read_box_info(const char *filename) {
   if (file == NULL) {
     gtt_error(GTT_ZIP_ERROR,
               "Error opening GetterBox.json file within Box file");
-    zip_close(zip);
     return NULL;
   }
 
@@ -55,7 +50,6 @@ GttBoxInfo *gtt_zip_read_box_info(const char *filename) {
     gtt_error(GTT_ZIP_ERROR,
               "Error reading contents of GetterBox.json file within Box file");
     zip_fclose(file);
-    zip_close(zip);
     free(buf);
     return NULL;
   }
@@ -66,13 +60,11 @@ GttBoxInfo *gtt_zip_read_box_info(const char *filename) {
     // pass the error on
     free(buf);
     zip_fclose(file);
-    zip_close(zip);
     return NULL;
   }
 
   free(buf);
   zip_fclose(file);
-  zip_close(zip);
 
   gtt_ok();
   return bi;

@@ -11,15 +11,13 @@
 #include <getter/tools/error.h>
 #include <gtest/gtest.h>
 
-#include <string>
-
-using std::string;
-
 TEST(Zip, GeneratesBoxObject) {
-  string file = string(GTT_TESTS_DIR) + "/res/ExampleBox.zip";
-  GttBox *box;
+  const char *file = GTT_TESTS_DIR "/res/ExampleBox.zip";
 
-  box = gtt_zip_read_box(file.c_str());
+  zip_t *zip = zip_open(file, 0, NULL);
+  ASSERT_TRUE(zip != NULL);
+
+  GttBox *box = gtt_zip_read_box(zip);
 
   ASSERT_TRUE(box != NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_OK);

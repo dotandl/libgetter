@@ -11,15 +11,13 @@
 #include <getter/tools/error.h>
 #include <gtest/gtest.h>
 
-#include <string>
-
-using std::string;
-
 TEST(Zip, ReadsBoxInfoFile) {
-  string file = string(GTT_TESTS_DIR) + "/res/ExampleBox.zip";
-  GttBoxInfo *bi;
+  const char *file = GTT_TESTS_DIR "/res/ExampleBox.zip";
 
-  bi = gtt_zip_read_box_info(file.c_str());
+  zip_t *zip = zip_open(file, 0, NULL);
+  ASSERT_TRUE(zip != NULL);
+
+  GttBoxInfo *bi = gtt_zip_read_box_info(zip);
 
   ASSERT_TRUE(bi != NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_OK);
@@ -31,4 +29,5 @@ TEST(Zip, ReadsBoxInfoFile) {
   EXPECT_STREQ(bi->license_name, "MIT");
 
   gtt_box_info_delete(bi);
+  zip_close(zip);
 }
