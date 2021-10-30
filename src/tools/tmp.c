@@ -17,20 +17,12 @@
 #include <windows.h>
 #define mkdtemp(dir)                    \
   do {                                  \
-    char *final_dirname = _mktemp(dir); \
-    mkdir(final_dirname);               \
+    char *name = _mktemp((dir));        \
+    mkdir(name);                        \
   } while (0)
 #endif
 
 #define __BUFSIZE 128
-
-#ifdef _WIN32
-#define mkdtemp(dir)             \
-  do {                           \
-    char *name = _mktemp((dir)); \
-    mkdir(name);                 \
-  } while (0)
-#endif
 
 char *gtt_mktmpdir(char *buf, size_t bufsize) {
   char tmp_dir[__BUFSIZE] = {0};

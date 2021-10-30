@@ -20,12 +20,8 @@
 #define HEADER_END
 #endif
 
-#ifdef _WIN32
 #ifdef WINDLLBUILD
 #define WINDLL __declspec(dllexport)
-#else
-#define WINDLL __declspec(dllimport)
-#endif
 #else
 #define WINDLL
 #endif
