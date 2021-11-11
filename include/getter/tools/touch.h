@@ -7,19 +7,13 @@
  * +----------------------------------------------------------+
  */
 
-#ifndef INCLUDE_GETTER_TYPES_ARRAY_H_
-#define INCLUDE_GETTER_TYPES_ARRAY_H_
+#ifndef INCLUDE_GETTER_TOOLS_TOUCH_H_
+#define INCLUDE_GETTER_TOOLS_TOUCH_H_
 
 HEADER_BEGIN
 
-/**
- * Returns a number of elements in the array.
- *
- * \param arr Array to calculate number of elements from.
- * \returns Number of elements in the array.
- */
-#define arrlen(arr) sizeof(arr) / sizeof(*arr)
+WINDLL void gtt_touch_mkpd(const char *path);
 
 HEADER_END
 
-#endif /* INCLUDE_GETTER_TYPES_ARRAY_H_ */
+#endif /* INCLUDE_GETTER_TOOLS_TOUCH_H_ */

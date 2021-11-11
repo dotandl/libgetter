@@ -13,12 +13,15 @@ set(LIBGETTER_SOURCES
   release/version.c
   types/pkvf.c
   types/json.c
+  types/string.c
   tools/platform.c
   tools/version.c
   tools/error.c
   tools/tmp.c
+  tools/touch.c
   files/zip/box_info.c
   files/zip/box.c
+  files/zip/release_extract.c
 )
 
 set(LIBGETTER_HEADERS
@@ -36,12 +39,15 @@ set(LIBGETTER_HEADERS
   release/version.h
   types/pkvf.h
   types/json.h
+  types/string.h
   tools/platform.h
   tools/version.h
   tools/error.h
   tools/tmp.h
+  tools/touch.h
   files/zip/box_info.h
   files/zip/box.h
+  files/zip/release_extract.h
 )
 
 # Common dependencies (no matter if building shared or static lib)

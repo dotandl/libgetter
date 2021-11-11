@@ -16,6 +16,7 @@ set(LIBGETTER_TESTS_SOURCES
   tools/tmp.cpp
   files/zip/box_info.cpp
   files/zip/box.cpp
+  files/zip/release_extract.cpp
 
   # Tools
   cppvector.c

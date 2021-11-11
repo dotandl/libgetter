@@ -18,7 +18,10 @@
  * macros.
  */
 
-#define CVECTOR_HEADER
+#ifndef TESTS_CPPVECTOR_H_
+#define TESTS_CPPVECTOR_H_
+
+#define CVECTOR_LOGARITHMIC_GROWTH
 
 #include <cvector.h>
 #include <getter/release/release.h>
@@ -32,3 +35,5 @@ void cppvector_push_back(cvector_vector_type(void *) * vec, void *obj);
 #ifdef __cplusplus
 }
 #endif
+
+#endif /* TESTS_CPPVECTOR_H_ */

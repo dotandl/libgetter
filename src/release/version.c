@@ -46,7 +46,6 @@ GttRelease *gtt_get_latest_release_version(cvector_vector_type(GttRelease *)
   l_minor = 0;
   l_patch = 0;
 
-  // gtt_vector_for_each(releases, node) {
   for (i = 0; i < cvector_size(releases); i++) {
     match_data = pcre2_match_data_create_from_pattern(regexp, NULL);
 
