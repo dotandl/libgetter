@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('files_2zip_2box_8c.html',''); initResi
 <code>#include &lt;<a class="el" href="error_8h_source.html">getter/tools/error.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="array_8h_source.html">getter/types/array.h</a>&gt;</code><br />
 <code>#include &lt;pcre2.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="string_8h_source.html">string.h</a>&gt;</code><br />
 <code>#include &lt;zip.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -107,8 +107,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aeb5ec4fac410ee939f6892cacf97e686"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_gtt_box.html">GttBox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="files_2zip_2box_8c.html#aeb5ec4fac410ee939f6892cacf97e686">gtt_zip_read_box</a> (const char *filename)</td></tr>
-<tr class="separator:aeb5ec4fac410ee939f6892cacf97e686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdb5bc05e03be6ee7c5fec534fce3aed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_gtt_box.html">GttBox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="files_2zip_2box_8c.html#abdb5bc05e03be6ee7c5fec534fce3aed">gtt_zip_read_box</a> (zip_t *zip)</td></tr>
+<tr class="separator:abdb5bc05e03be6ee7c5fec534fce3aed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="addc43ed792bb32b318d47f75d941bbb3"></a>
@@ -140,8 +140,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aeb5ec4fac410ee939f6892cacf97e686"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb5ec4fac410ee939f6892cacf97e686">&#9670;&nbsp;</a></span>gtt_zip_read_box()</h2>
+<a id="abdb5bc05e03be6ee7c5fec534fce3aed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdb5bc05e03be6ee7c5fec534fce3aed">&#9670;&nbsp;</a></span>gtt_zip_read_box()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,8 +149,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="struct_gtt_box.html">GttBox</a>* gtt_zip_read_box </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>file</em></td><td>)</td>
+          <td class="paramtype">zip_t *&#160;</td>
+          <td class="paramname"><em>zip</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -158,7 +158,7 @@ Functions</h2></td></tr>
 <p>Generates Box object basing on the Box file in the form of zip file.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">file</td><td>Path to the zip file. </td></tr>
+    <tr><td class="paramname">zip</td><td>Pointer to the zip object (opened with zip_open()). </td></tr>
   </table>
   </dd>
 </dl>

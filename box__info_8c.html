@@ -96,12 +96,12 @@ $(document).ready(function(){initNavTree('box__info_8c.html',''); initResizable(
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4c902db5e4b7dec6e5413af9a6a7edb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_gtt_box_info.html">GttBoxInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box__info_8c.html#a4c902db5e4b7dec6e5413af9a6a7edb5">gtt_zip_read_box_info</a> (const char *filename)</td></tr>
-<tr class="separator:a4c902db5e4b7dec6e5413af9a6a7edb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c7025f1a5b137e37c415935c526f3b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_gtt_box_info.html">GttBoxInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box__info_8c.html#a3c7025f1a5b137e37c415935c526f3b3">gtt_zip_read_box_info</a> (zip_t *zip)</td></tr>
+<tr class="separator:a3c7025f1a5b137e37c415935c526f3b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a4c902db5e4b7dec6e5413af9a6a7edb5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c902db5e4b7dec6e5413af9a6a7edb5">&#9670;&nbsp;</a></span>gtt_zip_read_box_info()</h2>
+<a id="a3c7025f1a5b137e37c415935c526f3b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c7025f1a5b137e37c415935c526f3b3">&#9670;&nbsp;</a></span>gtt_zip_read_box_info()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -109,8 +109,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="struct_gtt_box_info.html">GttBoxInfo</a>* gtt_zip_read_box_info </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>file</em></td><td>)</td>
+          <td class="paramtype">zip_t *&#160;</td>
+          <td class="paramname"><em>zip</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -118,7 +118,7 @@ Functions</h2></td></tr>
 <p>Reads GetterBox.json file withing Box file (in the form of zip file).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">file</td><td>Path to the zip file. </td></tr>
+    <tr><td class="paramname">zip</td><td>Pointer to the zip object (opened with zip_open()). </td></tr>
   </table>
   </dd>
 </dl>

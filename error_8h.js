@@ -15,7 +15,8 @@ var error_8h =
       [ "GTT_REGEXP_COMPILATION_FAILED", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79a89307160f469c904e9d6ab692a540b89", null ],
       [ "GTT_UNSUPPORTED_HOST", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79ab92ea0b9a82e18f2eeed0637afe4d214", null ],
       [ "GTT_LIBGETTER_TOO_OLD", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79a9425d9904ab214cb1bd37aec1fda5936", null ],
-      [ "GTT_ZIP_ERROR", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79ad213b4248fb67540dea43f1847472289", null ]
+      [ "GTT_ZIP_ERROR", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79ad213b4248fb67540dea43f1847472289", null ],
+      [ "GTT_NOT_FOUND", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79ac3e3ede74ffcd423ec36e5a9ad191bdd", null ]
     ] ],
     [ "gtt_error", "error_8h.html#a0f131f54113263e0ac282b2e67481c9a", null ],
     [ "gtt_last_error", "error_8h.html#a0e9ba344fbf63c8d323904825d6f892a", null ]
