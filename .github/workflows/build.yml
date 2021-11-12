@@ -6,6 +6,7 @@ on:
 
 env:
   BUILD_TYPE: Release
+  TMPDIR: ${{github.workspace}}/tmp
 
 jobs:
   build-and-test-libgetter:
@@ -20,13 +21,16 @@ jobs:
       - name: Install required libraries
         run: sudo apt-get install -y libpcre2-dev libzip-dev
 
+      - name: Prepare tmp directory
+        run: mkdir ${{env.TMPDIR}}
+
       - name: Configure the CMake project
         run: |
           cmake \
           -S ${{github.workspace}} \
           -B ${{github.workspace}}/build \
-          -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
-          -DLIBGETTER_GENERATE_DOCS=OFF
+          -D CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
+          -D LIBGETTER_GENERATE_DOCS=OFF
 
       - name: Build the project
         run: |
