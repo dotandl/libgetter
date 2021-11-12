@@ -20,7 +20,7 @@ using std::string;
 namespace fs = std::filesystem;
 
 TEST(Tmp, CreatesTempDir) {
-  char buf[128];
+  char buf[GTT_BUFLEN];
   gtt_mktmpdir(buf, arrlen(buf));
 
   ASSERT_TRUE(fs::exists(buf));
@@ -30,7 +30,7 @@ TEST(Tmp, CreatesTempDir) {
 }
 
 TEST(Tmp, RemovesTempDir) {
-  char buf[128];
+  char buf[GTT_BUFLEN];
   gtt_mktmpdir(buf, arrlen(buf));
 
   fs::create_directory(string(buf) + "/dir/");

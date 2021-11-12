@@ -15,8 +15,6 @@
 #include <getter/types/string.h>
 #include <string.h>
 
-#define __BUFSIZE 128
-
 const char *gtt_zip_extract_release(zip_t *zip, const char *version,
                                     const char *platform, const char *arch,
                                     char *buf, size_t bufsize) {
@@ -24,10 +22,10 @@ const char *gtt_zip_extract_release(zip_t *zip, const char *version,
   GttRelease *release;
 
   /* paths */
-  char release_path[__BUFSIZE];      /* path to the release in zip */
-  char tmpdir_path[__BUFSIZE];       /* path to temp directory on disk */
-  char *entry_path;                  /* path to file/dir in zip */
-  char tmpdir_entry_path[__BUFSIZE]; /* path to file on disk */
+  char release_path[GTT_BUFLEN];      /* path to the release in zip */
+  char tmpdir_path[GTT_BUFLEN];       /* path to temp directory on disk */
+  char *entry_path;                   /* path to file/dir in zip */
+  char tmpdir_entry_path[GTT_BUFLEN]; /* path to file on disk */
   char *release_relative_path; /* path to file/dir relative to release path in
                                   zip */
 
@@ -43,7 +41,7 @@ const char *gtt_zip_extract_release(zip_t *zip, const char *version,
     return NULL;
   }
 
-  gtt_mktmpdir(tmpdir_path, __BUFSIZE);
+  gtt_mktmpdir(tmpdir_path, GTT_BUFLEN);
 
   GttBox *box = gtt_zip_read_box(zip);
 
@@ -68,7 +66,7 @@ const char *gtt_zip_extract_release(zip_t *zip, const char *version,
     return NULL;
   }
 
-  snprintf(release_path, __BUFSIZE, "Releases/%s/%s/%s/", version, platform,
+  snprintf(release_path, GTT_BUFLEN, "Releases/%s/%s/%s/", version, platform,
            arch);
 
   int entries = zip_get_num_entries(zip, 0);
@@ -86,7 +84,7 @@ const char *gtt_zip_extract_release(zip_t *zip, const char *version,
 
       /* transform the path relative to the release dir in the zip to the full
        * path in the tmpdir on the filesystem */
-      snprintf(tmpdir_entry_path, __BUFSIZE, "%s/%s", tmpdir_path,
+      snprintf(tmpdir_entry_path, GTT_BUFLEN, "%s/%s", tmpdir_path,
                release_relative_path);
 
       zfd = zip_fopen_index(zip, i, 0);

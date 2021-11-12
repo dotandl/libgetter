@@ -17,8 +17,6 @@
 #include <string.h>
 #include <zip.h>
 
-#define __BUFSIZE 16
-
 GttBox *gtt_zip_read_box(zip_t *zip) {
   /* common */
   int status, i;
@@ -35,8 +33,8 @@ GttBox *gtt_zip_read_box(zip_t *zip) {
   pcre2_code *regexp;
   pcre2_match_data *match_data;
   PCRE2_SIZE error_offset, buflen;
-  PCRE2_UCHAR version_buf[__BUFSIZE], platform_buf[__BUFSIZE],
-      arch_buf[__BUFSIZE];
+  PCRE2_UCHAR version_buf[GTT_BUFLEN], platform_buf[GTT_BUFLEN],
+      arch_buf[GTT_BUFLEN];
   int matches;
 
   if (zip == NULL) {
@@ -70,13 +68,13 @@ GttBox *gtt_zip_read_box(zip_t *zip) {
 
     /* we have match */
     if (matches > 0) {
-      buflen = __BUFSIZE;
+      buflen = GTT_BUFLEN;
       pcre2_substring_copy_bynumber(match_data, 1, version_buf, &buflen);
 
-      buflen = __BUFSIZE;
+      buflen = GTT_BUFLEN;
       pcre2_substring_copy_bynumber(match_data, 2, platform_buf, &buflen);
 
-      buflen = __BUFSIZE;
+      buflen = GTT_BUFLEN;
       pcre2_substring_copy_bynumber(match_data, 3, arch_buf, &buflen);
 
       cvector_push_back(releases,

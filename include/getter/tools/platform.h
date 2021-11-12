@@ -10,7 +10,7 @@
 #ifndef INCLUDE_GETTER_TOOLS_PLATFORM_H_
 #define INCLUDE_GETTER_TOOLS_PLATFORM_H_
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 /**
  * Gets system platform.
@@ -26,6 +26,6 @@ const char *gtt_get_platform(void);
  */
 const char *gtt_get_arch(void);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_TOOLS_PLATFORM_H_ */

@@ -13,7 +13,7 @@
 #include <getter/box/info.h>
 #include <zip.h>
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 /**
  * Reads GetterBox.json file withing Box file (in the form of zip file).
@@ -23,8 +23,8 @@ HEADER_BEGIN
  * error occurred.
  * \see GttBoxInfo
  */
-GTT_ERROR_EMITTER WINDLL GttBoxInfo *gtt_zip_read_box_info(zip_t *zip);
+GTT_ERROR_EMITTER GTT_API GttBoxInfo *gtt_zip_read_box_info(zip_t *zip);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_FILES_ZIP_BOX_INFO_H_ */

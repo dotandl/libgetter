@@ -16,7 +16,7 @@
 #include <getter/box/info.h>
 #include <getter/release/release.h>
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 /** Basic representation of the Box. */
 struct GttBox {
@@ -36,8 +36,8 @@ typedef struct GttBox GttBox;
  * \returns Created GttBox.
  * \see GttBox
  */
-WINDLL GttBox *gtt_box_new(GttBoxInfo *info,
-                           cvector_vector_type(GttRelease *) releases);
+GTT_API GttBox *gtt_box_new(GttBoxInfo *info,
+                            cvector_vector_type(GttRelease *) releases);
 
 /**
  * Deletes existing GttBox.
@@ -45,7 +45,7 @@ WINDLL GttBox *gtt_box_new(GttBoxInfo *info,
  * \param self Pointer to GttBox to delete.
  * \see GttBox
  */
-WINDLL void gtt_box_delete(GttBox *self);
+GTT_API void gtt_box_delete(GttBox *self);
 
 /**
  * Returns selected version of the Release for a given platform and
@@ -60,10 +60,10 @@ WINDLL void gtt_box_delete(GttBox *self);
  * architecture.
  * \see GttBox
  */
-GTT_ERROR_EMITTER WINDLL GttRelease *gtt_box_get_release(GttBox *self,
-                                                         const char *version,
-                                                         const char *platform,
-                                                         const char *arch);
+GTT_ERROR_EMITTER GTT_API GttRelease *gtt_box_get_release(GttBox *self,
+                                                          const char *version,
+                                                          const char *platform,
+                                                          const char *arch);
 
 /**
  * Returns the latest Release for host platform and architecture.
@@ -72,11 +72,9 @@ GTT_ERROR_EMITTER WINDLL GttRelease *gtt_box_get_release(GttBox *self,
  * \returns The latest Release for host platform and architecture.
  * \see GttBox
  */
-GTT_ERROR_EMITTER inline GttRelease *gtt_box_get_appropriate_release(
-    GttBox *self) {
-  return gtt_box_get_release(self, NULL, NULL, NULL);
-}
+#define gtt_box_get_appropriate_release(self) \
+  gtt_box_get_release((self), NULL, NULL, NULL)
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_BOX_BOX_H_ */

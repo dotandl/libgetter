@@ -12,7 +12,7 @@
 
 #include <getter/types/pkvf.h>
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 /** Representation of the info section of GetterRelease file. */
 struct GttReleaseInfo {
@@ -42,7 +42,7 @@ typedef struct GttReleaseInfo GttReleaseInfo;
  * \returns Created GttReleaseInfo.
  * \see GttReleaseInfo
  */
-GTT_ERROR_EMITTER WINDLL GttReleaseInfo *gtt_release_info_new_from_pkvf(
+GTT_ERROR_EMITTER GTT_API GttReleaseInfo *gtt_release_info_new_from_pkvf(
     const char *pkvf);
 
 /**
@@ -53,7 +53,7 @@ GTT_ERROR_EMITTER WINDLL GttReleaseInfo *gtt_release_info_new_from_pkvf(
  * \returns Created GttReleaseInfo.
  * \see GttReleaseInfo
  */
-GTT_ERROR_EMITTER WINDLL GttReleaseInfo *gtt_release_info_new_from_json(
+GTT_ERROR_EMITTER GTT_API GttReleaseInfo *gtt_release_info_new_from_json(
     const char *json);
 
 /**
@@ -62,8 +62,8 @@ GTT_ERROR_EMITTER WINDLL GttReleaseInfo *gtt_release_info_new_from_json(
  * \param self Pointer to GttReleaseInfo to delete.
  * \see GttReleaseInfo
  */
-WINDLL void gtt_release_info_delete(GttReleaseInfo *self);
+GTT_API void gtt_release_info_delete(GttReleaseInfo *self);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_RELEASE_INFO_H_ */

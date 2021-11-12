@@ -10,7 +10,7 @@
 #ifndef INCLUDE_GETTER_TOOLS_VERSION_H_
 #define INCLUDE_GETTER_TOOLS_VERSION_H_
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 #include <stdbool.h>
 
@@ -26,10 +26,10 @@ HEADER_BEGIN
  * \param patch _PATCH_ part of _current version_.
  * \returns whether _current version_ is newer than _version_ or not.
  */
-WINDLL bool gtt_is_newer(unsigned int c_major, unsigned int c_minor,
-                         unsigned int c_patch, unsigned int major,
-                         unsigned int minor, unsigned int patch);
+GTT_API bool gtt_is_newer(unsigned int c_major, unsigned int c_minor,
+                          unsigned int c_patch, unsigned int major,
+                          unsigned int minor, unsigned int patch);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_TOOLS_VERSION_H_ */

@@ -14,7 +14,7 @@
 
 #include <cvector.h>
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 enum GttPKVFTokenType { GTT_PKVF_STRING_TOKEN, GTT_PKVF_STRING_VECTOR_TOKEN };
 
@@ -52,7 +52,7 @@ struct GttPKVFToken {
  * \param pkvf PKVF string. It must not be a string literal.
  * \returns Vector with tokens read from PKVF.
  */
-GTT_ERROR_EMITTER WINDLL cvector_vector_type(GttPKVFToken)
+GTT_ERROR_EMITTER GTT_API cvector_vector_type(GttPKVFToken)
     gtt_parse_pkvf(const char *pkvf);
 
 /**
@@ -62,8 +62,8 @@ GTT_ERROR_EMITTER WINDLL cvector_vector_type(GttPKVFToken)
  *
  * \param vec Token vector to free.
  */
-WINDLL void gtt_vector_pkvf_token_free(cvector_vector_type(GttPKVFToken) vec);
+GTT_API void gtt_vector_pkvf_token_free(cvector_vector_type(GttPKVFToken) vec);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_TYPES_PKVF_H_ */

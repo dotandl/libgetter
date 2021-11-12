@@ -12,7 +12,7 @@
 
 #include <stddef.h>
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 /**
  * Creates new file in the _path_ with _contents_ of _size_.
@@ -21,9 +21,9 @@ HEADER_BEGIN
  * \param contents The contents of the file.
  * \param size The size of the file.
  */
-WINDLL void gtt_new_file_mkdir_parents(const char *path, void *contents,
-                                       size_t size);
+GTT_API void gtt_new_file_mkdir_parents(const char *path, void *contents,
+                                        size_t size);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_TOOLS_TOUCH_H_ */

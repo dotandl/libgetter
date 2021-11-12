@@ -10,7 +10,7 @@
 #ifndef INCLUDE_GETTER_TYPES_ARRAY_H_
 #define INCLUDE_GETTER_TYPES_ARRAY_H_
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 /**
  * Returns a number of elements in the array.
@@ -20,6 +20,6 @@ HEADER_BEGIN
  */
 #define arrlen(arr) sizeof(arr) / sizeof(*arr)
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_TYPES_ARRAY_H_ */

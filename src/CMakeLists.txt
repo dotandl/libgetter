@@ -27,8 +27,6 @@ set(LIBGETTER_SOURCES
 set(LIBGETTER_HEADERS
   # Headers WITHOUT corresponding source files
   getter.h
-  common.h
-  attributes.h
   types/array.h
 
   # Headers WITH corresponding source files
@@ -62,20 +60,19 @@ set(LIBGETTER_DEPENDENCIES
 # location need to be prepended with that location
 list(TRANSFORM LIBGETTER_HEADERS PREPEND ${PROJECT_SOURCE_DIR}/include/getter/)
 
-# Common header contains some constants used everywhere such as WINDLL, HEADER_BEGIN or HEADER_END
-set(LIBGETTER_COMMON_HEADER ${PROJECT_SOURCE_DIR}/include/getter/common.h)
+# Common header contains some constants used everywhere such as GTT_API,
+# GTT_HEADER_BEGIN or GTT_HEADER_END
+set(LIBGETTER_COMMON_HEADER_TEMPLATE "${PROJECT_SOURCE_DIR}/common.h.in")
+set(LIBGETTER_COMMON_HEADER "${PROJECT_BINARY_DIR}/common.h")
+configure_file(
+  ${LIBGETTER_COMMON_HEADER_TEMPLATE}
+  ${LIBGETTER_COMMON_HEADER}
+  @ONLY
+)
 
 add_library(getter ${LIBGETTER_SOURCES} ${LIBGETTER_HEADERS})
 target_include_directories(getter PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(getter PUBLIC ${LIBGETTER_DEPENDENCIES})
-
-target_compile_definitions(getter
-  PUBLIC GTT_VERSION="${LIBGETTER_VERSION}"
-  PUBLIC GTT_VERSION_SHORT="${LIBGETTER_VERSION_SHORT}"
-  PUBLIC GTT_VERSION_MAJOR=${LIBGETTER_VERSION_MAJOR}
-  PUBLIC GTT_VERSION_MINOR=${LIBGETTER_VERSION_MINOR}
-  PUBLIC GTT_VERSION_PATCH=${LIBGETTER_VERSION_PATCH}
-)
 
 # Force include common header
 if(MSVC)
@@ -84,9 +81,9 @@ else()
   target_compile_options(getter PUBLIC -include "${LIBGETTER_COMMON_HEADER}")
 endif()
 
-# Enable WINDLL constant which takes care of exporting symbols in DLLs on Windows
+# Enable GTT_API constant which takes care of exporting symbols in DLLs on Windows
 if(WIN32 AND BUILD_SHARED_LIBS)
-  target_compile_definitions(getter PUBLIC WINDLLBUILD)
+  target_compile_definitions(getter PUBLIC GTT_DLLBUILD)
 endif()
 
 # Decide whether to enable position independent code or not

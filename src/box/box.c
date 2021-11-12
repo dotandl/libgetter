@@ -16,8 +16,6 @@
 #include <getter/tools/platform.h>
 #include <string.h>
 
-#define __BUFSIZE 16
-
 GttBox *gtt_box_new(GttBoxInfo *info,
                     cvector_vector_type(GttRelease *) releases) {
   GttBox *self;
@@ -48,7 +46,7 @@ void gtt_box_delete(GttBox *self) {
 
 GttRelease *gtt_box_get_release(GttBox *self, const char *version,
                                 const char *platform, const char *arch) {
-  char __platform[__BUFSIZE], __arch[__BUFSIZE];
+  char __platform[GTT_BUFLEN], __arch[GTT_BUFLEN];
   GttRelease *res;
   cvector_vector_type(GttRelease *) vec;
   int i;
@@ -56,22 +54,22 @@ GttRelease *gtt_box_get_release(GttBox *self, const char *version,
   res = NULL;
   vec = NULL;
 
-  strncpy(__platform, platform ? platform : gtt_get_platform(), __BUFSIZE - 1);
-  strncpy(__arch, arch ? arch : gtt_get_arch(), __BUFSIZE - 1);
+  strncpy(__platform, platform ? platform : gtt_get_platform(), GTT_BUFLEN - 1);
+  strncpy(__arch, arch ? arch : gtt_get_arch(), GTT_BUFLEN - 1);
 
-  __platform[__BUFSIZE - 1] = 0;
-  __arch[__BUFSIZE - 1] = 0;
+  __platform[GTT_BUFLEN - 1] = 0;
+  __arch[GTT_BUFLEN - 1] = 0;
 
-  if (strncmp(__platform, "", __BUFSIZE) == 0 ||
-      strncmp(__arch, "", __BUFSIZE) == 0) {
+  if (strncmp(__platform, "", GTT_BUFLEN) == 0 ||
+      strncmp(__arch, "", GTT_BUFLEN) == 0) {
     gtt_error(GTT_UNSUPPORTED_HOST,
               "Platform/arch not given; host's platform/arch not supported");
     return NULL;
   }
 
   for (i = 0; i < cvector_size(self->releases); i++) {
-    if (strncmp(self->releases[i]->platform, __platform, __BUFSIZE) == 0 &&
-        strncmp(self->releases[i]->arch, __arch, __BUFSIZE) == 0) {
+    if (strncmp(self->releases[i]->platform, __platform, GTT_BUFLEN) == 0 &&
+        strncmp(self->releases[i]->arch, __arch, GTT_BUFLEN) == 0) {
       cvector_push_back(vec, self->releases[i]);
     }
   }
@@ -80,7 +78,7 @@ GttRelease *gtt_box_get_release(GttBox *self, const char *version,
     res = gtt_get_latest_release_version(vec);
   } else {
     for (i = 0; i < cvector_size(vec); i++) {
-      if (strncmp(vec[i]->version, version, __BUFSIZE) == 0) {
+      if (strncmp(vec[i]->version, version, GTT_BUFLEN) == 0) {
         res = vec[i];
         break;
       }

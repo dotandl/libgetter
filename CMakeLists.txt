@@ -25,6 +25,10 @@ project(libgetter VERSION ${LIBGETTER_VERSION_SHORT} LANGUAGES C CXX)
 set(BUILD_SHARED_LIBS ON CACHE BOOL "Builds shared version of libgetter")
 option(LIBGETTER_BUILD_TESTS "Builds libgetter's tests" ON)
 option(LIBGETTER_GENERATE_DOCS "Allows to generate libgetter's documentation" ON)
+set(LIBGETTER_BUFLEN 128 CACHE STRING "Sets the number of elements in most of
+                                       buffers (especially string buffers)
+                                       created on the stack by libgetter
+                                       (>= 64 recommended)")
 
 # All libgetter files (including `googletest`) will be placed in "build/libgetter"
 set(LIBGETTER_OUTDIR "${PROJECT_BINARY_DIR}/libgetter")

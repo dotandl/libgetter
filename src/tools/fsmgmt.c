@@ -25,7 +25,7 @@ static void gtt_mkdir_p(const char *path);
 
 void gtt_new_file_mkdir_parents(const char *path, void *contents, size_t size) {
   char *ptr;
-  char parent_dirs[128];
+  char parent_dirs[GTT_BUFLEN];
   FILE *fd;
 
   ptr = gtt_str_find_last((char *)path, '/');
@@ -42,12 +42,12 @@ void gtt_new_file_mkdir_parents(const char *path, void *contents, size_t size) {
 
 void gtt_mkdir_p(const char *path) {
   char *ptr;
-  char l_path[128]; /* local copy of path */
-  char dir[128];
+  char l_path[GTT_BUFLEN]; /* local copy of path */
+  char dir[GTT_BUFLEN];
   size_t offset;
 
   offset = 0;
-  snprintf(l_path, sizeof(l_path), "%s/", path);
+  snprintf(l_path, GTT_BUFLEN, "%s/", path);
 
   while ((ptr = gtt_str_find_first_off(l_path, '/', offset++)) != NULL) {
     snprintf(dir, ptr - path + 1, "%s", path);

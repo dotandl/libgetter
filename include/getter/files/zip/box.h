@@ -13,7 +13,7 @@
 #include <getter/box/box.h>
 #include <zip.h>
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 /**
  * Generates Box object basing on the Box file in the form of zip file.
@@ -23,8 +23,8 @@ HEADER_BEGIN
  * error occurred.
  * \see GttBox
  */
-GTT_ERROR_EMITTER WINDLL GttBox *gtt_zip_read_box(zip_t *zip);
+GTT_ERROR_EMITTER GTT_API GttBox *gtt_zip_read_box(zip_t *zip);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_FILES_ZIP_BOX_H_ */

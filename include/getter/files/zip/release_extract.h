@@ -10,7 +10,7 @@
 #ifndef INCLUDE_GETTER_FILES_ZIP_RELEASE_EXTRACT_H_
 #define INCLUDE_GETTER_FILES_ZIP_RELEASE_EXTRACT_H_
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 #include <zip.h>
 
@@ -27,10 +27,10 @@ HEADER_BEGIN
  * \param bufsize Size of the `buf`
  * \returns The same pointer you pass as a `buf` parameter
  */
-GTT_ERROR_EMITTER WINDLL const char *gtt_zip_extract_release(
+GTT_ERROR_EMITTER GTT_API const char *gtt_zip_extract_release(
     zip_t *zip, const char *version, const char *platform, const char *arch,
     char *buf, size_t bufsize);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_FILES_ZIP_RELEASE_EXTRACT_H_ */

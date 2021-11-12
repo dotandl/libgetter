@@ -1,0 +1,72 @@
+/*
+ * +----------------------------------------------------------+
+ * | libgetter - part of Getter Package Manager               |
+ * | Licensed under the GNU GPLv3 License. See LICENSE.txt    |
+ * |                                                          |
+ * | Copyright (C) 2021 dotandl                               |
+ * +----------------------------------------------------------+
+ */
+
+/**
+ * \file common.h.in
+ * Template file containing some helpful preprocessor constants. It's used by
+ * CMake to generate build/common.h file, which is automatically included to
+ * every source and header file.
+ */
+
+#ifndef COMMON_H_
+#define COMMON_H_
+
+#pragma region SymbolExporing
+
+#ifdef GTT_DLLBUILD
+#define GTT_API __declspec(dllexport)
+#else
+/** Takes care of exporting symbols in Windows DLLs. */
+#define GTT_API
+#endif
+
+#ifdef __cplusplus
+#define GTT_HEADER_BEGIN extern "C" {
+#define GTT_HEADER_END }
+#else
+/** Takes care of exporting symbols the C-way while using with C++. */
+#define GTT_HEADER_BEGIN
+/** Takes care of exporting symbols the C-way while using with C++. */
+#define GTT_HEADER_END
+#endif
+
+#pragma endregion SymbolExporing
+
+#pragma region GeneratedByCMake
+
+/** Defines current version of libgetter. */
+#define GTT_VERSION "@LIBGETTER_VERSION@"
+/** Defines current version of libgetter in MAJOR.MINOR.PATCH format. */
+#define GTT_VERSION_SHORT "@LIBGETTER_VERSION_SHORT@"
+/** Defines major version of libgetter. */
+#define GTT_VERSION_MAJOR @LIBGETTER_VERSION_MAJOR@
+/** Defines minor version of libgetter. */
+#define GTT_VERSION_MINOR @LIBGETTER_VERSION_MINOR@
+/** Defines patch version of libgetter. */
+#define GTT_VERSION_PATCH @LIBGETTER_VERSION_PATCH@
+
+/** Defines the size of most buffers in the library. */
+#define GTT_BUFLEN @LIBGETTER_BUFLEN@
+
+#pragma endregion GeneratedByCMake
+
+#pragma region Attributes
+
+/** Attribute informing that the function it is used on emits an error. */
+#define GTT_ERROR_EMITTER
+
+/**
+ * Attribute informing that the struct field it is used on is required and
+ * should always hold a value.
+ */
+#define GTT_REQUIRED
+
+#pragma endregion Attributes
+
+#endif /* COMMON_H_ */

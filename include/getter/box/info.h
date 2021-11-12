@@ -14,7 +14,7 @@
 
 #include <cvector.h>
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 /** Representation of GetterBox.json file. */
 struct GttBoxInfo {
@@ -53,7 +53,7 @@ typedef struct GttBoxInfo GttBoxInfo;
  * \returns Created GttBoxInfo.
  * \see GttBoxInfo
  */
-GTT_ERROR_EMITTER WINDLL GttBoxInfo *gtt_box_info_new_from_json(
+GTT_ERROR_EMITTER GTT_API GttBoxInfo *gtt_box_info_new_from_json(
     const char *json);
 
 /**
@@ -62,8 +62,8 @@ GTT_ERROR_EMITTER WINDLL GttBoxInfo *gtt_box_info_new_from_json(
  * \param self Pointer to GttBoxInfo to delete.
  * \see GttBoxInfo
  */
-WINDLL void gtt_box_info_delete(GttBoxInfo *self);
+GTT_API void gtt_box_info_delete(GttBoxInfo *self);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_BOX_INFO_H_ */

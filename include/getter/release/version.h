@@ -15,7 +15,7 @@
 #include <cvector.h>
 #include <getter/release/release.h>
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 /**
  * Gets the latest Release from the Vector of Releases.
@@ -27,9 +27,9 @@ HEADER_BEGIN
  * \param releases Vector of Releases in which to search for the latest Release.
  * \returns The latest Release.
  */
-GTT_ERROR_EMITTER WINDLL GttRelease *gtt_get_latest_release_version(
+GTT_ERROR_EMITTER GTT_API GttRelease *gtt_get_latest_release_version(
     cvector_vector_type(GttRelease *) releases);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_RELEASE_VERSION_H_ */

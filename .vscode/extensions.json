@@ -5,6 +5,7 @@
     "twxs.cmake",
     "EditorConfig.EditorConfig",
     "fredericbonnet.cmake-test-adapter",
-    "hbenl.vscode-test-explorer"
+    "hbenl.vscode-test-explorer",
+    "xaver.clang-format"
   ]
 }

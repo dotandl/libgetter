@@ -10,7 +10,7 @@
 #ifndef INCLUDE_GETTER_TOOLS_TMP_H_
 #define INCLUDE_GETTER_TOOLS_TMP_H_
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 #include <stddef.h>
 
@@ -21,15 +21,15 @@ HEADER_BEGIN
  * \param bufsize Size of the `buf` buffer.
  * \returns The same pointer as you pass as a `buf` pointer.
  */
-WINDLL char *gtt_mktmpdir(char *buf, size_t bufsize);
+GTT_API char *gtt_mktmpdir(char *buf, size_t bufsize);
 
 /**
  * Recursively removes a temporary directory.
  *
  * \param path Path to the temporary directory.
  */
-WINDLL void gtt_rmtmpdir(const char *path);
+GTT_API void gtt_rmtmpdir(const char *path);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_TOOLS_TMP_H_ */

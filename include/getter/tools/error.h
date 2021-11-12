@@ -10,9 +10,7 @@
 #ifndef INCLUDE_GETTER_TOOLS_ERROR_H_
 #define INCLUDE_GETTER_TOOLS_ERROR_H_
 
-HEADER_BEGIN
-
-#define __BUFSIZE 64
+GTT_HEADER_BEGIN
 
 /** List of possible errors. */
 enum GttErrorCode {
@@ -35,7 +33,7 @@ typedef enum GttErrorCode GttErrorCode;
 /** Representation of an error. */
 struct GttError {
   GttErrorCode code;
-  char desc[__BUFSIZE];
+  char desc[GTT_BUFLEN];
 };
 
 typedef struct GttError GttError;
@@ -45,7 +43,7 @@ typedef struct GttError GttError;
  *
  * \see GttError
  */
-WINDLL extern GttError gtt_last_error;
+GTT_API extern GttError gtt_last_error;
 
 /**
  * Shortcut for the `gtt_last_error.code != GTT_OK` condition checking whether
@@ -77,8 +75,6 @@ void gtt_error(GttErrorCode err_code, const char *err_desc);
 /** Sets OK error code. */
 #define gtt_ok() gtt_error(GTT_OK, NULL)
 
-#undef __BUFSIZE
-
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_TOOLS_ERROR_H_ */

@@ -12,7 +12,7 @@
 
 #include <string.h>
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 /**
  * Checks whether _haystack_ starts with _needle_.
@@ -41,7 +41,7 @@ HEADER_BEGIN
  * \param needle The character to search for in _haystack_.
  * \returns Pointer to _needle_ in _haystack_ (or NULL if not found).
  */
-WINDLL char *gtt_str_find_last(char *haystack, char needle);
+GTT_API char *gtt_str_find_last(char *haystack, char needle);
 
 /**
  * Tries ot find _needle_ char in the _haystack_ omitting _offset_ occurrences
@@ -52,8 +52,9 @@ WINDLL char *gtt_str_find_last(char *haystack, char needle);
  * \param offset A number of _needle_ occurrences to omit.
  * \returns Pointer to _needle_ in _haystack_ (or NULL if not found).
  */
-WINDLL char *gtt_str_find_first_off(char *haystack, char needle, size_t offset);
+GTT_API char *gtt_str_find_first_off(char *haystack, char needle,
+                                     size_t offset);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_TYPES_STRING_H_ */

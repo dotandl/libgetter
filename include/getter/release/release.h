@@ -12,7 +12,7 @@
 
 #include <getter/release/info.h>
 
-HEADER_BEGIN
+GTT_HEADER_BEGIN
 
 /** Basic representation of the Release. */
 struct GttRelease {
@@ -37,9 +37,9 @@ typedef struct GttRelease GttRelease;
  * \returns Created GttRelease.
  * \see GttRelease
  */
-GTT_ERROR_EMITTER WINDLL GttRelease *gtt_release_new(const char *platform,
-                                                     const char *arch,
-                                                     const char *version);
+GTT_ERROR_EMITTER GTT_API GttRelease *gtt_release_new(const char *platform,
+                                                      const char *arch,
+                                                      const char *version);
 
 /**
  * Deletes existing GttRelease.
@@ -47,8 +47,8 @@ GTT_ERROR_EMITTER WINDLL GttRelease *gtt_release_new(const char *platform,
  * \param self Pointer to GttRelease to delete.
  * \see GttRelease
  */
-WINDLL void gtt_release_delete(GttRelease *self);
+GTT_API void gtt_release_delete(GttRelease *self);
 
-HEADER_END
+GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_RELEASE_RELEASE_H_ */

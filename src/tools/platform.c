@@ -11,17 +11,15 @@
 #include <stddef.h>
 #include <string.h>
 
-#define __BUFSIZE 16
-
-static char gtt_platform[__BUFSIZE] = {0};
-static char gtt_arch[__BUFSIZE] = {0};
+static char gtt_platform[GTT_BUFLEN] = {0};
+static char gtt_arch[GTT_BUFLEN] = {0};
 
 /*
  * Mocking functions are not exposed in header file. They must be explicitly
  * declared in tests' source files.
  */
-WINDLL void gtt_mock_platform(const char *platform);
-WINDLL void gtt_mock_arch(const char *arch);
+GTT_API void gtt_mock_platform(const char *platform);
+GTT_API void gtt_mock_arch(const char *arch);
 
 #pragma region GTT_PLATFORM
 
@@ -89,11 +87,11 @@ const char *gtt_get_arch(void) {
 }
 
 void gtt_mock_platform(const char *platform) {
-  strncpy(gtt_platform, platform, __BUFSIZE - 1);
-  gtt_platform[__BUFSIZE - 1] = 0;
+  strncpy(gtt_platform, platform, GTT_BUFLEN - 1);
+  gtt_platform[GTT_BUFLEN - 1] = 0;
 }
 
 void gtt_mock_arch(const char *arch) {
-  strncpy(gtt_arch, arch, __BUFSIZE - 1);
-  gtt_arch[__BUFSIZE - 1] = 0;
+  strncpy(gtt_arch, arch, GTT_BUFLEN - 1);
+  gtt_arch[GTT_BUFLEN - 1] = 0;
 }
