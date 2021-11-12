@@ -10,6 +10,6 @@ var pkvf_8h =
       [ "GTT_PKVF_STRING_TOKEN", "pkvf_8h.html#a68e2d9a65b2b24402b1b34decffbbf5cab9db95531fa2f9404b9521b0acf04c0b", null ],
       [ "GTT_PKVF_STRING_VECTOR_TOKEN", "pkvf_8h.html#a68e2d9a65b2b24402b1b34decffbbf5caf4e689dea53da304caead6564f7bcdf2", null ]
     ] ],
-    [ "cvector_vector_type", "pkvf_8h.html#a4b213299dab3b06552af16fa9c4621b0", null ],
-    [ "gtt_vector_pkvf_token_free", "pkvf_8h.html#ab1aafc738f43018f34fa0eabc052adf3", null ]
+    [ "cvector_vector_type", "pkvf_8h.html#a45b3208b02cfa0660460a5568e3d3227", null ],
+    [ "gtt_vector_pkvf_token_free", "pkvf_8h.html#a7b76a257614b92c24e11a09a25ead602", null ]
 ];

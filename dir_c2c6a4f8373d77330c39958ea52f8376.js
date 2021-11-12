@@ -5,7 +5,5 @@ var dir_c2c6a4f8373d77330c39958ea52f8376 =
     [ "release", "dir_b976fd72fc9a5c2b1980e2e58f546ab8.html", "dir_b976fd72fc9a5c2b1980e2e58f546ab8" ],
     [ "tools", "dir_68fe89d91f48e1034d8307ef5163d8fe.html", "dir_68fe89d91f48e1034d8307ef5163d8fe" ],
     [ "types", "dir_b52200c1b47129a967d1d7c33ecae4ea.html", "dir_b52200c1b47129a967d1d7c33ecae4ea" ],
-    [ "attributes.h", "attributes_8h.html", "attributes_8h" ],
-    [ "common.h", "common_8h.html", "common_8h" ],
     [ "getter.h", "getter_8h.html", null ]
 ];

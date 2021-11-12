@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libgetter: include/getter/tools/touch.h Source File</title>
+<title>libgetter: include/getter/tools/fsmgmt.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('touch_8h_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('fsmgmt_8h_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -84,10 +84,10 @@ $(document).ready(function(){initNavTree('touch_8h_source.html',''); initResizab
 
 <div class="header">
   <div class="headertitle">
-<div class="title">touch.h</div>  </div>
+<div class="title">fsmgmt.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="touch_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="fsmgmt_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * +----------------------------------------------------------+</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * | libgetter - part of Getter Package Manager               |</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * | Licensed under the GNU GPLv3 License. See LICENSE.txt    |</span></div>
@@ -99,23 +99,26 @@ $(document).ready(function(){initNavTree('touch_8h_source.html',''); initResizab
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef INCLUDE_GETTER_TOOLS_TOUCH_H_</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define INCLUDE_GETTER_TOOLS_TOUCH_H_</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<a class="code" href="common_8h.html#a31c838f660ea32211c72996e8684be44">HEADER_BEGIN</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<a class="code" href="common_8h.html#a43506785f9850b183e9b61e0bcaf8662">WINDLL</a> <span class="keywordtype">void</span> <a class="code" href="touch_8h.html#a268eaabd870dd1f32974b837f426ac38">gtt_touch_mkpd</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *path);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<a class="code" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<a class="code" href="common_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* INCLUDE_GETTER_TOOLS_TOUCH_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<a class="code" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <span class="keywordtype">void</span> <a class="code" href="fsmgmt_8h.html#a49762457084a40e028e792e36fc93e13">gtt_new_file_mkdir_parents</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *path, <span class="keywordtype">void</span> *contents,</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                        <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<a class="code" href="common_8h_8in.html#a5c91347ebb3fc214a032f73b9c3ea77a">GTT_HEADER_END</a></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* INCLUDE_GETTER_TOOLS_TOUCH_H_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="acommon_8h_html_a31c838f660ea32211c72996e8684be44"><div class="ttname"><a href="common_8h.html#a31c838f660ea32211c72996e8684be44">HEADER_BEGIN</a></div><div class="ttdeci">#define HEADER_BEGIN</div><div class="ttdef"><b>Definition:</b> common.h:19</div></div>
-<div class="ttc" id="atouch_8h_html_a268eaabd870dd1f32974b837f426ac38"><div class="ttname"><a href="touch_8h.html#a268eaabd870dd1f32974b837f426ac38">gtt_touch_mkpd</a></div><div class="ttdeci">HEADER_BEGIN WINDLL void gtt_touch_mkpd(const char *path)</div><div class="ttdef"><b>Definition:</b> touch.c:57</div></div>
-<div class="ttc" id="acommon_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="common_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> common.h:20</div></div>
-<div class="ttc" id="acommon_8h_html_a43506785f9850b183e9b61e0bcaf8662"><div class="ttname"><a href="common_8h.html#a43506785f9850b183e9b61e0bcaf8662">WINDLL</a></div><div class="ttdeci">#define WINDLL</div><div class="ttdef"><b>Definition:</b> common.h:26</div></div>
+<div class="ttc" id="afsmgmt_8h_html_a49762457084a40e028e792e36fc93e13"><div class="ttname"><a href="fsmgmt_8h.html#a49762457084a40e028e792e36fc93e13">gtt_new_file_mkdir_parents</a></div><div class="ttdeci">GTT_HEADER_BEGIN GTT_API void gtt_new_file_mkdir_parents(const char *path, void *contents, size_t size)</div><div class="ttdef"><b>Definition:</b> fsmgmt.c:26</div></div>
+<div class="ttc" id="acommon_8h_8in_html_a82a951c8960c7713f288f5a605d19363"><div class="ttname"><a href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a></div><div class="ttdeci">#define GTT_API</div><div class="ttdef"><b>Definition:</b> common.h.in:26</div></div>
+<div class="ttc" id="acommon_8h_8in_html_a5c91347ebb3fc214a032f73b9c3ea77a"><div class="ttname"><a href="common_8h_8in.html#a5c91347ebb3fc214a032f73b9c3ea77a">GTT_HEADER_END</a></div><div class="ttdeci">#define GTT_HEADER_END</div><div class="ttdef"><b>Definition:</b> common.h.in:36</div></div>
+<div class="ttc" id="acommon_8h_8in_html_aa44122a202af0ba9ded93e22ec8640c4"><div class="ttname"><a href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a></div><div class="ttdeci">#define GTT_HEADER_BEGIN</div><div class="ttdef"><b>Definition:</b> common.h.in:34</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c2c6a4f8373d77330c39958ea52f8376.html">getter</a></li><li class="navelem"><a class="el" href="dir_68fe89d91f48e1034d8307ef5163d8fe.html">tools</a></li><li class="navelem"><a class="el" href="touch_8h.html">touch.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c2c6a4f8373d77330c39958ea52f8376.html">getter</a></li><li class="navelem"><a class="el" href="dir_68fe89d91f48e1034d8307ef5163d8fe.html">tools</a></li><li class="navelem"><a class="el" href="fsmgmt_8h.html">fsmgmt.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

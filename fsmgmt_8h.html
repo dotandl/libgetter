@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libgetter: include/getter/common.h File Reference</title>
+<title>libgetter: include/getter/tools/fsmgmt.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('common_8h.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('fsmgmt_8h.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -84,64 +84,61 @@ $(document).ready(function(){initNavTree('common_8h.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">common.h File Reference</div>  </div>
+<div class="title">fsmgmt.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="attributes_8h_source.html">getter/attributes.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;stddef.h&gt;</code><br />
 </div>
-<p><a href="common_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="fsmgmt_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a31c838f660ea32211c72996e8684be44"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a31c838f660ea32211c72996e8684be44">HEADER_BEGIN</a></td></tr>
-<tr class="separator:a31c838f660ea32211c72996e8684be44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a0de0a7fd18f12498baa360bd95b046"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></td></tr>
-<tr class="separator:a0a0de0a7fd18f12498baa360bd95b046"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43506785f9850b183e9b61e0bcaf8662"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a43506785f9850b183e9b61e0bcaf8662">WINDLL</a></td></tr>
-<tr class="separator:a43506785f9850b183e9b61e0bcaf8662"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a49762457084a40e028e792e36fc93e13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fsmgmt_8h.html#a49762457084a40e028e792e36fc93e13">gtt_new_file_mkdir_parents</a> (const char *path, void *contents, size_t size)</td></tr>
+<tr class="separator:a49762457084a40e028e792e36fc93e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a31c838f660ea32211c72996e8684be44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31c838f660ea32211c72996e8684be44">&#9670;&nbsp;</a></span>HEADER_BEGIN</h2>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a49762457084a40e028e792e36fc93e13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49762457084a40e028e792e36fc93e13">&#9670;&nbsp;</a></span>gtt_new_file_mkdir_parents()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define HEADER_BEGIN</td>
+          <td class="memname"><a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void gtt_new_file_mkdir_parents </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0a0de0a7fd18f12498baa360bd95b046"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a0de0a7fd18f12498baa360bd95b046">&#9670;&nbsp;</a></span>HEADER_END</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">#define HEADER_END</td>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>contents</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a43506785f9850b183e9b61e0bcaf8662"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43506785f9850b183e9b61e0bcaf8662">&#9670;&nbsp;</a></span>WINDLL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">#define WINDLL</td>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Creates new file in the <em>path</em> with <em>contents</em> of <em>size</em>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The path where the file should be created. </td></tr>
+    <tr><td class="paramname">contents</td><td>The contents of the file. </td></tr>
+    <tr><td class="paramname">size</td><td>The size of the file. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -150,7 +147,7 @@ Macros</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c2c6a4f8373d77330c39958ea52f8376.html">getter</a></li><li class="navelem"><a class="el" href="common_8h.html">common.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c2c6a4f8373d77330c39958ea52f8376.html">getter</a></li><li class="navelem"><a class="el" href="dir_68fe89d91f48e1034d8307ef5163d8fe.html">tools</a></li><li class="navelem"><a class="el" href="fsmgmt_8h.html">fsmgmt.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

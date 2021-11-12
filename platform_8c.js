@@ -1,6 +1,5 @@
 var platform_8c =
 [
-    [ "__BUFSIZE", "platform_8c.html#addc43ed792bb32b318d47f75d941bbb3", null ],
     [ "gtt_get_arch", "platform_8c.html#a47823f033a80bfc3b5456dda03802d9a", null ],
     [ "gtt_get_platform", "platform_8c.html#a2632e9a7ab0a516b33f27f581af9969f", null ],
     [ "gtt_mock_arch", "platform_8c.html#a7bf80b674696e8eb280620190090fe39", null ],

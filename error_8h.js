@@ -1,7 +1,6 @@
 var error_8h =
 [
     [ "GttError", "struct_gtt_error.html", "struct_gtt_error" ],
-    [ "__BUFSIZE", "error_8h.html#addc43ed792bb32b318d47f75d941bbb3", null ],
     [ "GTT_FAILED", "error_8h.html#ad373569e98e42fdebd6f55bc522664a9", null ],
     [ "gtt_ok", "error_8h.html#aba30ce18aad5779a3458ed6a789f3429", null ],
     [ "GttError", "error_8h.html#a9bd14e8ff33b5bd5688dda14d6912ae0", null ],
@@ -19,5 +18,5 @@ var error_8h =
       [ "GTT_NOT_FOUND", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79ac3e3ede74ffcd423ec36e5a9ad191bdd", null ]
     ] ],
     [ "gtt_error", "error_8h.html#a0f131f54113263e0ac282b2e67481c9a", null ],
-    [ "gtt_last_error", "error_8h.html#a0e9ba344fbf63c8d323904825d6f892a", null ]
+    [ "gtt_last_error", "error_8h.html#ae508d811c3c8294aae40fe84ba3f5756", null ]
 ];
