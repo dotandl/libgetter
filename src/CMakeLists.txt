@@ -18,7 +18,7 @@ set(LIBGETTER_SOURCES
   tools/version.c
   tools/error.c
   tools/tmp.c
-  tools/touch.c
+  tools/fsmgmt.c
   files/zip/box_info.c
   files/zip/box.c
   files/zip/release_extract.c
@@ -44,7 +44,7 @@ set(LIBGETTER_HEADERS
   tools/version.h
   tools/error.h
   tools/tmp.h
-  tools/touch.h
+  tools/fsmgmt.h
   files/zip/box_info.h
   files/zip/box.h
   files/zip/release_extract.h

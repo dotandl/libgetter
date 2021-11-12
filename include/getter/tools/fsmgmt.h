@@ -10,9 +10,19 @@
 #ifndef INCLUDE_GETTER_TOOLS_TOUCH_H_
 #define INCLUDE_GETTER_TOOLS_TOUCH_H_
 
+#include <stddef.h>
+
 HEADER_BEGIN
 
-WINDLL void gtt_touch_mkpd(const char *path);
+/**
+ * Creates new file in the _path_ with _contents_ of _size_.
+ *
+ * \param path The path where the file should be created.
+ * \param contents The contents of the file.
+ * \param size The size of the file.
+ */
+WINDLL void gtt_new_file_mkdir_parents(const char *path, void *contents,
+                                       size_t size);
 
 HEADER_END
 

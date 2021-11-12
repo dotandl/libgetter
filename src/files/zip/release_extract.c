@@ -10,8 +10,8 @@
 #include <getter/files/zip/box.h>
 #include <getter/files/zip/release_extract.h>
 #include <getter/tools/error.h>
+#include <getter/tools/fsmgmt.h>
 #include <getter/tools/tmp.h>
-#include <getter/tools/touch.h>
 #include <getter/types/string.h>
 #include <string.h>
 
@@ -22,10 +22,19 @@ const char *gtt_zip_extract_release(zip_t *zip, const char *version,
                                     char *buf, size_t bufsize) {
   unsigned int i;
   GttRelease *release;
-  char release_path[__BUFSIZE];
-  char tmpdir_path[__BUFSIZE];
-  char tmpdir_entry_path[__BUFSIZE];
-  char *entry_path, *release_relative_path;
+
+  /* paths */
+  char release_path[__BUFSIZE];      /* path to the release in zip */
+  char tmpdir_path[__BUFSIZE];       /* path to temp directory on disk */
+  char *entry_path;                  /* path to file/dir in zip */
+  char tmpdir_entry_path[__BUFSIZE]; /* path to file on disk */
+  char *release_relative_path; /* path to file/dir relative to release path in
+                                  zip */
+
+  /* libzip */
+  zip_file_t *zfd;
+  zip_stat_t zfstat;
+  void *fbuf;
 
   buf[0] = 0;
 
@@ -41,6 +50,7 @@ const char *gtt_zip_extract_release(zip_t *zip, const char *version,
   /* error will be passed on */
   if (GTT_FAILED) return NULL;
 
+  /* find an appropriate release in the box */
   release = NULL;
   for (i = 0; i < cvector_size(box->releases); i++) {
     if (strcmp(box->releases[i]->version, version) == 0 &&
@@ -61,8 +71,6 @@ const char *gtt_zip_extract_release(zip_t *zip, const char *version,
   snprintf(release_path, __BUFSIZE, "Releases/%s/%s/%s/", version, platform,
            arch);
 
-  FILE *dupa = fopen("/tmp/dupa1212", "w");
-
   int entries = zip_get_num_entries(zip, 0);
   for (i = 0; i < entries; i++) {
     entry_path = (char *)zip_get_name(zip, i, 0);
@@ -70,6 +78,7 @@ const char *gtt_zip_extract_release(zip_t *zip, const char *version,
     /* if entry is a directory, ignore */
     if (gtt_str_ends_with(entry_path, "/")) continue;
 
+    /* if the entry belongs to the release */
     if (gtt_str_starts_with(entry_path, release_path)) {
       /* transform the entry path to be relative to the release dir in the zip
        * (just cut the `Release/x/y/z/` at the beginning) */
@@ -80,26 +89,21 @@ const char *gtt_zip_extract_release(zip_t *zip, const char *version,
       snprintf(tmpdir_entry_path, __BUFSIZE, "%s/%s", tmpdir_path,
                release_relative_path);
 
-      fprintf(dupa, "%s : %s\n", release_relative_path, tmpdir_entry_path);
-      gtt_touch_mkpd(tmpdir_entry_path);
-
-      zip_file_t *zfd = zip_fopen_index(zip, i, 0);
-      zip_stat_t zfstat;
+      zfd = zip_fopen_index(zip, i, 0);
       zip_stat_index(zip, i, 0, &zfstat);
 
-      void *buf = malloc(zfstat.size);
-      zip_fread(zfd, buf, zfstat.size);
+      fbuf = malloc(zfstat.size);
+      zip_fread(zfd, fbuf, zfstat.size);
 
-      FILE *fd = fopen(tmpdir_entry_path, "w");
-      fwrite(buf, 1, zfstat.size, fd);
-      fclose(fd);
+      gtt_new_file_mkdir_parents(tmpdir_entry_path, fbuf, zfstat.size);
 
+      free(fbuf);
       zip_fclose(zfd);
     }
   }
 
-  fclose(dupa);
-
   gtt_box_delete(box);
-  return "/tmp/dupa1212";
+
+  snprintf(buf, bufsize, "%s", tmpdir_path);
+  return buf;
 }

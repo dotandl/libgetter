@@ -45,7 +45,7 @@ GttBox *gtt_zip_read_box(zip_t *zip) {
   }
 
   regexp =
-      pcre2_compile("(?i)^Releases\\/(.+)\\/(.+)\\/(.+)\\/$",
+      pcre2_compile("(?i)^Releases\\/([^\\/]+)\\/([^\\/]+)\\/([^\\/]+)\\/$",
                     PCRE2_ZERO_TERMINATED, 0, &status, &error_offset, NULL);
 
   if (regexp == NULL) {
