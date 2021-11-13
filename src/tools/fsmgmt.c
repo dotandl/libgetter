@@ -50,7 +50,7 @@ void gtt_mkdir_p(const char *path) {
   snprintf(l_path, GTT_BUFLEN, "%s/", path);
 
   while ((ptr = gtt_str_find_first_off(l_path, '/', offset++)) != NULL) {
-    snprintf(dir, ptr - path + 1, "%s", path);
+    snprintf(dir, ptr - l_path + 1, "%s", l_path);
     _mkdir(dir);
   }
 }

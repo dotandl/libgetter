@@ -1,4 +1,4 @@
-name: Generate & Publish Documentation
+name: CD - Documentation
 
 on:
   push: { branches: [main] }
@@ -7,8 +7,8 @@ env:
   BUILD_TYPE: Release
 
 jobs:
-  generate-and-pulish-docs-libgetter:
-    name: Generate & Publish Documentation - libgetter
+  generate-and-pulish-docs:
+    name: Generate & Publish Documentation
     runs-on: ubuntu-latest
 
     steps:
@@ -16,11 +16,10 @@ jobs:
         uses: actions/checkout@v2
         with: { submodules: recursive }
 
-      - name: Install required libraries
-        run: sudo apt-get install -y libpcre2-dev libzip-dev
-
-      - name: Install Doxygen
-        run: sudo apt-get install -y doxygen
+      - name: Install required libraries and Doxygen
+        run: |
+          sudo apt-get update && \
+          sudo apt-get install -y libpcre2-dev libzip-dev doxygen
 
       - name: Configure the CMake project (prepare Doxyfile)
         run: |
@@ -37,6 +36,7 @@ jobs:
           --config ${{env.BUILD_TYPE}}
 
       - name: Deploy the documentation to Github Pages
+        if: ${{ !env.ACT }} # Don't publish when testing locally with `act`
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages

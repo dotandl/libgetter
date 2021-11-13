@@ -10,7 +10,7 @@
 #include <getter/files/zip/box.h>
 #include <getter/files/zip/release_extract.h>
 #include <getter/tools/error.h>
-#include <getter/types/array.h>
+#include <getter/tools/tmp.h>
 #include <gtest/gtest.h>
 
 #include <filesystem>
@@ -28,10 +28,10 @@ TEST(ReleaseExtractor, ExtractsRelease) {
   ASSERT_EQ(gtt_last_error.code, GTT_OK);
   ASSERT_GE(cvector_size(box->releases), 1);
 
-  char buf[256];
+  char buf[GTT_BUFLEN];
   const char *res = gtt_zip_extract_release(
       zip, box->releases[0]->version, box->releases[0]->platform,
-      box->releases[0]->arch, buf, arrlen(buf));
+      box->releases[0]->arch, buf, GTT_BUFLEN);
 
   ASSERT_FALSE(res == NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_OK);
@@ -40,6 +40,7 @@ TEST(ReleaseExtractor, ExtractsRelease) {
   ASSERT_TRUE(fs::is_directory(buf));
   ASSERT_FALSE(fs::is_empty(buf));
 
+  gtt_rmtmpdir(res);
   gtt_box_delete(box);
   zip_close(zip);
 }
