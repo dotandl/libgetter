@@ -18,12 +18,12 @@ jobs:
         with: { submodules: recursive }
 
       - name: Install required libraries
-        run: |
+        run: >
           sudo apt-get update && \
           sudo apt-get install -y libpcre2-dev libzip-dev
 
       - name: Configure the CMake project
-        run: |
+        run: >
           cmake \
           -S ${{github.workspace}} \
           -B ${{github.workspace}}/build \
@@ -31,7 +31,71 @@ jobs:
           -D LIBGETTER_GENERATE_DOCS=OFF
 
       - name: Build the project
-        run: |
+        run: >
+          cmake \
+          --build ${{github.workspace}}/build \
+          --config ${{env.BUILD_TYPE}}
+
+      - name: Run unit tests
+        working-directory: ${{github.workspace}}/build
+        run: ctest -C ${{env.BUILD_TYPE}}
+
+  build-and-test-macos:
+    name: Build & Test - macOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+        with: { submodules: recursive }
+
+      - name: Install required libraries
+        run: brew install pcre2 libzip
+
+      - name: Configure the CMake project
+        run: >
+          cmake \
+          -S ${{github.workspace}} \
+          -B ${{github.workspace}}/build \
+          -D CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
+          -D LIBGETTER_GENERATE_DOCS=OFF
+
+      - name: Build the project
+        run: >
+          cmake \
+          --build ${{github.workspace}}/build \
+          --config ${{env.BUILD_TYPE}}
+
+      - name: Run unit tests
+        working-directory: ${{github.workspace}}/build
+        run: ctest -C ${{env.BUILD_TYPE}}
+
+  build-and-test-windows:
+    name: Build & Test - Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+        with: { submodules: recursive }
+
+      - name: Install required libraries
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: mingw-w64-pcre2 mingw-w64-libzip mingw-w64-cmake
+
+      - name: Configure the CMake project
+        run: >
+          cmake \
+          -S ${{github.workspace}} \
+          -B ${{github.workspace}}/build \
+          -D CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
+          -D LIBGETTER_GENERATE_DOCS=OFF
+
+      - name: Build the project
+        run: >
           cmake \
           --build ${{github.workspace}}/build \
           --config ${{env.BUILD_TYPE}}
