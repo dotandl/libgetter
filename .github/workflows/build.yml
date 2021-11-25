@@ -73,6 +73,8 @@ jobs:
   build-and-test-windows:
     name: Build & Test - Windows
     runs-on: windows-latest
+    defaults:
+      run: { shell: msys2 {0} }
 
     steps:
       - name: Check out the repository
