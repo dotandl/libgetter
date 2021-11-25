@@ -25,8 +25,8 @@ jobs:
       - name: Configure the CMake project
         run: >
           cmake
-          -S ${{github.workspace}}
-          -B ${{github.workspace}}/build
+          -S "${{github.workspace}}"
+          -B "${{github.workspace}}/build"
           -D CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
           -D LIBGETTER_GENERATE_DOCS=OFF
 
@@ -55,8 +55,8 @@ jobs:
       - name: Configure the CMake project
         run: >
           cmake
-          -S ${{github.workspace}}
-          -B ${{github.workspace}}/build
+          -S "${{github.workspace}}"
+          -B "${{github.workspace}}/build"
           -D CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
           -D LIBGETTER_GENERATE_DOCS=OFF
 
@@ -94,8 +94,8 @@ jobs:
       - name: Configure the CMake project
         run: >
           cmake
-          -S ${{github.workspace}}
-          -B ${{github.workspace}}/build
+          -S "${{github.workspace}}"
+          -B "${{github.workspace}}/build"
           -D CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
           -D LIBGETTER_GENERATE_DOCS=OFF
 
