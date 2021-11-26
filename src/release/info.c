@@ -54,34 +54,34 @@ GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
 
   for (i = 1; i < res; i++) {
     // STRINGS
-    if (gtt_json_str_eq(json, &tokens[i], "script")) {
+    if (gtt_json_str_eq(json, tokens[i], "script")) {
       gtt_json_str_copy(json, tokens[++i], (char *)ri->script, GTT_BUFLEN);
-    } else if (gtt_json_str_eq(json, &tokens[i], "repository")) {
+    } else if (gtt_json_str_eq(json, tokens[i], "repository")) {
       gtt_json_str_copy(json, tokens[++i], (char *)ri->repository, GTT_BUFLEN);
-    } else if (gtt_json_str_eq(json, &tokens[i], "license_name")) {
+    } else if (gtt_json_str_eq(json, tokens[i], "license_name")) {
       gtt_json_str_copy(json, tokens[++i], (char *)ri->license_name,
                         GTT_BUFLEN);
-    } else if (gtt_json_str_eq(json, &tokens[i], "license")) {
+    } else if (gtt_json_str_eq(json, tokens[i], "license")) {
       gtt_json_str_copy(json, tokens[++i], (char *)ri->license, GTT_BUFLEN);
-    } else if (gtt_json_str_eq(json, &tokens[i], "readme")) {
+    } else if (gtt_json_str_eq(json, tokens[i], "readme")) {
       gtt_json_str_copy(json, tokens[++i], (char *)ri->readme, GTT_BUFLEN);
-    } else if (gtt_json_str_eq(json, &tokens[i], "changelog")) {
+    } else if (gtt_json_str_eq(json, tokens[i], "changelog")) {
       gtt_json_str_copy(json, tokens[++i], (char *)ri->changelog, GTT_BUFLEN);
 
       // ARRAYS
-    } else if (gtt_json_str_eq(json, &tokens[i], "dependencies")) {
+    } else if (gtt_json_str_eq(json, tokens[i], "dependencies")) {
       gtt_json_arr_to_vec(json, &tokens[++i], &ri->dependencies);
       i += tokens[i].size;
-    } else if (gtt_json_str_eq(json, &tokens[i], "build_dependencies")) {
+    } else if (gtt_json_str_eq(json, tokens[i], "build_dependencies")) {
       gtt_json_arr_to_vec(json, &tokens[++i], &ri->build_dependencies);
       i += tokens[i].size;
-    } else if (gtt_json_str_eq(json, &tokens[i], "optional_dependencies")) {
+    } else if (gtt_json_str_eq(json, tokens[i], "optional_dependencies")) {
       gtt_json_arr_to_vec(json, &tokens[++i], &ri->optional_dependencies);
       i += tokens[i].size;
-    } else if (gtt_json_str_eq(json, &tokens[i], "conflicts")) {
+    } else if (gtt_json_str_eq(json, tokens[i], "conflicts")) {
       gtt_json_arr_to_vec(json, &tokens[++i], &ri->conflicts);
       i += tokens[i].size;
-    } else if (gtt_json_str_eq(json, &tokens[i], "replaces")) {
+    } else if (gtt_json_str_eq(json, tokens[i], "replaces")) {
       gtt_json_arr_to_vec(json, &tokens[++i], &ri->replaces);
       i += tokens[i].size;
 

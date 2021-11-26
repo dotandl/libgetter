@@ -14,10 +14,9 @@
 #include <stdio.h>
 #include <string.h>
 
-bool gtt_json_str_eq(const char *json, jsmntok_t *token, const char *str) {
-  return token->type == JSMN_STRING &&
-         token->end - token->start == strlen(str) &&
-         strncmp(json + token->start, str, token->end - token->start) == 0;
+bool gtt_json_str_eq(const char *json, jsmntok_t token, const char *str) {
+  return token.type == JSMN_STRING && token.end - token.start == strlen(str) &&
+         strncmp(json + token.start, str, token.end - token.start) == 0;
 }
 
 void gtt_json_str_copy(const char *json, jsmntok_t token, char *dest,
@@ -36,9 +35,9 @@ void gtt_json_str_copy(const char *json, jsmntok_t token, char *dest,
   free(tmp);
 }
 
-void gtt_json_str_alloc_copy(const char *json, jsmntok_t *token, char **dest) {
-  *dest = calloc((token->end - token->start) + 1, sizeof(char));
-  gtt_json_str_copy(json, *token, *dest, (token->end - token->start) + 1);
+void gtt_json_str_alloc_copy(const char *json, jsmntok_t token, char **dest) {
+  *dest = calloc(token.end - token.start + 1, sizeof(char));
+  gtt_json_str_copy(json, token, *dest, token.end - token.start + 1);
 }
 
 void gtt_json_arr_to_vec(const char *json, jsmntok_t *token,
@@ -58,7 +57,7 @@ void gtt_json_arr_to_vec(const char *json, jsmntok_t *token,
   for (i = 0; i < token->size; i++) {
     current_tok = token + i + 1;
 
-    gtt_json_str_alloc_copy(json, current_tok, &buf);
+    gtt_json_str_alloc_copy(json, *current_tok, &buf);
 
     // *vec needs to be surrounded by () because of bug in the c-vector lib
     cvector_push_back((*vec), buf);
