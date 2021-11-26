@@ -33,11 +33,11 @@ jobs:
       - name: Build the project
         run: >
           cmake
-          --build ${{github.workspace}}/build
+          --build "${{github.workspace}}/build"
           --config ${{env.BUILD_TYPE}}
 
       - name: Run unit tests
-        working-directory: ${{github.workspace}}/build
+        working-directory: "${{github.workspace}}/build"
         run: ctest -C ${{env.BUILD_TYPE}}
 
   build-and-test-macos:
@@ -63,11 +63,11 @@ jobs:
       - name: Build the project
         run: >
           cmake
-          --build ${{github.workspace}}/build
+          --build "${{github.workspace}}/build"
           --config ${{env.BUILD_TYPE}}
 
       - name: Run unit tests
-        working-directory: ${{github.workspace}}/build
+        working-directory: "${{github.workspace}}/build"
         run: ctest -C ${{env.BUILD_TYPE}}
 
   build-and-test-windows:
@@ -104,9 +104,9 @@ jobs:
       - name: Build the project
         run: >
           cmake
-          --build ${{github.workspace}}/build
+          --build "${{github.workspace}}/build"
           --config ${{env.BUILD_TYPE}}
 
       - name: Run unit tests
-        working-directory: ${{github.workspace}}/build
+        working-directory: "${{github.workspace}}/build"
         run: ctest -C ${{env.BUILD_TYPE}}
