@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "type": "shell",
+  "command": "cmake",
+  "tasks": [
+    {
+      "label": "Build",
+      "args": ["--build", "${workspaceFolder}/build"],
+      "group": "build"
+    }
+  ]
+}

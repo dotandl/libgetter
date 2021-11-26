@@ -18,24 +18,26 @@ GTT_HEADER_BEGIN
 
 /** Representation of GetterBox.json file. */
 struct GttBoxInfo {
-  const char *getter;  ///< Minimum libgetter version reuired by the Box (must
-                       ///< match `/^[0-9]+\.[0-9]+\.[0-9]+$/`).
+  const char
+      getter[GTT_BUFLEN];  ///< Minimum libgetter version reuired by the Box
+                           ///< (must match `/^[0-9]+\.[0-9]+\.[0-9]+$/`).
 
-  GTT_REQUIRED const char *name;
-  GTT_REQUIRED const char *full_name;
-  GTT_REQUIRED const char *summary;
-  const char *description;
+  GTT_REQUIRED const char name[GTT_BUFLEN];
+  GTT_REQUIRED const char full_name[GTT_BUFLEN];
+  GTT_REQUIRED const char summary[GTT_BUFLEN];
+  const char description[GTT_BUFLEN];
 
-  const char *homepage;
-  const char *repository;
+  const char homepage[GTT_BUFLEN];
+  const char repository[GTT_BUFLEN];
   GTT_REQUIRED cvector_vector_type(char *) authors;
   cvector_vector_type(char *) categories;
 
   GTT_REQUIRED const char
-      *license_name;      ///< Name of the license (like MIT, GPLv3, etc.).
-  const char *license;    ///< Path to the license file.
-  const char *readme;     ///< Path to the readme file.
-  const char *changelog;  ///< Path to the changelog file.
+      license_name[GTT_BUFLEN];      ///< Name of the license (like MIT, GPLv3,
+                                     ///< etc.).
+  const char license[GTT_BUFLEN];    ///< Path to the license file.
+  const char readme[GTT_BUFLEN];     ///< Path to the readme file.
+  const char changelog[GTT_BUFLEN];  ///< Path to the changelog file.
 
   cvector_vector_type(char *) dependencies;
   cvector_vector_type(char *) build_dependencies;

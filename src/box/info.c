@@ -59,30 +59,33 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   gtt_ok();  // If all JSON read successfully, error code will be GTT_OK
 
   for (i = 1; i < res; i++) {
-    if (gtt_json_str_eq(json, &tokens[i], "getter")) {  // STRINGS
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->getter);
+    // STRINGS
+    if (gtt_json_str_eq(json, &tokens[i], "getter")) {
+      gtt_json_str_copy(json, tokens[++i], (char *)bi->getter, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "name")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->name);
+      gtt_json_str_copy(json, tokens[++i], (char *)bi->name, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "full_name")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->full_name);
+      gtt_json_str_copy(json, tokens[++i], (char *)bi->full_name, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "summary")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->summary);
+      gtt_json_str_copy(json, tokens[++i], (char *)bi->summary, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "description")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->description);
+      gtt_json_str_copy(json, tokens[++i], (char *)bi->description, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "homepage")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->homepage);
+      gtt_json_str_copy(json, tokens[++i], (char *)bi->homepage, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "repository")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->repository);
+      gtt_json_str_copy(json, tokens[++i], (char *)bi->repository, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "license_name")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->license_name);
+      gtt_json_str_copy(json, tokens[++i], (char *)bi->license_name,
+                        GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "license")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->license);
+      gtt_json_str_copy(json, tokens[++i], (char *)bi->license, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "readme")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->readme);
+      gtt_json_str_copy(json, tokens[++i], (char *)bi->readme, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "changelog")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&bi->changelog);
+      gtt_json_str_copy(json, tokens[++i], (char *)bi->changelog, GTT_BUFLEN);
 
-    } else if (gtt_json_str_eq(json, &tokens[i], "authors")) {  // ARRAYS
+      // ARRAYS
+    } else if (gtt_json_str_eq(json, &tokens[i], "authors")) {
       gtt_json_arr_to_vec(json, &tokens[++i], &bi->authors);
       i += tokens[i].size;
     } else if (gtt_json_str_eq(json, &tokens[i], "categories")) {
@@ -104,7 +107,8 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
       gtt_json_arr_to_vec(json, &tokens[++i], &bi->replaces);
       i += tokens[i].size;
 
-    } else {  // UNEXPECTED FIELD
+      // UNEXPECTED FIELD
+    } else {
       gtt_error(GTT_INVALID_DATA, "Not a valid Box JSON - unexpected token");
     }
   }
@@ -114,13 +118,12 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   // Check if there were any errors while parsing JSON
   if (GTT_FAILED) {
     // Error is already set, no need to set it again
-
     gtt_box_info_delete(bi);
     return NULL;
   }
 
-  if (bi->name == NULL || bi->full_name == NULL || bi->summary == NULL ||
-      bi->authors == NULL || bi->license_name == NULL) {
+  if (bi->name[0] == 0 || bi->full_name[0] == 0 || bi->summary[0] == 0 ||
+      bi->authors == NULL || bi->license_name[0] == 0) {
     gtt_box_info_delete(bi);
 
     gtt_error(GTT_PARSE_ERROR,
@@ -128,7 +131,7 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
     return NULL;
   }
 
-  if (bi->getter != NULL && !gtt_meets_version(bi->getter)) {
+  if (bi->getter[0] != 0 && !gtt_meets_version(bi->getter)) {
     gtt_box_info_delete(bi);
 
     gtt_error(GTT_LIBGETTER_TOO_OLD, "libgetter is too old for this Box");
@@ -149,18 +152,6 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
 
 void gtt_box_info_delete(GttBoxInfo *self) {
   if (self == NULL) return;
-
-  if (self->getter != NULL) free((char **)self->getter);
-  if (self->name != NULL) free((char **)self->name);
-  if (self->full_name != NULL) free((char **)self->full_name);
-  if (self->summary != NULL) free((char **)self->summary);
-  if (self->description != NULL) free((char **)self->description);
-  if (self->homepage != NULL) free((char **)self->homepage);
-  if (self->repository != NULL) free((char **)self->repository);
-  if (self->license_name != NULL) free((char **)self->license_name);
-  if (self->license != NULL) free((char **)self->license);
-  if (self->readme != NULL) free((char **)self->readme);
-  if (self->changelog != NULL) free((char **)self->changelog);
 
   free_all_strings(self->authors);
   free_all_strings(self->categories);

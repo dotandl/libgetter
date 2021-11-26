@@ -16,14 +16,15 @@ GTT_HEADER_BEGIN
 
 /** Representation of the info section of GetterRelease file. */
 struct GttReleaseInfo {
-  GTT_REQUIRED const char *script;
+  GTT_REQUIRED const char script[GTT_BUFLEN];
 
-  const char *repository;
+  const char repository[GTT_BUFLEN];
 
-  const char *license_name;  ///< Name of the license (like MIT, GPLv3, etc.).
-  const char *license;       ///< Path to the license file.
-  const char *readme;        ///< Path to the readme file.
-  const char *changelog;     ///< Path to the changelog file.
+  const char license_name[GTT_BUFLEN];  ///< Name of the license (like MIT,
+                                        ///< GPLv3, etc.).
+  const char license[GTT_BUFLEN];       ///< Path to the license file.
+  const char readme[GTT_BUFLEN];        ///< Path to the readme file.
+  const char changelog[GTT_BUFLEN];     ///< Path to the changelog file.
 
   cvector_vector_type(char *) dependencies;
   cvector_vector_type(char *) build_dependencies;

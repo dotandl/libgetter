@@ -11,6 +11,7 @@
 //
 #include <getter/tools/error.h>
 #include <getter/types/json.h>
+#include <stdio.h>
 #include <string.h>
 
 bool gtt_json_str_eq(const char *json, jsmntok_t *token, const char *str) {
@@ -19,15 +20,25 @@ bool gtt_json_str_eq(const char *json, jsmntok_t *token, const char *str) {
          strncmp(json + token->start, str, token->end - token->start) == 0;
 }
 
-void gtt_json_str_alloc_copy(const char *json, jsmntok_t *token, char **dest) {
-  if (token->type != JSMN_STRING) {
+void gtt_json_str_copy(const char *json, jsmntok_t token, char *dest,
+                       size_t buflen) {
+  char *tmp;
+
+  if (token.type != JSMN_STRING) {
     gtt_error(GTT_INVALID_DATA,
               "Not a valid JSON - found a token with incorrect type");
     return;
   }
 
+  tmp = calloc(token.end - token.start + 1, sizeof(char));
+  snprintf(tmp, token.end - token.start + 1, "%s", json + token.start);
+  snprintf(dest, buflen, "%s", tmp);
+  free(tmp);
+}
+
+void gtt_json_str_alloc_copy(const char *json, jsmntok_t *token, char **dest) {
   *dest = calloc((token->end - token->start) + 1, sizeof(char));
-  memcpy(*dest, json + token->start, token->end - token->start);
+  gtt_json_str_copy(json, *token, *dest, (token->end - token->start) + 1);
 }
 
 void gtt_json_arr_to_vec(const char *json, jsmntok_t *token,

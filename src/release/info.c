@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+static void pkvf_str_copy(GttPKVFToken *token, char *dest, size_t buflen);
 static void pkvf_str_alloc_copy(GttPKVFToken *token, char **dest);
 static void pkvf_arr_to_vec(GttPKVFToken *token,
                             cvector_vector_type(char *) * vec);
@@ -36,17 +37,17 @@ GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
     switch (token->type) {
       case GTT_PKVF_STRING_TOKEN:
         if (strcmp(token->key, "script") == 0) {
-          pkvf_str_alloc_copy(token, (char **)&self->script);
+          pkvf_str_copy(token, (char *)self->script, GTT_BUFLEN);
         } else if (strcmp(token->key, "repository") == 0) {
-          pkvf_str_alloc_copy(token, (char **)&self->repository);
+          pkvf_str_copy(token, (char *)self->repository, GTT_BUFLEN);
         } else if (strcmp(token->key, "license_name") == 0) {
-          pkvf_str_alloc_copy(token, (char **)&self->license_name);
+          pkvf_str_copy(token, (char *)self->license_name, GTT_BUFLEN);
         } else if (strcmp(token->key, "license") == 0) {
-          pkvf_str_alloc_copy(token, (char **)&self->license);
+          pkvf_str_copy(token, (char *)self->license, GTT_BUFLEN);
         } else if (strcmp(token->key, "readme") == 0) {
-          pkvf_str_alloc_copy(token, (char **)&self->readme);
+          pkvf_str_copy(token, (char *)self->readme, GTT_BUFLEN);
         } else if (strcmp(token->key, "changelog") == 0) {
-          pkvf_str_alloc_copy(token, (char **)&self->changelog);
+          pkvf_str_copy(token, (char *)self->changelog, GTT_BUFLEN);
         } else {
           gtt_vector_pkvf_token_free(vec);
           gtt_release_info_delete(self);
@@ -80,7 +81,7 @@ GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
 
   gtt_vector_pkvf_token_free(vec);
 
-  if (self->script == NULL) {
+  if (self->script[0] == 0) {
     gtt_release_info_delete(self);
     gtt_error(GTT_PARSE_ERROR, "Some of the required fields is missing");
     return NULL;
@@ -131,17 +132,18 @@ GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
   for (i = 1; i < res; i++) {
     // STRINGS
     if (gtt_json_str_eq(json, &tokens[i], "script")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->script);
+      gtt_json_str_copy(json, tokens[++i], (char *)ri->script, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "repository")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->repository);
+      gtt_json_str_copy(json, tokens[++i], (char *)ri->repository, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "license_name")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->license_name);
+      gtt_json_str_copy(json, tokens[++i], (char *)ri->license_name,
+                        GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "license")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->license);
+      gtt_json_str_copy(json, tokens[++i], (char *)ri->license, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "readme")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->readme);
+      gtt_json_str_copy(json, tokens[++i], (char *)ri->readme, GTT_BUFLEN);
     } else if (gtt_json_str_eq(json, &tokens[i], "changelog")) {
-      gtt_json_str_alloc_copy(json, &tokens[++i], (char **)&ri->changelog);
+      gtt_json_str_copy(json, tokens[++i], (char *)ri->changelog, GTT_BUFLEN);
 
       // ARRAYS
     } else if (gtt_json_str_eq(json, &tokens[i], "dependencies")) {
@@ -176,7 +178,7 @@ GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
     return NULL;
   }
 
-  if (ri->script == NULL) {
+  if (ri->script[0] == 0) {
     gtt_release_info_delete(ri);
     gtt_error(
         GTT_PARSE_ERROR,
@@ -200,13 +202,6 @@ GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
 void gtt_release_info_delete(GttReleaseInfo *self) {
   if (self == NULL) return;
 
-  if (self->script != NULL) free((char *)self->script);
-  if (self->repository != NULL) free((char *)self->repository);
-  if (self->license_name != NULL) free((char *)self->license_name);
-  if (self->license != NULL) free((char *)self->license);
-  if (self->readme != NULL) free((char *)self->readme);
-  if (self->changelog != NULL) free((char *)self->changelog);
-
   free_all_strings(self->dependencies);
   free_all_strings(self->build_dependencies);
   free_all_strings(self->optional_dependencies);
@@ -222,9 +217,13 @@ void gtt_release_info_delete(GttReleaseInfo *self) {
   free(self);
 }
 
+void pkvf_str_copy(GttPKVFToken *token, char *dest, size_t buflen) {
+  snprintf(dest, buflen, "%s", token->val.str);
+}
+
 void pkvf_str_alloc_copy(GttPKVFToken *token, char **dest) {
   *dest = calloc(strlen(token->val.str) + 1, sizeof(char));
-  snprintf(*dest, strlen(token->val.str) + 1, "%s", token->val.str);
+  pkvf_str_copy(token, *dest, strlen(token->val.str) + 1);
 }
 
 void pkvf_arr_to_vec(GttPKVFToken *token, cvector_vector_type(char *) * vec) {
