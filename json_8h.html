@@ -105,11 +105,13 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a51cfe2500a6247ae2fe81a418a1c6aca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a51cfe2500a6247ae2fe81a418a1c6aca">gtt_json_str_eq</a> (const char *json, jsmntok_t *token, const char *str)</td></tr>
-<tr class="separator:a51cfe2500a6247ae2fe81a418a1c6aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a847571a272e331522d30d49751b7b6ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a847571a272e331522d30d49751b7b6ec">gtt_json_str_alloc_copy</a> (const char *json, jsmntok_t *token, char **dest)</td></tr>
-<tr class="separator:a847571a272e331522d30d49751b7b6ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fb02702d9db0662d6f24ba366c8d0b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a9fb02702d9db0662d6f24ba366c8d0b1">gtt_json_arr_to_vec</a> (const char *json, jsmntok_t *token, <a class="el" href="pkvf_8h.html#a45b3208b02cfa0660460a5568e3d3227">cvector_vector_type</a>(char *) *vec)</td></tr>
+<tr class="memitem:a1d5c5daac13da90691a79aafa8eef12b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a1d5c5daac13da90691a79aafa8eef12b">gtt_json_str_eq</a> (const char *json, jsmntok_t token, const char *str)</td></tr>
+<tr class="separator:a1d5c5daac13da90691a79aafa8eef12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8f5b1cb1cebb440a69771cc10e192ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ae8f5b1cb1cebb440a69771cc10e192ba">gtt_json_str_copy</a> (const char *json, jsmntok_t token, char *dest, size_t buflen)</td></tr>
+<tr class="separator:ae8f5b1cb1cebb440a69771cc10e192ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a059c1e4757f5a483e7965abac3ca0ffc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a059c1e4757f5a483e7965abac3ca0ffc">gtt_json_str_alloc_copy</a> (const char *json, jsmntok_t token, char **dest)</td></tr>
+<tr class="separator:a059c1e4757f5a483e7965abac3ca0ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fb02702d9db0662d6f24ba366c8d0b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a9fb02702d9db0662d6f24ba366c8d0b1">gtt_json_arr_to_vec</a> (const char *json, jsmntok_t *token, cvector_vector_type(char *) *vec)</td></tr>
 <tr class="separator:a9fb02702d9db0662d6f24ba366c8d0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -163,7 +165,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="pkvf_8h.html#a45b3208b02cfa0660460a5568e3d3227">cvector_vector_type</a>(char *) *&#160;</td>
+          <td class="paramtype">cvector_vector_type(char *) *&#160;</td>
           <td class="paramname"><em>vec</em>&#160;</td>
         </tr>
         <tr>
@@ -176,8 +178,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a847571a272e331522d30d49751b7b6ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a847571a272e331522d30d49751b7b6ec">&#9670;&nbsp;</a></span>gtt_json_str_alloc_copy()</h2>
+<a id="a059c1e4757f5a483e7965abac3ca0ffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a059c1e4757f5a483e7965abac3ca0ffc">&#9670;&nbsp;</a></span>gtt_json_str_alloc_copy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,7 +193,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">jsmntok_t *&#160;</td>
+          <td class="paramtype">jsmntok_t&#160;</td>
           <td class="paramname"><em>token</em>, </td>
         </tr>
         <tr>
@@ -210,8 +212,48 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a51cfe2500a6247ae2fe81a418a1c6aca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51cfe2500a6247ae2fe81a418a1c6aca">&#9670;&nbsp;</a></span>gtt_json_str_eq()</h2>
+<a id="ae8f5b1cb1cebb440a69771cc10e192ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8f5b1cb1cebb440a69771cc10e192ba">&#9670;&nbsp;</a></span>gtt_json_str_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void gtt_json_str_copy </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>json</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jsmntok_t&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>buflen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d5c5daac13da90691a79aafa8eef12b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d5c5daac13da90691a79aafa8eef12b">&#9670;&nbsp;</a></span>gtt_json_str_eq()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,7 +267,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">jsmntok_t *&#160;</td>
+          <td class="paramtype">jsmntok_t&#160;</td>
           <td class="paramname"><em>token</em>, </td>
         </tr>
         <tr>

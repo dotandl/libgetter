@@ -4,7 +4,7 @@ var error_8h =
     [ "GTT_FAILED", "error_8h.html#ad373569e98e42fdebd6f55bc522664a9", null ],
     [ "gtt_ok", "error_8h.html#aba30ce18aad5779a3458ed6a789f3429", null ],
     [ "GttError", "error_8h.html#a9bd14e8ff33b5bd5688dda14d6912ae0", null ],
-    [ "GttErrorCode", "error_8h.html#ae89d53ba78f89d38019db81fee55a68c", null ],
+    [ "GttErrorCode", "error_8h.html#ab021e6a444a728e57db14cd7caf748b9", null ],
     [ "GttErrorCode", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79", [
       [ "GTT_UNIDENTIFIED_ERROR", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79aad0c58871687b1f068fb3080012fd419", null ],
       [ "GTT_OK", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79a28aabd67c80852b2a3eebb82119b891a", null ],

@@ -85,13 +85,14 @@ $(document).ready(function(){initNavTree('release_2info_8h.html',''); initResiza
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">info.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="pkvf_8h_source.html">getter/types/pkvf.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;cvector.h&gt;</code><br />
 </div>
 <p><a href="release_2info_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -100,32 +101,51 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ae2a7bfb49f59fe17b1d96958ea979406"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8h.html#ae2a7bfb49f59fe17b1d96958ea979406">CVECTOR_LOGARITHMIC_GROWTH</a></td></tr>
+<tr class="separator:ae2a7bfb49f59fe17b1d96958ea979406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a6c75a69f23cba01b6c554c8e3dcc0f46"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8h.html#a6c75a69f23cba01b6c554c8e3dcc0f46">GttReleaseInfo</a></td></tr>
-<tr class="separator:a6c75a69f23cba01b6c554c8e3dcc0f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af34063e37a19a2e5023bc4bcdb9d074d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> struct <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8h.html#af34063e37a19a2e5023bc4bcdb9d074d">GttReleaseInfo</a></td></tr>
+<tr class="separator:af34063e37a19a2e5023bc4bcdb9d074d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1489f16c2fbca70396344a6040ea02c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a5923a3b909aa66a6b11c16ea830b4901">GTT_ERROR_EMITTER</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8h.html#a1489f16c2fbca70396344a6040ea02c1">gtt_release_info_new_from_pkvf</a> (const char *pkvf)</td></tr>
-<tr class="separator:a1489f16c2fbca70396344a6040ea02c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae084b995c30061618e01a708e3eeb18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a5923a3b909aa66a6b11c16ea830b4901">GTT_ERROR_EMITTER</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8h.html#aae084b995c30061618e01a708e3eeb18">gtt_release_info_new_from_json</a> (const char *json)</td></tr>
 <tr class="separator:aae084b995c30061618e01a708e3eeb18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf4c8cd931ec36f50c2fb29b51c1d2c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8h.html#acf4c8cd931ec36f50c2fb29b51c1d2c0">gtt_release_info_delete</a> (<a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> *self)</td></tr>
 <tr class="separator:acf4c8cd931ec36f50c2fb29b51c1d2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="a6c75a69f23cba01b6c554c8e3dcc0f46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c75a69f23cba01b6c554c8e3dcc0f46">&#9670;&nbsp;</a></span>GttReleaseInfo</h2>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ae2a7bfb49f59fe17b1d96958ea979406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2a7bfb49f59fe17b1d96958ea979406">&#9670;&nbsp;</a></span>CVECTOR_LOGARITHMIC_GROWTH</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a></td>
+          <td class="memname">#define CVECTOR_LOGARITHMIC_GROWTH</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="af34063e37a19a2e5023bc4bcdb9d074d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af34063e37a19a2e5023bc4bcdb9d074d">&#9670;&nbsp;</a></span>GttReleaseInfo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> struct <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Representation of the info section of GetterRelease file. </p>
 
 </div>
 </div>
@@ -175,33 +195,6 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">json</td><td>The contents of GetterRelease.json file. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Created <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a>. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> </dd></dl>
-
-</div>
-</div>
-<a id="a1489f16c2fbca70396344a6040ea02c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1489f16c2fbca70396344a6040ea02c1">&#9670;&nbsp;</a></span>gtt_release_info_new_from_pkvf()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="common_8h_8in.html#a5923a3b909aa66a6b11c16ea830b4901">GTT_ERROR_EMITTER</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a>* gtt_release_info_new_from_pkvf </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>pkvf</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Creates new <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> from the PKVF generated from the GetterRelease file.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pkvf</td><td>PKVF generated from the contents of the GetterRelease file. </td></tr>
   </table>
   </dd>
 </dl>

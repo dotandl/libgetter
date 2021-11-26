@@ -111,8 +111,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ae89d53ba78f89d38019db81fee55a68c"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79">GttErrorCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#ae89d53ba78f89d38019db81fee55a68c">GttErrorCode</a></td></tr>
-<tr class="separator:ae89d53ba78f89d38019db81fee55a68c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab021e6a444a728e57db14cd7caf748b9"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> enum <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79">GttErrorCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#ab021e6a444a728e57db14cd7caf748b9">GttErrorCode</a></td></tr>
+<tr class="separator:ab021e6a444a728e57db14cd7caf748b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bd14e8ff33b5bd5688dda14d6912ae0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_gtt_error.html">GttError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a9bd14e8ff33b5bd5688dda14d6912ae0">GttError</a></td></tr>
 <tr class="separator:a9bd14e8ff33b5bd5688dda14d6912ae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -180,7 +180,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets OK error code. </p>
+<p>Sets OK error code.</p>
+<p>Note that this function is intended to use inside libgetter only. DO NOT USE IT OUTSIDE LIBRARY! </p>
 
 </div>
 </div>
@@ -196,20 +197,22 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Representation of an error. </p>
 
 </div>
 </div>
-<a id="ae89d53ba78f89d38019db81fee55a68c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae89d53ba78f89d38019db81fee55a68c">&#9670;&nbsp;</a></span>GttErrorCode</h2>
+<a id="ab021e6a444a728e57db14cd7caf748b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab021e6a444a728e57db14cd7caf748b9">&#9670;&nbsp;</a></span>GttErrorCode</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef enum <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79">GttErrorCode</a> <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79">GttErrorCode</a></td>
+          <td class="memname">typedef <a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> enum <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79">GttErrorCode</a> <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79">GttErrorCode</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>List of possible errors. </p>
 
 </div>
 </div>
@@ -306,7 +309,7 @@ Variables</h2></td></tr>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aerror_8h_html_ad373569e98e42fdebd6f55bc522664a9"><div class="ttname"><a href="error_8h.html#ad373569e98e42fdebd6f55bc522664a9">GTT_FAILED</a></div><div class="ttdeci">#define GTT_FAILED</div><div class="ttdef"><b>Definition:</b> error.h:62</div></div>
+<div class="ttc" id="aerror_8h_html_ad373569e98e42fdebd6f55bc522664a9"><div class="ttname"><a href="error_8h.html#ad373569e98e42fdebd6f55bc522664a9">GTT_FAILED</a></div><div class="ttdeci">#define GTT_FAILED</div><div class="ttdef"><b>Definition:</b> error.h:58</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

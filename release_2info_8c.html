@@ -93,6 +93,7 @@ $(document).ready(function(){initNavTree('release_2info_8c.html',''); initResiza
 <div class="textblock"><code>#include &lt;<a class="el" href="release_2info_8h_source.html">getter/release/info.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="error_8h_source.html">getter/tools/error.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="json_8h_source.html">getter/types/json.h</a>&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="string_8h_source.html">string.h</a>&gt;</code><br />
 </div><table class="memberdecls">
@@ -103,8 +104,6 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:acf9d5e016d796a6b7a4f481414b8c829"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8c.html#acf9d5e016d796a6b7a4f481414b8c829">gtt_release_info_new_from_pkvf</a> (const char *pkvf)</td></tr>
-<tr class="separator:acf9d5e016d796a6b7a4f481414b8c829"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7dc9380b57fb62cc0e1a49da5cf814a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8c.html#ac7dc9380b57fb62cc0e1a49da5cf814a">gtt_release_info_new_from_json</a> (const char *json)</td></tr>
 <tr class="separator:ac7dc9380b57fb62cc0e1a49da5cf814a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe0f1534fbef26251bdc800e654ffdd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release_2info_8c.html#afe0f1534fbef26251bdc800e654ffdd7">gtt_release_info_delete</a> (<a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> *self)</td></tr>
@@ -181,33 +180,6 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">json</td><td>The contents of GetterRelease.json file. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Created <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a>. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> </dd></dl>
-
-</div>
-</div>
-<a id="acf9d5e016d796a6b7a4f481414b8c829"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf9d5e016d796a6b7a4f481414b8c829">&#9670;&nbsp;</a></span>gtt_release_info_new_from_pkvf()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a>* gtt_release_info_new_from_pkvf </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>pkvf</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Creates new <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> from the PKVF generated from the GetterRelease file.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pkvf</td><td>PKVF generated from the contents of the GetterRelease file. </td></tr>
   </table>
   </dd>
 </dl>

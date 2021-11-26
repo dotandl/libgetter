@@ -5,10 +5,10 @@ var struct_gtt_release_info =
     [ "cvector_vector_type", "struct_gtt_release_info.html#a7f063dbf7a9b228f16593891cba34e3a", null ],
     [ "cvector_vector_type", "struct_gtt_release_info.html#a84d3b74bc6791abf8ffda30aef2090ef", null ],
     [ "cvector_vector_type", "struct_gtt_release_info.html#ad73286d51866142c504c1ba7b051b97f", null ],
-    [ "changelog", "struct_gtt_release_info.html#a339cbbc1630c054a82a562a2d407346c", null ],
-    [ "license", "struct_gtt_release_info.html#ae93dfc518ee062ca4fa9e0b2f471de19", null ],
-    [ "license_name", "struct_gtt_release_info.html#adee7a66ab8bd1f2e486b2b86b2860276", null ],
-    [ "readme", "struct_gtt_release_info.html#a01ba00655ce0129e57e7c769e013ade4", null ],
-    [ "repository", "struct_gtt_release_info.html#af03e50f2c44607e3f58fc3fb96f56178", null ],
-    [ "script", "struct_gtt_release_info.html#a37a19b9f66625f9e531c9476edc45576", null ]
+    [ "changelog", "struct_gtt_release_info.html#a8788dc8fa0bd29b24d9dd6ff747a3940", null ],
+    [ "license", "struct_gtt_release_info.html#af164122dbe2ee0125355c3be5bccc83e", null ],
+    [ "license_name", "struct_gtt_release_info.html#a46a6fe0dd4ded211e5f0ac0ea6736be1", null ],
+    [ "readme", "struct_gtt_release_info.html#a531deabf8ca931f75194e7374979ac81", null ],
+    [ "repository", "struct_gtt_release_info.html#a4711841c9ce05e428bda96d12bb7d8e3", null ],
+    [ "script", "struct_gtt_release_info.html#ace655c203c9dd1b1ce7ad5604840f30d", null ]
 ];
