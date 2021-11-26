@@ -14,83 +14,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void pkvf_str_copy(GttPKVFToken *token, char *dest, size_t buflen);
-static void pkvf_str_alloc_copy(GttPKVFToken *token, char **dest);
-static void pkvf_arr_to_vec(GttPKVFToken *token,
-                            cvector_vector_type(char *) * vec);
-
-GttReleaseInfo *gtt_release_info_new_from_pkvf(const char *pkvf) {
-  GttReleaseInfo *self;
-  GttPKVFToken *token;
-  cvector_vector_type(GttPKVFToken) vec;
-  int i;
-
-  vec = gtt_parse_pkvf(pkvf);
-  if (GTT_FAILED) return NULL;  // forward the error
-
-  self = malloc(sizeof(GttReleaseInfo));
-  memset(self, 0, sizeof(GttReleaseInfo));
-
-  for (i = 0; i < cvector_size(vec); i++) {
-    token = &vec[i];
-
-    switch (token->type) {
-      case GTT_PKVF_STRING_TOKEN:
-        if (strcmp(token->key, "script") == 0) {
-          pkvf_str_copy(token, (char *)self->script, GTT_BUFLEN);
-        } else if (strcmp(token->key, "repository") == 0) {
-          pkvf_str_copy(token, (char *)self->repository, GTT_BUFLEN);
-        } else if (strcmp(token->key, "license_name") == 0) {
-          pkvf_str_copy(token, (char *)self->license_name, GTT_BUFLEN);
-        } else if (strcmp(token->key, "license") == 0) {
-          pkvf_str_copy(token, (char *)self->license, GTT_BUFLEN);
-        } else if (strcmp(token->key, "readme") == 0) {
-          pkvf_str_copy(token, (char *)self->readme, GTT_BUFLEN);
-        } else if (strcmp(token->key, "changelog") == 0) {
-          pkvf_str_copy(token, (char *)self->changelog, GTT_BUFLEN);
-        } else {
-          gtt_vector_pkvf_token_free(vec);
-          gtt_release_info_delete(self);
-
-          gtt_error(GTT_INVALID_DATA, "Unexpected token found");
-          return NULL;
-        }
-        break;
-
-      case GTT_PKVF_STRING_VECTOR_TOKEN:
-        if (strcmp(token->key, "dependencies") == 0) {
-          pkvf_arr_to_vec(token, &self->dependencies);
-        } else if (strcmp(token->key, "build_dependencies") == 0) {
-          pkvf_arr_to_vec(token, &self->build_dependencies);
-        } else if (strcmp(token->key, "optional_dependencies") == 0) {
-          pkvf_arr_to_vec(token, &self->optional_dependencies);
-        } else if (strcmp(token->key, "conflicts") == 0) {
-          pkvf_arr_to_vec(token, &self->conflicts);
-        } else if (strcmp(token->key, "replaces") == 0) {
-          pkvf_arr_to_vec(token, &self->replaces);
-        } else {
-          gtt_vector_pkvf_token_free(vec);
-          gtt_release_info_delete(self);
-
-          gtt_error(GTT_INVALID_DATA, "Unexpected token found");
-          return NULL;
-        }
-        break;
-    }
-  }
-
-  gtt_vector_pkvf_token_free(vec);
-
-  if (self->script[0] == 0) {
-    gtt_release_info_delete(self);
-    gtt_error(GTT_PARSE_ERROR, "Some of the required fields is missing");
-    return NULL;
-  }
-
-  gtt_ok();
-  return self;
-}
-
 GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
   GttReleaseInfo *ri;
   jsmn_parser parser;
@@ -215,28 +138,4 @@ void gtt_release_info_delete(GttReleaseInfo *self) {
   cvector_free(self->replaces);
 
   free(self);
-}
-
-void pkvf_str_copy(GttPKVFToken *token, char *dest, size_t buflen) {
-  snprintf(dest, buflen, "%s", token->val.str);
-}
-
-void pkvf_str_alloc_copy(GttPKVFToken *token, char **dest) {
-  *dest = calloc(strlen(token->val.str) + 1, sizeof(char));
-  pkvf_str_copy(token, *dest, strlen(token->val.str) + 1);
-}
-
-void pkvf_arr_to_vec(GttPKVFToken *token, cvector_vector_type(char *) * vec) {
-  int i;
-  char *str;
-
-  *vec = NULL;
-
-  for (i = 0; i < cvector_size(token->val.vec); i++) {
-    str = calloc(strlen(token->val.vec[i]) + 1, sizeof(char));
-    snprintf(str, strlen(token->val.vec[i]) + 1, "%s", token->val.vec[i]);
-
-    // *vec needs to be surrounded by () because of bug in the c-vector lib
-    cvector_push_back((*vec), str);
-  }
 }

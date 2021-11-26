@@ -11,7 +11,6 @@ set(LIBGETTER_SOURCES
   release/info.c
   release/release.c
   release/version.c
-  types/pkvf.c
   types/json.c
   types/string.c
   tools/platform.c
@@ -35,7 +34,6 @@ set(LIBGETTER_HEADERS
   release/info.h
   release/release.h
   release/version.h
-  types/pkvf.h
   types/json.h
   types/string.h
   tools/platform.h

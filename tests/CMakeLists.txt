@@ -12,7 +12,6 @@ set(LIBGETTER_TESTS_SOURCES
   release/info.cpp
   release/release.cpp
   release/version.cpp
-  types/pkvf.cpp
   tools/tmp.cpp
   files/zip/box_info.cpp
   files/zip/box.cpp

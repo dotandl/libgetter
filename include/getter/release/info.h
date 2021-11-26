@@ -10,7 +10,9 @@
 #ifndef INCLUDE_GETTER_RELEASE_INFO_H_
 #define INCLUDE_GETTER_RELEASE_INFO_H_
 
-#include <getter/types/pkvf.h>
+#define CVECTOR_LOGARITHMIC_GROWTH
+
+#include <cvector.h>
 
 GTT_HEADER_BEGIN
 
@@ -34,17 +36,6 @@ struct GttReleaseInfo {
 };
 
 typedef struct GttReleaseInfo GttReleaseInfo;
-
-/**
- * Creates new GttReleaseInfo from the PKVF generated from the
- * GetterRelease file.
- *
- * \param pkvf PKVF generated from the contents of the GetterRelease file.
- * \returns Created GttReleaseInfo.
- * \see GttReleaseInfo
- */
-GTT_ERROR_EMITTER GTT_API GttReleaseInfo *gtt_release_info_new_from_pkvf(
-    const char *pkvf);
 
 /**
  * Creates new GttReleaseInfo from the PKVF generated from the
