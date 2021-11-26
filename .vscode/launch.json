@@ -5,7 +5,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/libgetter/libgetter_test",
-      "windows": { "program": "${workspaceFolder}/build/libgetter_test.exe" },
+      "windows": { "program": "${workspaceFolder}\\build\\libgetter_test.exe" },
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "Build"
     }

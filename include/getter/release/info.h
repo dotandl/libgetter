@@ -17,7 +17,7 @@
 GTT_HEADER_BEGIN
 
 /** Representation of the info section of GetterRelease file. */
-struct GttReleaseInfo {
+typedef struct GttReleaseInfo {
   GTT_REQUIRED const char script[GTT_BUFLEN];
 
   const char repository[GTT_BUFLEN];
@@ -33,9 +33,7 @@ struct GttReleaseInfo {
   cvector_vector_type(char *) optional_dependencies;
   cvector_vector_type(char *) conflicts;
   cvector_vector_type(char *) replaces;
-};
-
-typedef struct GttReleaseInfo GttReleaseInfo;
+} GttReleaseInfo;
 
 /**
  * Creates new GttReleaseInfo from the PKVF generated from the

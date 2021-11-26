@@ -13,7 +13,7 @@
 GTT_HEADER_BEGIN
 
 /** List of possible errors. */
-enum GttErrorCode {
+typedef enum GttErrorCode {
   GTT_UNIDENTIFIED_ERROR = -1,
   GTT_OK = 0,
 
@@ -26,17 +26,13 @@ enum GttErrorCode {
                           ///< install itself properly.
   GTT_ZIP_ERROR,          ///< Error opening/processing zip file.
   GTT_NOT_FOUND           ///< Specified target (e.g. Release) not found.
-};
-
-typedef enum GttErrorCode GttErrorCode;
+} GttErrorCode;
 
 /** Representation of an error. */
-struct GttError {
+typedef struct GttError {
   GttErrorCode code;
   char desc[GTT_BUFLEN];
-};
-
-typedef struct GttError GttError;
+} GttError;
 
 /**
  * Stores the latest error (or success).
@@ -72,7 +68,12 @@ GTT_API extern GttError gtt_last_error;
  */
 void gtt_error(GttErrorCode err_code, const char *err_desc);
 
-/** Sets OK error code. */
+/**
+ * Sets OK error code.
+ *
+ * Note that this function is intended to use inside libgetter only. DO NOT USE
+ * IT OUTSIDE LIBRARY!
+ */
 #define gtt_ok() gtt_error(GTT_OK, NULL)
 
 GTT_HEADER_END

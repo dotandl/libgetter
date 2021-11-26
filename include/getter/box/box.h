@@ -19,12 +19,10 @@
 GTT_HEADER_BEGIN
 
 /** Basic representation of the Box. */
-struct GttBox {
+typedef struct GttBox {
   GttBoxInfo *info;
   cvector_vector_type(GttRelease *) releases;
-};
-
-typedef struct GttBox GttBox;
+} GttBox;
 
 /**
  * Creates new GttBox.

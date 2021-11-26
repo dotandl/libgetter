@@ -15,7 +15,7 @@
 GTT_HEADER_BEGIN
 
 /** Basic representation of the Release. */
-struct GttRelease {
+typedef struct GttRelease {
   const char *platform;  ///< Release's platform (usually OS), e.g. win32,
                          ///< darwin, linux.
 
@@ -24,9 +24,7 @@ struct GttRelease {
 
   const char *version;  ///< Version of the Release (must match
                         ///< `/[0-9]+\.[0-9]+\.[0-9]+/`).
-};
-
-typedef struct GttRelease GttRelease;
+} GttRelease;
 
 /**
  * Creates new GttRelease.

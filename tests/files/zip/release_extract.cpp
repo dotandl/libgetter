@@ -18,7 +18,7 @@
 namespace fs = std::filesystem;
 
 TEST(ReleaseExtractor, ExtractsRelease) {
-  const char *file = GTT_TESTS_DIR "/res/ExampleBox.zip";
+  const char *file = GTT_TESTS_DIR "/ExampleBox.zip";
 
   zip_t *zip = zip_open(file, 0, NULL);
   ASSERT_FALSE(zip == NULL);

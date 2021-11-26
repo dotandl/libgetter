@@ -17,7 +17,7 @@
 GTT_HEADER_BEGIN
 
 /** Representation of GetterBox.json file. */
-struct GttBoxInfo {
+typedef struct GttBoxInfo {
   const char
       getter[GTT_BUFLEN];  ///< Minimum libgetter version reuired by the Box
                            ///< (must match `/^[0-9]+\.[0-9]+\.[0-9]+$/`).
@@ -44,9 +44,7 @@ struct GttBoxInfo {
   cvector_vector_type(char *) optional_dependencies;
   cvector_vector_type(char *) conflicts;
   cvector_vector_type(char *) replaces;
-};
-
-typedef struct GttBoxInfo GttBoxInfo;
+} GttBoxInfo;
 
 /**
  * Creates new GttBoxInfo from the contents of GetterBox.json file.

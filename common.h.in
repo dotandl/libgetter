@@ -14,8 +14,8 @@
  * every source and header file.
  */
 
-#ifndef COMMON_H_
-#define COMMON_H_
+#ifndef GTT_COMMON_H_
+#define GTT_COMMON_H_
 
 #pragma region SymbolExporting
 
@@ -69,4 +69,4 @@
 
 #pragma endregion Attributes
 
-#endif /* COMMON_H_ */
+#endif /* GTT_COMMON_H_ */

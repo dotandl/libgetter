@@ -11,8 +11,12 @@
 #include <getter/tools/error.h>
 #include <gtest/gtest.h>
 
+#include <string>
+
+using std::string;
+
 TEST(Zip, GeneratesBoxObject) {
-  const char *file = GTT_TESTS_DIR "/res/ExampleBox.zip";
+  const char *file = GTT_TESTS_DIR "/ExampleBox.zip";
 
   zip_t *zip = zip_open(file, 0, NULL);
   ASSERT_TRUE(zip != NULL);
@@ -33,29 +37,35 @@ TEST(Zip, GeneratesBoxObject) {
   EXPECT_STREQ(bi->license_name, "MIT");
 
   /* Releases */
-  EXPECT_STREQ(vec[0]->version, "v1.1.0");
-  EXPECT_STREQ(vec[0]->platform, "linux");
-  EXPECT_STREQ(vec[0]->arch, "x86_64");
+  int i, counter = 0;
 
-  EXPECT_STREQ(vec[1]->version, "v1.1.0");
-  EXPECT_STREQ(vec[1]->platform, "linux");
-  EXPECT_STREQ(vec[1]->arch, "arm64");
+  for (i = 0; i < cvector_size(vec); i++) {
+    if (string(vec[i]->version) == "v1.0.0" &&
+        string(vec[i]->platform) == "win32" && string(vec[i]->arch) == "x86_64")
+      counter++;
 
-  EXPECT_STREQ(vec[2]->version, "v1.1.0");
-  EXPECT_STREQ(vec[2]->platform, "win32");
-  EXPECT_STREQ(vec[2]->arch, "x86_64");
+    if (string(vec[i]->version) == "v1.0.0" &&
+        string(vec[i]->platform) == "linux" && string(vec[i]->arch) == "x86_64")
+      counter++;
 
-  EXPECT_STREQ(vec[3]->version, "v1.0.0");
-  EXPECT_STREQ(vec[3]->platform, "linux");
-  EXPECT_STREQ(vec[3]->arch, "x86_64");
+    if (string(vec[i]->version) == "v1.0.0" &&
+        string(vec[i]->platform) == "linux" && string(vec[i]->arch) == "arm64")
+      counter++;
 
-  EXPECT_STREQ(vec[4]->version, "v1.0.0");
-  EXPECT_STREQ(vec[4]->platform, "linux");
-  EXPECT_STREQ(vec[4]->arch, "arm64");
+    if (string(vec[i]->version) == "v1.1.0" &&
+        string(vec[i]->platform) == "win32" && string(vec[i]->arch) == "x86_64")
+      counter++;
 
-  EXPECT_STREQ(vec[5]->version, "v1.0.0");
-  EXPECT_STREQ(vec[5]->platform, "win32");
-  EXPECT_STREQ(vec[5]->arch, "x86_64");
+    if (string(vec[i]->version) == "v1.1.0" &&
+        string(vec[i]->platform) == "linux" && string(vec[i]->arch) == "x86_64")
+      counter++;
+
+    if (string(vec[i]->version) == "v1.1.0" &&
+        string(vec[i]->platform) == "linux" && string(vec[i]->arch) == "arm64")
+      counter++;
+  }
+
+  EXPECT_EQ(counter, 6);  // expect that each of 6 releases is found in the box
 
   gtt_box_delete(box);
   zip_close(zip);
