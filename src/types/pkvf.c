@@ -116,7 +116,7 @@ cvector_vector_type(char *) pkvf_value_to_vec(const char *val) {
     if (strcmp(el_ptr, "") == 0) goto skip;
 
     el = calloc(strlen(el_ptr) + 1, sizeof(char));
-    strcpy(el, el_ptr);
+    snprintf(el, strlen(el_ptr) + 1, "%s", el_ptr);
     cvector_push_back(vec, el);
 
   skip:

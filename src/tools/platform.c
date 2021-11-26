@@ -9,7 +9,7 @@
 
 #include <getter/tools/platform.h>
 #include <stddef.h>
-#include <string.h>
+#include <stdio.h>
 
 static char gtt_platform[GTT_BUFLEN] = {0};
 static char gtt_arch[GTT_BUFLEN] = {0};
@@ -87,11 +87,9 @@ const char *gtt_get_arch(void) {
 }
 
 void gtt_mock_platform(const char *platform) {
-  strncpy(gtt_platform, platform, GTT_BUFLEN - 1);
-  gtt_platform[GTT_BUFLEN - 1] = 0;
+  snprintf(gtt_platform, GTT_BUFLEN, "%s", platform);
 }
 
 void gtt_mock_arch(const char *arch) {
-  strncpy(gtt_arch, arch, GTT_BUFLEN - 1);
-  gtt_arch[GTT_BUFLEN - 1] = 0;
+  snprintf(gtt_arch, GTT_BUFLEN, "%s", arch);
 }

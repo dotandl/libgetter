@@ -9,7 +9,7 @@
 
 #include <getter/tools/error.h>
 #include <getter/types/array.h>
-#include <string.h>
+#include <stdio.h>
 
 GttError gtt_last_error = {0};
 
@@ -17,7 +17,7 @@ void gtt_error(GttErrorCode err_code, const char *err_desc) {
   gtt_last_error.code = err_code;
 
   if (err_desc != NULL) {
-    strncpy(gtt_last_error.desc, err_desc, arrlen(gtt_last_error.desc) - 1);
+    snprintf(gtt_last_error.desc, GTT_BUFLEN, "%s", err_desc);
   } else {
     *gtt_last_error.desc = 0;  // clear the string
   }

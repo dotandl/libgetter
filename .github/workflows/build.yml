@@ -17,18 +17,18 @@ jobs:
         uses: actions/checkout@v2
         with: { submodules: recursive }
 
-      - name: Install required libraries
+      - name: Install required tools & libraries
         run: >
-          sudo apt-get update &&
-          sudo apt-get install -y libpcre2-dev libzip-dev
+          sudo apt-get update && sudo apt-get install -y
+          ninja-build valgrind libpcre2-dev libzip-dev
 
       - name: Configure the CMake project
         run: >
           cmake
           -S "${{github.workspace}}"
           -B "${{github.workspace}}/build"
+          -G Ninja
           -D CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-          -D LIBGETTER_GENERATE_DOCS=OFF
 
       - name: Build the project
         run: >
@@ -38,7 +38,7 @@ jobs:
 
       - name: Run unit tests
         working-directory: "${{github.workspace}}/build"
-        run: ctest -C ${{env.BUILD_TYPE}}
+        run: ctest -C ${{env.BUILD_TYPE}} -T memcheck
 
   build-and-test-macos:
     name: Build & Test - macOS
@@ -49,16 +49,18 @@ jobs:
         uses: actions/checkout@v2
         with: { submodules: recursive }
 
-      - name: Install required libraries
-        run: brew install pcre2 libzip
+      - name: Install required tools & libraries
+        run: >
+          brew install
+          ninja pcre2 libzip
 
       - name: Configure the CMake project
         run: >
           cmake
           -S "${{github.workspace}}"
           -B "${{github.workspace}}/build"
+          -G Ninja
           -D CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-          -D LIBGETTER_GENERATE_DOCS=OFF
 
       - name: Build the project
         run: >
@@ -98,8 +100,8 @@ jobs:
           cmake
           -S "${{github.workspace}}"
           -B "${{github.workspace}}/build"
+          -G Ninja
           -D CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-          -D LIBGETTER_GENERATE_DOCS=OFF
 
       - name: Build the project
         run: >

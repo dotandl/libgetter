@@ -17,7 +17,7 @@
 #ifndef COMMON_H_
 #define COMMON_H_
 
-#pragma region SymbolExporing
+#pragma region SymbolExporting
 
 #ifdef GTT_DLLBUILD
 #define GTT_API __declspec(dllexport)
@@ -36,7 +36,7 @@
 #define GTT_HEADER_END
 #endif
 
-#pragma endregion SymbolExporing
+#pragma endregion SymbolExporting
 
 #pragma region GeneratedByCMake
 

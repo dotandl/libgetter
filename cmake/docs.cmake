@@ -18,6 +18,8 @@ if(DOXYGEN_FOUND)
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     COMMENT "Generating documentation..."
   )
+
+  message(STATUS "Doxygen found. To generate documentation build \"libgetter_docs\" target.")
 else()
-  message(WARNING "Doxygen not found. Cannot generate documentation.")
+  message(STATUS "Doxygen not found. Cannot generate documentation.")
 endif()

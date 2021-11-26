@@ -58,4 +58,5 @@ TEST(Zip, GeneratesBoxObject) {
   EXPECT_STREQ(vec[5]->arch, "x86_64");
 
   gtt_box_delete(box);
+  zip_close(zip);
 }

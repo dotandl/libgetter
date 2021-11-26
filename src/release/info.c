@@ -10,6 +10,7 @@
 #include <getter/release/info.h>
 #include <getter/tools/error.h>
 #include <getter/types/json.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -199,6 +200,7 @@ GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
 void gtt_release_info_delete(GttReleaseInfo *self) {
   if (self == NULL) return;
 
+  if (self->script != NULL) free((char *)self->script);
   if (self->repository != NULL) free((char *)self->repository);
   if (self->license_name != NULL) free((char *)self->license_name);
   if (self->license != NULL) free((char *)self->license);
@@ -222,7 +224,7 @@ void gtt_release_info_delete(GttReleaseInfo *self) {
 
 void pkvf_str_alloc_copy(GttPKVFToken *token, char **dest) {
   *dest = calloc(strlen(token->val.str) + 1, sizeof(char));
-  strcpy(*dest, token->val.str);
+  snprintf(*dest, strlen(token->val.str) + 1, "%s", token->val.str);
 }
 
 void pkvf_arr_to_vec(GttPKVFToken *token, cvector_vector_type(char *) * vec) {
@@ -233,7 +235,7 @@ void pkvf_arr_to_vec(GttPKVFToken *token, cvector_vector_type(char *) * vec) {
 
   for (i = 0; i < cvector_size(token->val.vec); i++) {
     str = calloc(strlen(token->val.vec[i]) + 1, sizeof(char));
-    strcpy(str, token->val.vec[i]);
+    snprintf(str, strlen(token->val.vec[i]) + 1, "%s", token->val.vec[i]);
 
     // *vec needs to be surrounded by () because of bug in the c-vector lib
     cvector_push_back((*vec), str);

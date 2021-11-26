@@ -12,6 +12,7 @@
 #include <getter/release/release.h>
 #include <getter/tools/error.h>
 #include <pcre2.h>
+#include <stdio.h>
 #include <string.h>
 
 GttRelease *gtt_release_new(const char *platform, const char *arch,
@@ -51,9 +52,9 @@ GttRelease *gtt_release_new(const char *platform, const char *arch,
   self->arch = calloc(strlen(arch) + 1, sizeof(char));
   self->version = calloc(strlen(version) + 1, sizeof(char));
 
-  strcpy((char *)self->platform, platform);
-  strcpy((char *)self->arch, arch);
-  strcpy((char *)self->version, version);
+  snprintf((char *)self->platform, strlen(platform) + 1, "%s", platform);
+  snprintf((char *)self->arch, strlen(arch) + 1, "%s", arch);
+  snprintf((char *)self->version, strlen(version) + 1, "%s", version);
 
   pcre2_match_data_free(match_data);
   pcre2_code_free(regexp);

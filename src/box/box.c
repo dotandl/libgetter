@@ -14,6 +14,7 @@
 #include <getter/release/version.h>
 #include <getter/tools/error.h>
 #include <getter/tools/platform.h>
+#include <stdio.h>
 #include <string.h>
 
 GttBox *gtt_box_new(GttBoxInfo *info,
@@ -54,8 +55,10 @@ GttRelease *gtt_box_get_release(GttBox *self, const char *version,
   res = NULL;
   vec = NULL;
 
-  strncpy(__platform, platform ? platform : gtt_get_platform(), GTT_BUFLEN - 1);
-  strncpy(__arch, arch ? arch : gtt_get_arch(), GTT_BUFLEN - 1);
+  snprintf(__platform, GTT_BUFLEN, "%s",
+           platform ? platform : gtt_get_platform());
+
+  snprintf(__arch, GTT_BUFLEN, "%s", arch ? arch : gtt_get_arch());
 
   __platform[GTT_BUFLEN - 1] = 0;
   __arch[GTT_BUFLEN - 1] = 0;

@@ -9,6 +9,7 @@
 
 #include <dirent.h>
 #include <getter/tools/tmp.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -36,18 +37,15 @@ char *gtt_mktmpdir(char *buf, size_t bufsize) {
     tmp_root = "/tmp";
   }
 
-  strncpy(tmp_dir, tmp_root, GTT_BUFLEN - 1);
-
-  /* make sure path ends with at least one slash (2 slashes aren't a problem) */
-  strncat(tmp_dir, "/", GTT_BUFLEN - strlen(tmp_dir) - 1);
+  snprintf(tmp_dir, GTT_BUFLEN, "%s/", tmp_root);
 #endif
 
   /* temp folder will be named getter-XXXXXX, where each X is a random character
    * (see mkdtemp(3)) */
-  strncat(tmp_dir, "getter-XXXXXX", GTT_BUFLEN - strlen(tmp_dir) - 1);
+  snprintf(tmp_dir, GTT_BUFLEN, "%sgetter-XXXXXX", tmp_dir);
   mkdtemp(tmp_dir);
 
-  strncpy(buf, tmp_dir, bufsize - 1);
+  snprintf(buf, bufsize, "%s", tmp_dir);
   return buf;
 }
 
@@ -65,12 +63,9 @@ void gtt_rmtmpdir(const char *path) {
         strncmp(dir_ent->d_name, "..", GTT_BUFLEN) == 0)
       continue;
 
-    strncpy(full_path, path, GTT_BUFLEN - 1);
-
     /* `path` may or may not terminate with a slash, but 2 slashes aren't a
      * problem */
-    strncat(full_path, "/", GTT_BUFLEN - strlen(full_path) - 1);
-    strncat(full_path, dir_ent->d_name, GTT_BUFLEN - strlen(full_path) - 1);
+    snprintf(full_path, GTT_BUFLEN, "%s/%s", path, dir_ent->d_name);
 
 #ifdef _WIN32
     DWORD attr = GetFileAttributesA(full_path);
