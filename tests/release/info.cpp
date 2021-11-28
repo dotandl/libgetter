@@ -79,11 +79,3 @@ TEST(ReleaseInfo, DoesNotCreateFromJSONMissingFields) {
   ASSERT_TRUE(ri == NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_PARSE_ERROR);
 }
-
-TEST(ReleaseInfo, DoesNotCreateFromJSONInvalidField) {
-  const char json[] = "{ \"invalid\": \"field\" }";
-  GttReleaseInfo *ri = gtt_release_info_new_from_json(json);
-
-  ASSERT_TRUE(ri == NULL);
-  ASSERT_EQ(gtt_last_error.code, GTT_INVALID_DATA);
-}

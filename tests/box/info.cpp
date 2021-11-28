@@ -122,14 +122,3 @@ TEST(BoxInfo, DoesNotCreateFromJSONMissingFields) {
   ASSERT_TRUE(bi == NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_PARSE_ERROR);
 }
-
-TEST(BoxInfo, DoesNotCreateFromJSONInvalidField) {
-  const char *json =
-      "{"
-      "  \"this_field\": \"is invalid\""
-      "}";
-
-  GttBoxInfo *bi = gtt_box_info_new_from_json(json);
-  ASSERT_TRUE(bi == NULL);
-  ASSERT_EQ(gtt_last_error.code, GTT_INVALID_DATA);
-}

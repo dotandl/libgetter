@@ -48,9 +48,9 @@ set(LIBGETTER_HEADERS
 
 # Common dependencies (no matter if building shared or static lib)
 set(LIBGETTER_DEPENDENCIES
+  json-c
   zip
   pcre2
-  jsmn
   c-vector
 )
 

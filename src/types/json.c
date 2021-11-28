@@ -7,59 +7,38 @@
  * +----------------------------------------------------------+
  */
 
-#include <jsmn.h>
-//
-#include <getter/tools/error.h>
 #include <getter/types/json.h>
 #include <stdio.h>
-#include <string.h>
 
-bool gtt_json_str_eq(const char *json, jsmntok_t token, const char *str) {
-  return token.type == JSMN_STRING && token.end - token.start == strlen(str) &&
-         strncmp(json + token.start, str, token.end - token.start) == 0;
+void gtt_copy_str_from_json(json_object *obj, const char *key, char *buf,
+                            size_t buflen) {
+  json_object *val;
+
+  if (json_object_object_get_ex(obj, key, &val) &&
+      json_object_is_type(val, json_type_string))
+    snprintf(buf, buflen, "%s", json_object_get_string(val));
 }
 
-void gtt_json_str_copy(const char *json, jsmntok_t token, char *dest,
-                       size_t buflen) {
-  char *tmp;
-
-  if (token.type != JSMN_STRING) {
-    gtt_error(GTT_INVALID_DATA,
-              "Not a valid JSON - found a token with incorrect type");
-    return;
-  }
-
-  tmp = calloc(token.end - token.start + 1, sizeof(char));
-  snprintf(tmp, token.end - token.start + 1, "%s", json + token.start);
-  snprintf(dest, buflen, "%s", tmp);
-  free(tmp);
-}
-
-void gtt_json_str_alloc_copy(const char *json, jsmntok_t token, char **dest) {
-  *dest = calloc(token.end - token.start + 1, sizeof(char));
-  gtt_json_str_copy(json, token, *dest, token.end - token.start + 1);
-}
-
-void gtt_json_arr_to_vec(const char *json, jsmntok_t *token,
-                         cvector_vector_type(char *) * vec) {
-  jsmntok_t *current_tok;
+void gtt_copy_arr_from_json(json_object *obj, const char *key,
+                            cvector_vector_type(char *) * vec) {
+  json_object *arr_val, *val;
+  size_t arr_len, bufsize, i;
   char *buf;
-  int i;
 
-  if (token->type != JSMN_ARRAY) {
-    gtt_error(GTT_INVALID_DATA,
-              "Not a valid JSON - found a token with incorrect type");
-    return;
-  }
+  if (json_object_object_get_ex(obj, key, &arr_val) &&
+      json_object_is_type(arr_val, json_type_array)) {
+    arr_len = json_object_array_length(arr_val);
+    *vec = NULL;
 
-  *vec = NULL;
+    for (i = 0; i < arr_len; i++) {
+      val = json_object_array_get_idx(arr_val, i);
+      bufsize = json_object_get_string_len(val) + 1;
 
-  for (i = 0; i < token->size; i++) {
-    current_tok = token + i + 1;
+      buf = calloc(bufsize, sizeof(char));
+      snprintf(buf, bufsize, "%s", json_object_get_string(val));
 
-    gtt_json_str_alloc_copy(json, *current_tok, &buf);
-
-    // *vec needs to be surrounded by () because of bug in the c-vector lib
-    cvector_push_back((*vec), buf);
+      // *vec needs to be surrounded by () because of bug in the c-vector lib
+      cvector_push_back((*vec), buf);
+    }
   }
 }

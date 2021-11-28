@@ -5,5 +5,13 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
-add_library(jsmn INTERFACE)
-target_include_directories(jsmn INTERFACE ${PROJECT_SOURCE_DIR}/lib/jsmn)
+find_path(JSONC_INCLUDE json-c/json.h)
+find_library(JSONC_LIB json-c)
+
+if(NOT JSONC_INCLUDE OR NOT JSONC_LIB)
+  message(FATAL_ERROR "Could not find json-c")
+endif()
+
+add_library(json-c INTERFACE)
+target_include_directories(json-c INTERFACE ${JSONC_INCLUDE})
+target_link_libraries(json-c INTERFACE ${JSONC_LIB})

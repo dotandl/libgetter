@@ -5,8 +5,8 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
+include(json-c.cmake)
 include(pcre2.cmake)
 include(libzip.cmake)
 include(googletest.cmake)
 include(c-vector.cmake)
-include(jsmn.cmake)

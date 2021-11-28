@@ -20,7 +20,7 @@ jobs:
       - name: Install required tools & libraries
         run: >
           sudo apt-get update && sudo apt-get install -y
-          ninja-build valgrind libpcre2-dev libzip-dev
+          ninja-build valgrind libjson-c-dev libpcre2-dev libzip-dev
 
       - name: Configure the CMake project
         run: >
@@ -52,7 +52,7 @@ jobs:
       - name: Install required tools & libraries
         run: >
           brew install
-          ninja pcre2 libzip
+          ninja json-c pcre2 libzip
 
       - name: Configure the CMake project
         run: >
@@ -92,6 +92,7 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-json-c
             mingw-w64-x86_64-pcre2
             mingw-w64-x86_64-libzip
 

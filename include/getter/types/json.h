@@ -11,22 +11,33 @@
 #define INCLUDE_GETTER_TYPES_JSON_H_
 
 #define CVECTOR_LOGARITHMIC_GROWTH
-#define JSMN_HEADER
 
 #include <cvector.h>
-#include <jsmn.h>
-#include <stdbool.h>
+#include <json-c/json.h>
 
 GTT_HEADER_BEGIN
 
-GTT_API bool gtt_json_str_eq(const char *json, jsmntok_t token,
-                             const char *str);
-GTT_API void gtt_json_str_copy(const char *json, jsmntok_t token, char *dest,
-                               size_t buflen);
-GTT_API void gtt_json_str_alloc_copy(const char *json, jsmntok_t token,
-                                     char **dest);
-GTT_API void gtt_json_arr_to_vec(const char *json, jsmntok_t *token,
-                                 cvector_vector_type(char *) * vec);
+/**
+ * Copies the string of `key` from JSON object `obj` to `buf` of size `buflen`.
+ *
+ * \param obj JSON object to copy the string from.
+ * \param key The key of the string to copy.
+ * \param buf The destination string buffer.
+ * \param buflen The size of `buf`.
+ */
+GTT_API void gtt_copy_str_from_json(json_object *obj, const char *key,
+                                    char *buf, size_t buflen);
+
+/**
+ * Copies the string array of `key` from JSON object `obj` to string vector
+ * `vec`.
+ *
+ * \param obj JSON object containing the array to copy.
+ * \param key The key of the array to copy.
+ * \param vec A pointer to the destination string vector.
+ */
+GTT_API void gtt_copy_arr_from_json(json_object *obj, const char *key,
+                                    cvector_vector_type(char *) * vec);
 
 GTT_HEADER_END
 
