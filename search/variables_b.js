@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['script_190',['script',['../struct_gtt_release_info.html#ace655c203c9dd1b1ce7ad5604840f30d',1,'GttReleaseInfo']]],
-  ['summary_191',['summary',['../struct_gtt_box_info.html#a2da41b0644aecc6d4fcf64aac08bdb69',1,'GttBoxInfo']]]
+  ['platform_218',['platform',['../struct_gtt_extracted_release.html#ad1653ea5e6292da0610d1cdfb528471b',1,'GttExtractedRelease::platform()'],['../struct_gtt_release.html#ad7570f478ad7eceae45e53c12d237e5c',1,'GttRelease::platform()']]]
 ];

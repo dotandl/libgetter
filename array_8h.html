@@ -84,18 +84,42 @@ $(document).ready(function(){initNavTree('array_8h.html',''); initResizable(); }
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a>  </div>
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">array.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
+<div class="textblock"><code>#include &lt;cvector.h&gt;</code><br />
+<code>#include &lt;stddef.h&gt;</code><br />
+</div>
 <p><a href="array_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ae2a7bfb49f59fe17b1d96958ea979406"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#ae2a7bfb49f59fe17b1d96958ea979406">CVECTOR_LOGARITHMIC_GROWTH</a></td></tr>
+<tr class="separator:ae2a7bfb49f59fe17b1d96958ea979406"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24bc9fd261baa018ed2159817ff3a50c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a24bc9fd261baa018ed2159817ff3a50c">arrlen</a>(arr)&#160;&#160;&#160;sizeof(arr) / sizeof(*arr)</td></tr>
 <tr class="separator:a24bc9fd261baa018ed2159817ff3a50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a288faf2429dd585abbdd740376fa49da"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> struct <a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a288faf2429dd585abbdd740376fa49da">GttCStrArr</a></td></tr>
+<tr class="separator:a288faf2429dd585abbdd740376fa49da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a47aaeaddd5eaea3fcc4f8583fa1f78f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a47aaeaddd5eaea3fcc4f8583fa1f78f4">gtt_cstr_arr_new</a> (size_t nmemb, size_t size)</td></tr>
+<tr class="separator:a47aaeaddd5eaea3fcc4f8583fa1f78f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1215a363cedc2d2c8e47c789ddc13a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#af1215a363cedc2d2c8e47c789ddc13a6">gtt_cstr_arr_delete</a> (<a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a> self)</td></tr>
+<tr class="separator:af1215a363cedc2d2c8e47c789ddc13a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a24bc9fd261baa018ed2159817ff3a50c"></a>
@@ -121,6 +145,100 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of elements in the array. </dd></dl>
+
+</div>
+</div>
+<a id="ae2a7bfb49f59fe17b1d96958ea979406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2a7bfb49f59fe17b1d96958ea979406">&#9670;&nbsp;</a></span>CVECTOR_LOGARITHMIC_GROWTH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CVECTOR_LOGARITHMIC_GROWTH</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a288faf2429dd585abbdd740376fa49da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a288faf2429dd585abbdd740376fa49da">&#9670;&nbsp;</a></span>GttCStrArr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> struct <a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a> <a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Represents array of const string. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="af1215a363cedc2d2c8e47c789ddc13a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1215a363cedc2d2c8e47c789ddc13a6">&#9670;&nbsp;</a></span>gtt_cstr_arr_delete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void gtt_cstr_arr_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a>&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Deletes existing array of const strings.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Array to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a47aaeaddd5eaea3fcc4f8583fa1f78f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47aaeaddd5eaea3fcc4f8583fa1f78f4">&#9670;&nbsp;</a></span>gtt_cstr_arr_new()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a> gtt_cstr_arr_new </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nmemb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates new array of const strings.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nmemb</td><td>Number of strings in the array. </td></tr>
+    <tr><td class="paramname">size</td><td>Size of each string in the array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Array of const strings. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a> </dd></dl>
 
 </div>
 </div>

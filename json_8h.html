@@ -84,89 +84,47 @@ $(document).ready(function(){initNavTree('json_8h.html',''); initResizable(); })
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">json.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;cvector.h&gt;</code><br />
-<code>#include &lt;jsmn.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="array_8h_source.html">getter/types/array.h</a>&gt;</code><br />
+<code>#include &lt;json-c/json.h&gt;</code><br />
 </div>
 <p><a href="json_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:ae2a7bfb49f59fe17b1d96958ea979406"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ae2a7bfb49f59fe17b1d96958ea979406">CVECTOR_LOGARITHMIC_GROWTH</a></td></tr>
-<tr class="separator:ae2a7bfb49f59fe17b1d96958ea979406"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeef9c3539ffb9ed912a2976b67b43d68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#aeef9c3539ffb9ed912a2976b67b43d68">JSMN_HEADER</a></td></tr>
-<tr class="separator:aeef9c3539ffb9ed912a2976b67b43d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1d5c5daac13da90691a79aafa8eef12b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a1d5c5daac13da90691a79aafa8eef12b">gtt_json_str_eq</a> (const char *json, jsmntok_t token, const char *str)</td></tr>
-<tr class="separator:a1d5c5daac13da90691a79aafa8eef12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8f5b1cb1cebb440a69771cc10e192ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ae8f5b1cb1cebb440a69771cc10e192ba">gtt_json_str_copy</a> (const char *json, jsmntok_t token, char *dest, size_t buflen)</td></tr>
-<tr class="separator:ae8f5b1cb1cebb440a69771cc10e192ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a059c1e4757f5a483e7965abac3ca0ffc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a059c1e4757f5a483e7965abac3ca0ffc">gtt_json_str_alloc_copy</a> (const char *json, jsmntok_t token, char **dest)</td></tr>
-<tr class="separator:a059c1e4757f5a483e7965abac3ca0ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fb02702d9db0662d6f24ba366c8d0b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a9fb02702d9db0662d6f24ba366c8d0b1">gtt_json_arr_to_vec</a> (const char *json, jsmntok_t *token, cvector_vector_type(char *) *vec)</td></tr>
-<tr class="separator:a9fb02702d9db0662d6f24ba366c8d0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a82d05efb1549d0007494e584558ca7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a4a82d05efb1549d0007494e584558ca7">gtt_copy_str_from_json</a> (json_object *obj, const char *key, char *buf, size_t buflen)</td></tr>
+<tr class="separator:a4a82d05efb1549d0007494e584558ca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac00516c78a5727b248946c2fad2f8fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#aac00516c78a5727b248946c2fad2f8fd">gtt_copy_arr_from_json</a> (json_object *obj, const char *key, <a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a> *arr)</td></tr>
+<tr class="separator:aac00516c78a5727b248946c2fad2f8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ae2a7bfb49f59fe17b1d96958ea979406"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2a7bfb49f59fe17b1d96958ea979406">&#9670;&nbsp;</a></span>CVECTOR_LOGARITHMIC_GROWTH</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CVECTOR_LOGARITHMIC_GROWTH</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aeef9c3539ffb9ed912a2976b67b43d68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeef9c3539ffb9ed912a2976b67b43d68">&#9670;&nbsp;</a></span>JSMN_HEADER</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define JSMN_HEADER</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a9fb02702d9db0662d6f24ba366c8d0b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fb02702d9db0662d6f24ba366c8d0b1">&#9670;&nbsp;</a></span>gtt_json_arr_to_vec()</h2>
+<a id="aac00516c78a5727b248946c2fad2f8fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac00516c78a5727b248946c2fad2f8fd">&#9670;&nbsp;</a></span>gtt_copy_arr_from_json()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void gtt_json_arr_to_vec </td>
+          <td class="memname"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void gtt_copy_arr_from_json </td>
           <td>(</td>
+          <td class="paramtype">json_object *&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>json</em>, </td>
+          <td class="paramname"><em>key</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">jsmntok_t *&#160;</td>
-          <td class="paramname"><em>token</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">cvector_vector_type(char *) *&#160;</td>
-          <td class="paramname"><em>vec</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a> *&#160;</td>
+          <td class="paramname"><em>arr</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -175,66 +133,41 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Copies the string array of <code>key</code> from JSON object <code>obj</code> to string vector <code>vec</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obj</td><td>JSON object containing the array to copy. </td></tr>
+    <tr><td class="paramname">key</td><td>The key of the array to copy. </td></tr>
+    <tr><td class="paramname">vec</td><td>A pointer to the destination string vector. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="a059c1e4757f5a483e7965abac3ca0ffc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a059c1e4757f5a483e7965abac3ca0ffc">&#9670;&nbsp;</a></span>gtt_json_str_alloc_copy()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void gtt_json_str_alloc_copy </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>json</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">jsmntok_t&#160;</td>
-          <td class="paramname"><em>token</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>dest</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae8f5b1cb1cebb440a69771cc10e192ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8f5b1cb1cebb440a69771cc10e192ba">&#9670;&nbsp;</a></span>gtt_json_str_copy()</h2>
+<a id="a4a82d05efb1549d0007494e584558ca7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a82d05efb1549d0007494e584558ca7">&#9670;&nbsp;</a></span>gtt_copy_str_from_json()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void gtt_json_str_copy </td>
+          <td class="memname"><a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void gtt_copy_str_from_json </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>json</em>, </td>
+          <td class="paramtype">json_object *&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">jsmntok_t&#160;</td>
-          <td class="paramname"><em>token</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>dest</em>, </td>
+          <td class="paramname"><em>buf</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -249,40 +182,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1d5c5daac13da90691a79aafa8eef12b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d5c5daac13da90691a79aafa8eef12b">&#9670;&nbsp;</a></span>gtt_json_str_eq()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> bool gtt_json_str_eq </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>json</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">jsmntok_t&#160;</td>
-          <td class="paramname"><em>token</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>str</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Copies the string of <code>key</code> from JSON object <code>obj</code> to <code>buf</code> of size <code>buflen</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obj</td><td>JSON object to copy the string from. </td></tr>
+    <tr><td class="paramname">key</td><td>The key of the string to copy. </td></tr>
+    <tr><td class="paramname">buf</td><td>The destination string buffer. </td></tr>
+    <tr><td class="paramname">buflen</td><td>The size of <code>buf</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

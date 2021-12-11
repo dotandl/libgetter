@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['script_104',['script',['../struct_gtt_release_info.html#ace655c203c9dd1b1ce7ad5604840f30d',1,'GttReleaseInfo']]],
-  ['string_2ec_105',['string.c',['../string_8c.html',1,'']]],
-  ['string_2eh_106',['string.h',['../string_8h.html',1,'']]],
-  ['summary_107',['summary',['../struct_gtt_box_info.html#a2da41b0644aecc6d4fcf64aac08bdb69',1,'GttBoxInfo']]]
+  ['pcre2_5fcode_5funit_5fwidth_108',['PCRE2_CODE_UNIT_WIDTH',['../box_2info_8c.html#acff91275abcc225454675d6dfc39a58d',1,'PCRE2_CODE_UNIT_WIDTH():&#160;info.c'],['../files_2zip_2box_8c.html#acff91275abcc225454675d6dfc39a58d',1,'PCRE2_CODE_UNIT_WIDTH():&#160;box.c'],['../release_8c.html#acff91275abcc225454675d6dfc39a58d',1,'PCRE2_CODE_UNIT_WIDTH():&#160;release.c'],['../release_2version_8c.html#acff91275abcc225454675d6dfc39a58d',1,'PCRE2_CODE_UNIT_WIDTH():&#160;version.c']]],
+  ['platform_109',['platform',['../struct_gtt_extracted_release.html#ad1653ea5e6292da0610d1cdfb528471b',1,'GttExtractedRelease::platform()'],['../struct_gtt_release.html#ad7570f478ad7eceae45e53c12d237e5c',1,'GttRelease::platform()']]],
+  ['platform_2ec_110',['platform.c',['../platform_8c.html',1,'']]],
+  ['platform_2eh_111',['platform.h',['../platform_8h.html',1,'']]]
 ];

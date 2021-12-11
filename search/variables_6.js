@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['info_183',['info',['../struct_gtt_box.html#a8d329104d35855ce1ea7758ad2167004',1,'GttBox']]]
+  ['homepage_211',['homepage',['../struct_gtt_box_info.html#a77c0896ab9a678b92a774558f7e7b55a',1,'GttBoxInfo::homepage()'],['../struct_gtt_extracted_release.html#ae6fb9642327182811b6970fdcd660076',1,'GttExtractedRelease::homepage()']]]
 ];

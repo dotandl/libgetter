@@ -1,0 +1,25 @@
+var struct_gtt_extracted_release =
+[
+    [ "arch", "struct_gtt_extracted_release.html#a7e0d444f01a0df002dfba7ca69486297", null ],
+    [ "authors", "struct_gtt_extracted_release.html#a17bd5d8db4d52ec5031a7f34d47dbd62", null ],
+    [ "build_dependencies", "struct_gtt_extracted_release.html#a933970dfd725370823b3d78325ccf28a", null ],
+    [ "categories", "struct_gtt_extracted_release.html#ad199de9d8d09d7d63c7483fa5b824ee0", null ],
+    [ "changelog", "struct_gtt_extracted_release.html#a42215285f0953327ab2f3c5c56f44031", null ],
+    [ "conflicts", "struct_gtt_extracted_release.html#a46ed4021d275400793553cc127777d22", null ],
+    [ "dependencies", "struct_gtt_extracted_release.html#a68735d949273ff5dabb0bfbfd2fb2cef", null ],
+    [ "description", "struct_gtt_extracted_release.html#ac62e8abf5923e2cb5e6d04915027e8db", null ],
+    [ "full_name", "struct_gtt_extracted_release.html#a284f7dbe3b797a3c7098473b963594e5", null ],
+    [ "getter", "struct_gtt_extracted_release.html#a14c28c9092ada72efca7d727da6ee72b", null ],
+    [ "homepage", "struct_gtt_extracted_release.html#ae6fb9642327182811b6970fdcd660076", null ],
+    [ "license", "struct_gtt_extracted_release.html#a8f645bf35608341218958c51cd84293d", null ],
+    [ "license_name", "struct_gtt_extracted_release.html#a2ef5fc2e23516ef471457a80bd91914d", null ],
+    [ "name", "struct_gtt_extracted_release.html#ab2c208b71f751e690b6919d48911fe1d", null ],
+    [ "optional_dependencies", "struct_gtt_extracted_release.html#a7d94fded2a11101b4888d77b07dafb0c", null ],
+    [ "platform", "struct_gtt_extracted_release.html#ad1653ea5e6292da0610d1cdfb528471b", null ],
+    [ "readme", "struct_gtt_extracted_release.html#a60b6ce6fa14d44c1437b62604ca4c1c8", null ],
+    [ "replaces", "struct_gtt_extracted_release.html#af4c5522ba8c8223a2b83e4a1c694c205", null ],
+    [ "repository", "struct_gtt_extracted_release.html#ab9398cb243d8b666c87a6f5ae40ad249", null ],
+    [ "script", "struct_gtt_extracted_release.html#a8921e2eb2ae93afbc2da288403b4fcc1", null ],
+    [ "summary", "struct_gtt_extracted_release.html#ac420bb80ede128f5c79e443d1fad6bd4", null ],
+    [ "version", "struct_gtt_extracted_release.html#a5172e5c7016ff2336aab0582ee1c82fe", null ]
+];
