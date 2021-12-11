@@ -71,7 +71,7 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
   gtt_copy_arr_from_json(jsonobj, "replaces", &bi->replaces);
 
   if (bi->name[0] == 0 || bi->full_name[0] == 0 || bi->summary[0] == 0 ||
-      bi->authors == NULL || bi->license_name[0] == 0) {
+      bi->authors.nmemb == 0 || bi->license_name[0] == 0) {
     gtt_box_info_delete(bi);
     json_object_put(jsonobj);
 
@@ -96,13 +96,13 @@ GttBoxInfo *gtt_box_info_new_from_json(const char *json) {
 void gtt_box_info_delete(GttBoxInfo *self) {
   if (self == NULL) return;
 
-  gtt_free_str_vec(self->authors);
-  gtt_free_str_vec(self->categories);
-  gtt_free_str_vec(self->dependencies);
-  gtt_free_str_vec(self->build_dependencies);
-  gtt_free_str_vec(self->optional_dependencies);
-  gtt_free_str_vec(self->conflicts);
-  gtt_free_str_vec(self->replaces);
+  gtt_cstr_arr_delete(self->authors);
+  gtt_cstr_arr_delete(self->categories);
+  gtt_cstr_arr_delete(self->dependencies);
+  gtt_cstr_arr_delete(self->build_dependencies);
+  gtt_cstr_arr_delete(self->optional_dependencies);
+  gtt_cstr_arr_delete(self->conflicts);
+  gtt_cstr_arr_delete(self->replaces);
 
   free(self);
 }

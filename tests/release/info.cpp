@@ -42,16 +42,16 @@ TEST(ReleaseInfo, CreatesFromJSONAllFields) {
   EXPECT_STREQ(ri->readme, "README.txt");
   EXPECT_STREQ(ri->changelog, "CHANGELOG.txt");
 
-  EXPECT_STREQ(ri->dependencies[0], "box1");
-  EXPECT_STREQ(ri->dependencies[1], "box2");
-  EXPECT_STREQ(ri->build_dependencies[0], "box3");
-  EXPECT_STREQ(ri->build_dependencies[1], "box4");
-  EXPECT_STREQ(ri->build_dependencies[2], "box5");
-  EXPECT_STREQ(ri->optional_dependencies[0], "box6");
-  EXPECT_STREQ(ri->conflicts[0], "box7");
-  EXPECT_STREQ(ri->conflicts[1], "box8");
-  EXPECT_STREQ(ri->replaces[0], "box9");
-  EXPECT_STREQ(ri->replaces[1], "box10");
+  EXPECT_STREQ(ri->dependencies.arr[0], "box1");
+  EXPECT_STREQ(ri->dependencies.arr[1], "box2");
+  EXPECT_STREQ(ri->build_dependencies.arr[0], "box3");
+  EXPECT_STREQ(ri->build_dependencies.arr[1], "box4");
+  EXPECT_STREQ(ri->build_dependencies.arr[2], "box5");
+  EXPECT_STREQ(ri->optional_dependencies.arr[0], "box6");
+  EXPECT_STREQ(ri->conflicts.arr[0], "box7");
+  EXPECT_STREQ(ri->conflicts.arr[1], "box8");
+  EXPECT_STREQ(ri->replaces.arr[0], "box9");
+  EXPECT_STREQ(ri->replaces.arr[1], "box10");
 
   gtt_release_info_delete(ri);
 }

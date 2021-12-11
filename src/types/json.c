@@ -20,25 +20,20 @@ void gtt_copy_str_from_json(json_object *obj, const char *key, char *buf,
 }
 
 void gtt_copy_arr_from_json(json_object *obj, const char *key,
-                            cvector_vector_type(char *) * vec) {
+                            GttCStrArr *arr) {
   json_object *arr_val, *val;
-  size_t arr_len, bufsize, i;
-  char *buf;
+  size_t arr_len, i;
 
   if (json_object_object_get_ex(obj, key, &arr_val) &&
       json_object_is_type(arr_val, json_type_array)) {
     arr_len = json_object_array_length(arr_val);
-    *vec = NULL;
+    *arr = gtt_cstr_arr_new(arr_len, GTT_BUFLEN);
 
     for (i = 0; i < arr_len; i++) {
       val = json_object_array_get_idx(arr_val, i);
-      bufsize = json_object_get_string_len(val) + 1;
 
-      buf = calloc(bufsize, sizeof(char));
-      snprintf(buf, bufsize, "%s", json_object_get_string(val));
-
-      // *vec needs to be surrounded by () because of bug in the c-vector lib
-      cvector_push_back((*vec), buf);
+      snprintf((char *)arr->arr[i], GTT_BUFLEN, "%s",
+               json_object_get_string(val));
     }
   }
 }

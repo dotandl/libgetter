@@ -74,11 +74,11 @@ GttReleaseInfo *gtt_release_info_new_from_json(const char *json) {
 void gtt_release_info_delete(GttReleaseInfo *self) {
   if (self == NULL) return;
 
-  gtt_free_str_vec(self->dependencies);
-  gtt_free_str_vec(self->build_dependencies);
-  gtt_free_str_vec(self->optional_dependencies);
-  gtt_free_str_vec(self->conflicts);
-  gtt_free_str_vec(self->replaces);
+  gtt_cstr_arr_delete(self->dependencies);
+  gtt_cstr_arr_delete(self->build_dependencies);
+  gtt_cstr_arr_delete(self->optional_dependencies);
+  gtt_cstr_arr_delete(self->conflicts);
+  gtt_cstr_arr_delete(self->replaces);
 
   free(self);
 }

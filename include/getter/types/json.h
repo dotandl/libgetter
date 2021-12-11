@@ -10,9 +10,7 @@
 #ifndef INCLUDE_GETTER_TYPES_JSON_H_
 #define INCLUDE_GETTER_TYPES_JSON_H_
 
-#define CVECTOR_LOGARITHMIC_GROWTH
-
-#include <cvector.h>
+#include <getter/types/array.h>
 #include <json-c/json.h>
 
 GTT_HEADER_BEGIN
@@ -37,7 +35,7 @@ GTT_API void gtt_copy_str_from_json(json_object *obj, const char *key,
  * \param vec A pointer to the destination string vector.
  */
 GTT_API void gtt_copy_arr_from_json(json_object *obj, const char *key,
-                                    cvector_vector_type(char *) * vec);
+                                    GttCStrArr *arr);
 
 GTT_HEADER_END
 

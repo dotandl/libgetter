@@ -7,9 +7,6 @@
  * +----------------------------------------------------------+
  */
 
-#define CVECTOR_LOGARITHMIC_GROWTH
-
-#include <cvector.h>
 #include <getter/box/box.h>
 #include <getter/release/version.h>
 #include <getter/tools/error.h>

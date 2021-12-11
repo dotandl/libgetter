@@ -33,7 +33,7 @@ TEST(Zip, GeneratesBoxObject) {
   EXPECT_STREQ(bi->name, "example-box");
   EXPECT_STREQ(bi->full_name, "Example Box");
   EXPECT_STREQ(bi->summary, "testtest");
-  EXPECT_STREQ(bi->authors[0], "dotandl");
+  EXPECT_STREQ(bi->authors.arr[0], "dotandl");
   EXPECT_STREQ(bi->license_name, "MIT");
 
   /* Releases */

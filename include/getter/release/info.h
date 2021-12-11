@@ -10,9 +10,7 @@
 #ifndef INCLUDE_GETTER_RELEASE_INFO_H_
 #define INCLUDE_GETTER_RELEASE_INFO_H_
 
-#define CVECTOR_LOGARITHMIC_GROWTH
-
-#include <cvector.h>
+#include <getter/types/array.h>
 
 GTT_HEADER_BEGIN
 
@@ -28,11 +26,11 @@ typedef struct GttReleaseInfo {
   const char readme[GTT_BUFLEN];        ///< Path to the readme file.
   const char changelog[GTT_BUFLEN];     ///< Path to the changelog file.
 
-  cvector_vector_type(char *) dependencies;
-  cvector_vector_type(char *) build_dependencies;
-  cvector_vector_type(char *) optional_dependencies;
-  cvector_vector_type(char *) conflicts;
-  cvector_vector_type(char *) replaces;
+  GttCStrArr dependencies;
+  GttCStrArr build_dependencies;
+  GttCStrArr optional_dependencies;
+  GttCStrArr conflicts;
+  GttCStrArr replaces;
 } GttReleaseInfo;
 
 /**
