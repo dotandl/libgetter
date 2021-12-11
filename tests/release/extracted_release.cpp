@@ -33,7 +33,7 @@ TEST(ExtractedRelease, GeneratesSuccessfully) {
       "  \"replaces\": [\"bar-legacy\"]"
       "}";
 
-  GttRelease *r = gtt_release_new("macos", "arm64", "v3.2.");
+  GttRelease *r = gtt_release_new("macos", "arm64", "v3.2.1");
   GttReleaseInfo *ri = gtt_release_info_new_from_json(ri_json);
   GttBoxInfo *bi = gtt_box_info_new_from_json(bi_json);
 
