@@ -24,6 +24,7 @@ project(libgetter VERSION ${LIBGETTER_VERSION_SHORT} LANGUAGES C CXX)
 
 set(BUILD_SHARED_LIBS ON CACHE BOOL "Builds shared version of libgetter")
 option(LIBGETTER_BUILD_TESTS "Builds libgetter's tests" ON)
+option(LIBGETTER_GENERATE_DOCS_ONLY "Allows to generate documentation only" OFF)
 set(LIBGETTER_BUFLEN 128 CACHE STRING "Sets the number of elements in most of
                                        buffers (especially string buffers)
                                        created on the stack by libgetter
@@ -32,13 +33,15 @@ set(LIBGETTER_BUFLEN 128 CACHE STRING "Sets the number of elements in most of
 # All libgetter files (including `googletest`) will be placed in "build/libgetter"
 set(LIBGETTER_OUTDIR "${PROJECT_BINARY_DIR}/libgetter")
 
-add_subdirectory(lib)
-add_subdirectory(src)
+if(NOT LIBGETTER_GENERATE_DOCS_ONLY)
+  add_subdirectory(lib)
+  add_subdirectory(src)
 
-if(LIBGETTER_BUILD_TESTS)
-  include(CTest)
-  enable_testing()
-  add_subdirectory(tests)
+  if(LIBGETTER_BUILD_TESTS)
+    include(CTest)
+    enable_testing()
+    add_subdirectory(tests)
+  endif()
 endif()
 
 include(cmake/docs.cmake)

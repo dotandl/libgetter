@@ -16,14 +16,14 @@ GTT_HEADER_BEGIN
 
 /** Basic representation of the Release. */
 typedef struct GttRelease {
-  const char *platform;  ///< Release's platform (usually OS), e.g. win32,
-                         ///< darwin, linux.
+  GTT_REQUIRED const char *platform;  ///< Release's platform (usually OS), e.g.
+                                      ///< win32, darwin, linux.
 
-  const char *arch;  ///< Platform's processor architecture (e.g. x86, x86_64,
-                     ///< arm, arm64).
+  GTT_REQUIRED const char *arch;  ///< Platform's processor architecture (e.g.
+                                  ///< x86, x86_64, arm, arm64).
 
-  const char *version;  ///< Version of the Release (must match
-                        ///< `/[0-9]+\.[0-9]+\.[0-9]+/`).
+  GTT_REQUIRED const char *version;  ///< Version of the Release (must match
+                                     ///< `/[0-9]+\.[0-9]+\.[0-9]+/`).
 } GttRelease;
 
 /**

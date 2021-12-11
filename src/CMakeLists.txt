@@ -9,10 +9,12 @@ set(LIBGETTER_SOURCES
   box/info.c
   box/box.c
   release/info.c
+  release/extracted_release.c
   release/release.c
   release/version.c
   types/json.c
   types/string.c
+  types/array.c
   tools/platform.c
   tools/version.c
   tools/error.c
@@ -26,16 +28,17 @@ set(LIBGETTER_SOURCES
 set(LIBGETTER_HEADERS
   # Headers WITHOUT corresponding source files
   getter.h
-  types/array.h
 
   # Headers WITH corresponding source files
   box/info.h
   box/box.h
   release/info.h
+  release/extracted_release.h
   release/release.h
   release/version.h
   types/json.h
   types/string.h
+  types/array.h
   tools/platform.h
   tools/version.h
   tools/error.h

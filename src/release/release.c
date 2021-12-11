@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <string.h>
 
+// TODO: heap allocated strings -> strings on the stack
 GttRelease *gtt_release_new(const char *platform, const char *arch,
                             const char *version) {
   GttRelease *self;

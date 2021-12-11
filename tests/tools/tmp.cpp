@@ -8,7 +8,6 @@
  */
 
 #include <getter/tools/tmp.h>
-#include <getter/types/array.h>
 #include <gtest/gtest.h>
 
 #include <filesystem>
@@ -21,7 +20,7 @@ namespace fs = std::filesystem;
 
 TEST(Tmp, CreatesTempDir) {
   char buf[GTT_BUFLEN];
-  gtt_mktmpdir(buf, arrlen(buf));
+  gtt_mktmpdir(buf, GTT_BUFLEN);
 
   ASSERT_TRUE(fs::exists(buf));
   ASSERT_TRUE(fs::is_directory(buf));
@@ -31,7 +30,7 @@ TEST(Tmp, CreatesTempDir) {
 
 TEST(Tmp, RemovesTempDir) {
   char buf[GTT_BUFLEN];
-  gtt_mktmpdir(buf, arrlen(buf));
+  gtt_mktmpdir(buf, GTT_BUFLEN);
 
   fs::create_directory(string(buf) + "/dir/");
 

@@ -10,41 +10,36 @@
 #ifndef INCLUDE_GETTER_TYPES_ARRAY_H_
 #define INCLUDE_GETTER_TYPES_ARRAY_H_
 
+#define CVECTOR_LOGARITHMIC_GROWTH
+
+#include <cvector.h>
 #include <stddef.h>
-#include <stdlib.h>
 
 GTT_HEADER_BEGIN
 
+/** Represents array of const string. */
 typedef struct GttCStrArr {
   const char **arr;
-  size_t nmemb;
-  size_t size;
+  size_t nmemb;  ///< Number of strings.
+  size_t size;   ///< Size of each string.
 } GttCStrArr;
 
-static inline GttCStrArr gtt_cstr_arr_new(size_t nmemb, size_t size) {
-  char **ptr;
-  size_t i;
+/**
+ * Creates new array of const strings.
+ *
+ * \param nmemb Number of strings in the array.
+ * \param size Size of each string in the array.
+ * \returns Array of const strings.
+ * \see GttCStrArr
+ */
+GTT_API GttCStrArr gtt_cstr_arr_new(size_t nmemb, size_t size);
 
-  /* Allocate array of pointers on the heap */
-  ptr = (char **)calloc(nmemb, sizeof(char *));
-
-  /* Allocate arrays of chars (strings) and put them in the array of pointers */
-  for (i = 0; i < nmemb; i++) {
-    ptr[i] = (char *)calloc(size, sizeof(char));
-  }
-
-  return (GttCStrArr){(const char **)ptr, nmemb, size};
-}
-
-static inline void gtt_cstr_arr_delete(GttCStrArr self) {
-  size_t i;
-
-  /* Free arrays of chars (strings) */
-  for (i = 0; i < self.nmemb; i++) free((void *)self.arr[i]);
-
-  /* Free array of pointers */
-  free(self.arr);
-}
+/**
+ * Deletes existing array of const strings.
+ *
+ * \param self Array to delete.
+ */
+GTT_API void gtt_cstr_arr_delete(GttCStrArr self);
 
 /**
  * Returns a number of elements in the array.
@@ -52,20 +47,8 @@ static inline void gtt_cstr_arr_delete(GttCStrArr self) {
  * \param arr Array to calculate number of elements from.
  * \returns Number of elements in the array.
  */
+// TODO: remove
 #define arrlen(arr) sizeof(arr) / sizeof(*arr)
-
-/**
- * Frees the string vector `vec` and all strings it contains.
- *
- * \param vec Vector of strings to free.
- */
-// static inline void gtt_free_str_vec(cvector_vector_type(char *) vec) {
-//   unsigned int i;
-
-//   if (vec == NULL) return;
-//   for (i = 0; i < cvector_size(vec); i++) free(vec[i]);
-//   cvector_free(vec);
-// }
 
 GTT_HEADER_END
 

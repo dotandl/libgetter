@@ -34,8 +34,7 @@ typedef struct GttReleaseInfo {
 } GttReleaseInfo;
 
 /**
- * Creates new GttReleaseInfo from the PKVF generated from the
- * GetterRelease.json file.
+ * Creates new GttReleaseInfo from the contents of GetterRelease.json file.
  *
  * \param json The contents of GetterRelease.json file.
  * \returns Created GttReleaseInfo.

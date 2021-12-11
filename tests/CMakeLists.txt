@@ -12,6 +12,7 @@ set(LIBGETTER_TESTS_SOURCES
   release/info.cpp
   release/release.cpp
   release/version.cpp
+  release/extracted_release.cpp
   tools/tmp.cpp
   files/zip/box_info.cpp
   files/zip/box.cpp
