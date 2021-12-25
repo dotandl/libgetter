@@ -17,6 +17,7 @@ set(LIBGETTER_TESTS_SOURCES
   files/zip/box_info.cpp
   files/zip/box.cpp
   files/zip/release_extract.cpp
+  $<$<BOOL:NOT WIN32>:script/runners/sh.cpp>
 
   # Tools
   cppvector.c
