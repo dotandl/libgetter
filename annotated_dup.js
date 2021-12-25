@@ -6,5 +6,6 @@ var annotated_dup =
     [ "GttError", "struct_gtt_error.html", "struct_gtt_error" ],
     [ "GttExtractedRelease", "struct_gtt_extracted_release.html", "struct_gtt_extracted_release" ],
     [ "GttRelease", "struct_gtt_release.html", "struct_gtt_release" ],
-    [ "GttReleaseInfo", "struct_gtt_release_info.html", "struct_gtt_release_info" ]
+    [ "GttReleaseInfo", "struct_gtt_release_info.html", "struct_gtt_release_info" ],
+    [ "GttScriptRunner", "struct_gtt_script_runner.html", "struct_gtt_script_runner" ]
 ];

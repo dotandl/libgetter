@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['platform_218',['platform',['../struct_gtt_extracted_release.html#ad1653ea5e6292da0610d1cdfb528471b',1,'GttExtractedRelease::platform()'],['../struct_gtt_release.html#ad7570f478ad7eceae45e53c12d237e5c',1,'GttRelease::platform()']]]
+  ['optional_5fdependencies_244',['optional_dependencies',['../struct_gtt_box_info.html#a33801ccc86b17828ee0f17319c0bbcd5',1,'GttBoxInfo::optional_dependencies()'],['../struct_gtt_extracted_release.html#a7d94fded2a11101b4888d77b07dafb0c',1,'GttExtractedRelease::optional_dependencies()'],['../struct_gtt_release_info.html#a54ed419f1044ba366f2d05f643a85502',1,'GttReleaseInfo::optional_dependencies()']]]
 ];

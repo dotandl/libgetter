@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['version_126',['version',['../struct_gtt_extracted_release.html#a5172e5c7016ff2336aab0582ee1c82fe',1,'GttExtractedRelease::version()'],['../struct_gtt_release.html#adcdd3d569812cad4d768283b854822de',1,'GttRelease::version()']]],
-  ['version_2ec_127',['version.c',['../release_2version_8c.html',1,'(Global Namespace)'],['../tools_2version_8c.html',1,'(Global Namespace)']]],
-  ['version_2eh_128',['version.h',['../release_2version_8h.html',1,'(Global Namespace)'],['../tools_2version_8h.html',1,'(Global Namespace)']]]
+  ['uninstall_140',['uninstall',['../struct_gtt_script_runner.html#aad9ae8448ec07b977a6f6243001eff39',1,'GttScriptRunner']]],
+  ['upgrade_141',['upgrade',['../struct_gtt_script_runner.html#a2d6329ad5642203a40d28d64d4d10e8f',1,'GttScriptRunner']]]
 ];

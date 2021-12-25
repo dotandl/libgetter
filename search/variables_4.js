@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['full_5fname_208',['full_name',['../struct_gtt_box_info.html#a1c88739fb3f9f72c65b5b00f5cd44285',1,'GttBoxInfo::full_name()'],['../struct_gtt_extracted_release.html#a284f7dbe3b797a3c7098473b963594e5',1,'GttExtractedRelease::full_name()']]]
+  ['extensions_231',['extensions',['../struct_gtt_script_runner.html#a6593d1b52857c955bf521870b2d5cd48',1,'GttScriptRunner']]]
 ];
