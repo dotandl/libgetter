@@ -7,17 +7,11 @@
  * +----------------------------------------------------------+
  */
 
-#include <getter/script/runners/sh.h>
+#include <getter/script/runners/cmd.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-/* On macOS, WEXITSTATUS macro is (probably) broken. So I use a new,
- * OS-independent macro already combined with system() call here. */
-#define gtt_shell_command(cmd) ((system((cmd)) & 0xff00) >> 8)
-
-#define GTT_SH_SCRIPT_RUNNER_SHELL "bash"
-
-static const char *extensions[] = {".sh"};
+static const char *extensions[] = {".cmd", ".bat"};
 
 static int fn_invoke(const char *script, const char *cwd, const char *fn_name);
 
@@ -28,7 +22,7 @@ static int upgrade(const char *script, const char *cwd);
 static int uninstall(const char *script, const char *cwd);
 static int clean(const char *script, const char *cwd);
 
-GttScriptRunner sh_sr = {
+GttScriptRunner cmd_sr = {
     extensions, sizeof(extensions) / sizeof(*extensions),
     prepare,    build,
     install,    upgrade,
@@ -37,10 +31,12 @@ GttScriptRunner sh_sr = {
 
 int fn_invoke(const char *script, const char *cwd, const char *fn_name) {
   char command[GTT_BUFLEN * 4];
-  snprintf(command, GTT_BUFLEN * 4, "%s -c \"cd '%s'; source '%s'; %s\"",
-           GTT_SH_SCRIPT_RUNNER_SHELL, cwd, script, fn_name);
+  snprintf(command, GTT_BUFLEN * 4, "cmd.exe /d /c \"cd \"%s\" & \"%s\" %s\"",
+           cwd, script, fn_name);
 
-  return gtt_shell_command(command);
+  /* system() on Windows seems to return correct exit status; no need to right
+   * shift by 8. */
+  return system(command);
 }
 
 int prepare(const char *script, const char *cwd) {

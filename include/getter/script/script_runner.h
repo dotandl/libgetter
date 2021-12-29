@@ -38,7 +38,7 @@ typedef struct GttScriptRunner {
  * List of script runners currently available for a given platform (having NULL
  * as the last element).
  */
-extern GttScriptRunner *gtt_script_runners[];
+GTT_API extern GttScriptRunner *gtt_script_runners[];
 
 GTT_HEADER_END
 

@@ -7,20 +7,18 @@
  * +----------------------------------------------------------+
  */
 
+#ifndef INCLUDE_GETTER_SCRIPT_RUNNERS_CMD_H_
+#define INCLUDE_GETTER_SCRIPT_RUNNERS_CMD_H_
+
 #include <getter/script/script_runner.h>
-#include <stddef.h>
 
-#ifdef _WIN32
-#include <getter/script/runners/cmd.h>
-#else
-#include <getter/script/runners/sh.h>
-#endif
+GTT_HEADER_BEGIN
 
-GttScriptRunner *gtt_script_runners[] = {
-#ifdef _WIN32
-    &cmd_sr,
-#else
-    &sh_sr,
-#endif
-    NULL,
-};
+/**
+ * Script runner able to run Windows batch files (.cmd, .bat).
+ */
+GTT_API extern GttScriptRunner cmd_sr;
+
+GTT_HEADER_END
+
+#endif /* INCLUDE_GETTER_SCRIPT_RUNNERS_CMD_H_ */

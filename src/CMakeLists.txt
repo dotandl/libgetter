@@ -53,11 +53,18 @@ set(LIBGETTER_HEADERS
 
 # Platform-specific source/header files
 if(WIN32)
+  list(APPEND LIBGETTER_SOURCES
+    script/runners/cmd.c
+  )
+
+  list(APPEND LIBGETTER_HEADERS
+    script/runners/cmd.h
+  )
 else()
   list(APPEND LIBGETTER_SOURCES
     script/runners/sh.c
   )
-  
+
   list(APPEND LIBGETTER_HEADERS
     script/runners/sh.h
   )

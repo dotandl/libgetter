@@ -17,7 +17,7 @@ GTT_HEADER_BEGIN
 /**
  * Script runner able to run Unix shell scripts (.sh).
  */
-extern GttScriptRunner sh_sr;
+GTT_API extern GttScriptRunner sh_sr;
 
 GTT_HEADER_END
 

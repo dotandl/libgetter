@@ -24,6 +24,9 @@ set(LIBGETTER_TESTS_SOURCES
 
 # Platform-specific source files
 if(WIN32)
+  list(APPEND LIBGETTER_TESTS_SOURCES
+    script/runners/cmd.cpp
+  )
 else()
   list(APPEND LIBGETTER_TESTS_SOURCES
     script/runners/sh.cpp
