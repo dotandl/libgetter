@@ -24,7 +24,6 @@ set(LIBGETTER_SOURCES
   files/zip/box.c
   files/zip/release_extract.c
   script/script_runner.c
-  $<$<BOOL:NOT WIN32>:script/runners/sh.c>
 )
 
 set(LIBGETTER_HEADERS
@@ -50,8 +49,19 @@ set(LIBGETTER_HEADERS
   files/zip/box.h
   files/zip/release_extract.h
   script/script_runner.h
-  $<$<BOOL:NOT WIN32>:script/runners/sh.h>
 )
+
+# Platform-specific source/header files
+if(WIN32)
+else()
+  list(APPEND LIBGETTER_SOURCES
+    script/runners/sh.c
+  )
+  
+  list(APPEND LIBGETTER_HEADERS
+    script/runners/sh.h
+  )
+endif()
 
 # Common dependencies (no matter if building shared or static lib)
 set(LIBGETTER_DEPENDENCIES

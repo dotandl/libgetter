@@ -11,6 +11,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* On macOS, WEXITSTATUS macro is (probably) broken. So I use a new,
+ * OS-independent macro already combined with system() call here. */
+#define gtt_shell_command(cmd) ((system((cmd)) & 0xff00) >> 8)
+
 #define GTT_SH_SCRIPT_RUNNER_SHELL "bash"
 
 static const char *extensions[] = {".sh"};
@@ -36,7 +40,7 @@ int fn_invoke(const char *script, const char *cwd, const char *fn_name) {
   snprintf(command, GTT_BUFLEN * 4, "%s -c \"(cd '%s'; source '%s'; %s)\"",
            GTT_SH_SCRIPT_RUNNER_SHELL, cwd, script, fn_name);
 
-  return WEXITSTATUS(system(command));
+  return gtt_shell_command(command);
 }
 
 int prepare(const char *script, const char *cwd) {
