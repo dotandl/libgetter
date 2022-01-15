@@ -92,9 +92,9 @@ $(document).ready(function(){initNavTree('box_2box_8h.html',''); initResizable()
 <div class="title">box.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;cvector.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="box_2info_8h_source.html">getter/box/info.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="box_2info_8h_source.html">getter/box/info.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="release_8h_source.html">getter/release/release.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="array_8h_source.html">getter/types/array.h</a>&gt;</code><br />
 </div>
 <p><a href="box_2box_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -105,8 +105,6 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ae2a7bfb49f59fe17b1d96958ea979406"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_2box_8h.html#ae2a7bfb49f59fe17b1d96958ea979406">CVECTOR_LOGARITHMIC_GROWTH</a></td></tr>
-<tr class="separator:ae2a7bfb49f59fe17b1d96958ea979406"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac01495c93364f03bd0b6a5be553d637f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_2box_8h.html#ac01495c93364f03bd0b6a5be553d637f">gtt_box_get_appropriate_release</a>(self)&#160;&#160;&#160;<a class="el" href="box_2box_8h.html#a09d810ee0df9d8973e2317e41de21192">gtt_box_get_release</a>((self), NULL, NULL, NULL)</td></tr>
 <tr class="separator:ac01495c93364f03bd0b6a5be553d637f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -117,28 +115,14 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a864cf961e650daa23ef9f4440d2d0143"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <a class="el" href="struct_gtt_box.html">GttBox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_2box_8h.html#a864cf961e650daa23ef9f4440d2d0143">gtt_box_new</a> (<a class="el" href="struct_gtt_box_info.html">GttBoxInfo</a> *info, cvector_vector_type(<a class="el" href="struct_gtt_release.html">GttRelease</a> *) releases)</td></tr>
-<tr class="separator:a864cf961e650daa23ef9f4440d2d0143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4b3eb11343997c3bbf1995239f0e4b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <a class="el" href="struct_gtt_box.html">GttBox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_2box_8h.html#af4b3eb11343997c3bbf1995239f0e4b6">gtt_box_new</a> (<a class="el" href="struct_gtt_box_info.html">GttBoxInfo</a> *info, <a class="el" href="struct_gtt_ptr_arr.html">GttPtrArr</a> releases)</td></tr>
+<tr class="separator:af4b3eb11343997c3bbf1995239f0e4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0eda80911c9d108d16bd3f8e770361a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_2box_8h.html#a0eda80911c9d108d16bd3f8e770361a0">gtt_box_delete</a> (<a class="el" href="struct_gtt_box.html">GttBox</a> *self)</td></tr>
 <tr class="separator:a0eda80911c9d108d16bd3f8e770361a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09d810ee0df9d8973e2317e41de21192"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a5923a3b909aa66a6b11c16ea830b4901">GTT_ERROR_EMITTER</a> <a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <a class="el" href="struct_gtt_release.html">GttRelease</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_2box_8h.html#a09d810ee0df9d8973e2317e41de21192">gtt_box_get_release</a> (<a class="el" href="struct_gtt_box.html">GttBox</a> *self, const char *version, const char *platform, const char *arch)</td></tr>
 <tr class="separator:a09d810ee0df9d8973e2317e41de21192"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ae2a7bfb49f59fe17b1d96958ea979406"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2a7bfb49f59fe17b1d96958ea979406">&#9670;&nbsp;</a></span>CVECTOR_LOGARITHMIC_GROWTH</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CVECTOR_LOGARITHMIC_GROWTH</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ac01495c93364f03bd0b6a5be553d637f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac01495c93364f03bd0b6a5be553d637f">&#9670;&nbsp;</a></span>gtt_box_get_appropriate_release</h2>
 
@@ -261,8 +245,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a864cf961e650daa23ef9f4440d2d0143"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a864cf961e650daa23ef9f4440d2d0143">&#9670;&nbsp;</a></span>gtt_box_new()</h2>
+<a id="af4b3eb11343997c3bbf1995239f0e4b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4b3eb11343997c3bbf1995239f0e4b6">&#9670;&nbsp;</a></span>gtt_box_new()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -276,7 +260,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">cvector_vector_type(<a class="el" href="struct_gtt_release.html">GttRelease</a> *)&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_gtt_ptr_arr.html">GttPtrArr</a>&#160;</td>
           <td class="paramname"><em>releases</em>&#160;</td>
         </tr>
         <tr>
@@ -290,7 +274,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">info</td><td>Info about the Box (the object IS NOT copied so make sure to not delete the <a class="el" href="struct_gtt_box_info.html">GttBoxInfo</a> after creating <a class="el" href="struct_gtt_box.html">GttBox</a>). </td></tr>
-    <tr><td class="paramname">releases</td><td>All the Releases available in the Box (again - Vector is not copied so do not delete it). </td></tr>
+    <tr><td class="paramname">releases</td><td>All the Releases available in the Box (again - array is not copied so do not delete it). </td></tr>
   </table>
   </dd>
 </dl>

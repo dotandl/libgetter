@@ -89,8 +89,8 @@ $(document).ready(function(){initNavTree('array_8c.html',''); initResizable(); }
 <div class="title">array.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="array_8h_source.html">getter/types/array.h</a>&gt;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="error_8h_source.html">getter/tools/error.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="array_8h_source.html">getter/types/array.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -98,6 +98,12 @@ Functions</h2></td></tr>
 <tr class="separator:a86b8cdebe52b324bb7cb96d3c073b9f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac14a39570e19be1f8407979bd1a43b2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8c.html#ac14a39570e19be1f8407979bd1a43b2b">gtt_cstr_arr_delete</a> (<a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a> self)</td></tr>
 <tr class="separator:ac14a39570e19be1f8407979bd1a43b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d5f827f8d57899fe90c445ca3d0c112"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_gtt_ptr_arr.html">GttPtrArr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8c.html#a1d5f827f8d57899fe90c445ca3d0c112">gtt_ptr_arr_new</a> (size_t nmemb)</td></tr>
+<tr class="separator:a1d5f827f8d57899fe90c445ca3d0c112"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81d9ec190f3a322cd9f8655e59c98f44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8c.html#a81d9ec190f3a322cd9f8655e59c98f44">gtt_ptr_arr_resize</a> (<a class="el" href="struct_gtt_ptr_arr.html">GttPtrArr</a> *self, int nmemb)</td></tr>
+<tr class="separator:a81d9ec190f3a322cd9f8655e59c98f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f2ba0755118e130d53d170943378efb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8c.html#a5f2ba0755118e130d53d170943378efb">gtt_ptr_arr_delete_all</a> (<a class="el" href="struct_gtt_ptr_arr.html">GttPtrArr</a> self)</td></tr>
+<tr class="separator:a5f2ba0755118e130d53d170943378efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ac14a39570e19be1f8407979bd1a43b2b"></a>
@@ -160,6 +166,99 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Array of const strings. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_gtt_c_str_arr.html">GttCStrArr</a> </dd></dl>
+
+</div>
+</div>
+<a id="a5f2ba0755118e130d53d170943378efb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f2ba0755118e130d53d170943378efb">&#9670;&nbsp;</a></span>gtt_ptr_arr_delete_all()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gtt_ptr_arr_delete_all </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_gtt_ptr_arr.html">GttPtrArr</a>&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Frees each pointer in the array of pointers and deletes the array itself.</p>
+<p>Do not call this function when at least one pointer in the array isn't heap-allocated. In such case <code>gtt_ptr_arr_delete</code> should be used instead.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Array of pointers to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_gtt_ptr_arr.html">GttPtrArr</a> </dd>
+<dd>
+<a class="el" href="array_8h.html#a768ae68c91b8498086b5ec6e919dd38b">gtt_ptr_arr_delete</a> </dd></dl>
+
+</div>
+</div>
+<a id="a1d5f827f8d57899fe90c445ca3d0c112"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d5f827f8d57899fe90c445ca3d0c112">&#9670;&nbsp;</a></span>gtt_ptr_arr_new()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_gtt_ptr_arr.html">GttPtrArr</a> gtt_ptr_arr_new </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nmemb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates new array of pointers.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nmemb</td><td>Number of pointers in the array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Array of pointers </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_gtt_ptr_arr.html">GttPtrArr</a> </dd></dl>
+
+</div>
+</div>
+<a id="a81d9ec190f3a322cd9f8655e59c98f44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81d9ec190f3a322cd9f8655e59c98f44">&#9670;&nbsp;</a></span>gtt_ptr_arr_resize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gtt_ptr_arr_resize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_gtt_ptr_arr.html">GttPtrArr</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nmemb</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reallocates the array of pointers in case to add more space to it.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Pointer to the array of pointers to resize. </td></tr>
+    <tr><td class="paramname">nmemb</td><td>New number of pointers in the array (must be greater than the current nmemb) or -1 to increment the current nmemb. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_gtt_ptr_arr.html">GttPtrArr</a> </dd></dl>
 
 </div>
 </div>

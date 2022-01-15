@@ -28,7 +28,6 @@ var NAVTREE =
       [ "Data Structure Index", "classes.html", null ],
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -50,7 +49,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"struct_gtt_extracted_release.html#ad199de9d8d09d7d63c7483fa5b824ee0"
+"struct_gtt_extracted_release.html#ac420bb80ede128f5c79e443d1fad6bd4"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
