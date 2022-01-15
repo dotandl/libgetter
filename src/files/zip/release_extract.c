@@ -50,11 +50,11 @@ const char *gtt_zip_extract_release(zip_t *zip, const char *version,
 
   /* find an appropriate release in the box */
   release = NULL;
-  for (i = 0; i < cvector_size(box->releases); i++) {
-    if (strcmp(box->releases[i]->version, version) == 0 &&
-        strcmp(box->releases[i]->platform, platform) == 0 &&
-        strcmp(box->releases[i]->arch, arch) == 0) {
-      release = box->releases[i];
+  for (i = 0; i < box->releases.nmemb; i++) {
+    if (strcmp(((GttRelease *)box->releases.arr[i])->version, version) == 0 &&
+        strcmp(((GttRelease *)box->releases.arr[i])->platform, platform) == 0 &&
+        strcmp(((GttRelease *)box->releases.arr[i])->arch, arch) == 0) {
+      release = box->releases.arr[i];
       break;
     }
   }

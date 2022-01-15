@@ -12,8 +12,6 @@
 #include <getter/tools/platform.h>
 #include <gtest/gtest.h>
 
-#include "../cppvector.h"
-
 extern "C" void gtt_mock_platform(const char *platform);
 extern "C" void gtt_mock_arch(const char *arch);
 
@@ -30,16 +28,12 @@ TEST(Box, IsAbleToSearchForAppropriateRelease) {
       "  \"license_name\": \"MIT\""
       "}";
 
-  cvector_vector_type(GttRelease *) releases = NULL;
+  GttPtrArr releases = gtt_ptr_arr_new(4);
 
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("win32", "x86_64", "v1.0.0"));
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("darwin", "arm64", "v1.1.0"));
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("linux", "x86", "v1.1.5"));
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("win32", "x86", "v2.2.0"));
+  releases.arr[0] = gtt_release_new("win32", "x86_64", "v1.0.0");
+  releases.arr[1] = gtt_release_new("darwin", "arm64", "v1.1.0");
+  releases.arr[2] = gtt_release_new("linux", "x86", "v1.1.5");
+  releases.arr[3] = gtt_release_new("win32", "x86", "v2.2.0");
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);
   GttBox *box = gtt_box_new(bi, releases);
@@ -66,22 +60,15 @@ TEST(Box, IsAbleToSearchForRelease) {
       "  \"license_name\": \"MIT\""
       "}";
 
-  cvector_vector_type(GttRelease *) releases = NULL;
+  GttPtrArr releases = gtt_ptr_arr_new(7);
 
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("win32", "x86_64", "v0.9.0"));
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("win32", "x86_64", "v1.0.0"));
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("darwin", "arm64", "v1.0.5"));
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("darwin", "arm64", "v1.1.0"));
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("linux", "x86", "v1.1.5"));
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("win32", "x86", "v2.2.0"));
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("darwin", "arm64", "v2.2.0"));
+  releases.arr[0] = gtt_release_new("win32", "x86_64", "v0.9.0");
+  releases.arr[1] = gtt_release_new("win32", "x86_64", "v1.0.0");
+  releases.arr[2] = gtt_release_new("darwin", "arm64", "v1.0.5");
+  releases.arr[3] = gtt_release_new("darwin", "arm64", "v1.1.0");
+  releases.arr[4] = gtt_release_new("linux", "x86", "v1.1.5");
+  releases.arr[5] = gtt_release_new("win32", "x86", "v2.2.0");
+  releases.arr[6] = gtt_release_new("darwin", "arm64", "v2.2.0");
 
   GttBoxInfo *bi = gtt_box_info_new_from_json(json);
   GttBox *box = gtt_box_new(bi, releases);

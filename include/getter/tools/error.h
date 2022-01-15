@@ -25,7 +25,9 @@ typedef enum GttErrorCode {
   GTT_LIBGETTER_TOO_OLD,  ///< Box requires newer version of libgetter to
                           ///< install itself properly.
   GTT_ZIP_ERROR,          ///< Error opening/processing zip file.
-  GTT_NOT_FOUND           ///< Specified target (e.g. Release) not found.
+  GTT_NOT_FOUND,          ///< Specified target (e.g. Release) not found.
+  GTT_ARR_RESIZE_FAILED,  ///< Could not resize the array (new nmemb is too
+                          ///< small).
 } GttErrorCode;
 
 /** Representation of an error. */

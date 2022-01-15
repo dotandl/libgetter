@@ -26,12 +26,13 @@ TEST(ReleaseExtractor, ExtractsRelease) {
   GttBox *box = gtt_zip_read_box(zip);
   ASSERT_FALSE(box == NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_OK);
-  ASSERT_GE(cvector_size(box->releases), 1);
+  ASSERT_GE(box->releases.nmemb, 1);
 
   char buf[GTT_BUFLEN];
   const char *res = gtt_zip_extract_release(
-      zip, box->releases[0]->version, box->releases[0]->platform,
-      box->releases[0]->arch, buf, GTT_BUFLEN);
+      zip, ((GttRelease *)box->releases.arr[0])->version,
+      ((GttRelease *)box->releases.arr[0])->platform,
+      ((GttRelease *)box->releases.arr[0])->arch, buf, GTT_BUFLEN);
 
   ASSERT_FALSE(res == NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_OK);

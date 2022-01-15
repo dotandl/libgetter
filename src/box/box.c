@@ -14,8 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 
-GttBox *gtt_box_new(GttBoxInfo *info,
-                    cvector_vector_type(GttRelease *) releases) {
+GttBox *gtt_box_new(GttBoxInfo *info, GttPtrArr releases) {
   GttBox *self;
 
   self = malloc(sizeof(GttBox));
@@ -32,12 +31,13 @@ void gtt_box_delete(GttBox *self) {
 
   if (self == NULL) return;
 
-  for (i = 0; i < cvector_size(self->releases); i++) {
-    if (self->releases[i] != NULL) gtt_release_delete(self->releases[i]);
+  for (i = 0; i < self->releases.nmemb; i++) {
+    if (self->releases.arr[i] != NULL)
+      gtt_release_delete(self->releases.arr[i]);
   }
 
   if (self->info != NULL) gtt_box_info_delete(self->info);
-  if (self->releases != NULL) cvector_free(self->releases);
+  gtt_ptr_arr_delete(self->releases);
 
   free(self);
 }
@@ -46,11 +46,11 @@ GttRelease *gtt_box_get_release(GttBox *self, const char *version,
                                 const char *platform, const char *arch) {
   char __platform[GTT_BUFLEN], __arch[GTT_BUFLEN];
   GttRelease *res;
-  cvector_vector_type(GttRelease *) vec;
-  int i;
+  GttPtrArr arr;
+  int i, j;
 
   res = NULL;
-  vec = NULL;
+  arr = gtt_ptr_arr_new(0);
 
   snprintf(__platform, GTT_BUFLEN, "%s",
            platform ? platform : gtt_get_platform());
@@ -67,25 +67,31 @@ GttRelease *gtt_box_get_release(GttBox *self, const char *version,
     return NULL;
   }
 
-  for (i = 0; i < cvector_size(self->releases); i++) {
-    if (strncmp(self->releases[i]->platform, __platform, GTT_BUFLEN) == 0 &&
-        strncmp(self->releases[i]->arch, __arch, GTT_BUFLEN) == 0) {
-      cvector_push_back(vec, self->releases[i]);
+  j = 0;
+
+  for (i = 0; i < self->releases.nmemb; i++) {
+    if (strncmp(((GttRelease *)self->releases.arr[i])->platform, __platform,
+                GTT_BUFLEN) == 0 &&
+        strncmp(((GttRelease *)self->releases.arr[i])->arch, __arch,
+                GTT_BUFLEN) == 0) {
+      gtt_ptr_arr_resize(&arr, -1);
+      arr.arr[j++] = self->releases.arr[i];
     }
   }
 
   if (version == NULL) {
-    res = gtt_get_latest_release_version(vec);
+    res = gtt_get_latest_release_version(arr);
   } else {
-    for (i = 0; i < cvector_size(vec); i++) {
-      if (strncmp(vec[i]->version, version, GTT_BUFLEN) == 0) {
-        res = vec[i];
+    for (i = 0; i < arr.nmemb; i++) {
+      if (strncmp(((GttRelease *)arr.arr[i])->version, version, GTT_BUFLEN) ==
+          0) {
+        res = arr.arr[i];
         break;
       }
     }
   }
 
-  cvector_free(vec);
+  gtt_ptr_arr_delete(arr);
   gtt_ok();
   return res;
 }

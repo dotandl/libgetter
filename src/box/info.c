@@ -132,15 +132,15 @@ bool gtt_meets_version(const char *version) {
     return false;  // version not matched
   }
 
-  buflen = arrlen(buf);
+  buflen = sizeof(buf) / sizeof(*buf);
   pcre2_substring_copy_bynumber(match_data, 1, buf, &buflen);
   major = atoi(buf);
 
-  buflen = arrlen(buf);
+  buflen = sizeof(buf) / sizeof(*buf);
   pcre2_substring_copy_bynumber(match_data, 2, buf, &buflen);
   minor = atoi(buf);
 
-  buflen = arrlen(buf);
+  buflen = sizeof(buf) / sizeof(*buf);
   pcre2_substring_copy_bynumber(match_data, 3, buf, &buflen);
   patch = atoi(buf);
 

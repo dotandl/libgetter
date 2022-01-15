@@ -10,10 +10,8 @@
 #ifndef INCLUDE_GETTER_TYPES_ARRAY_H_
 #define INCLUDE_GETTER_TYPES_ARRAY_H_
 
-#define CVECTOR_LOGARITHMIC_GROWTH
-
-#include <cvector.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 GTT_HEADER_BEGIN
 
@@ -23,6 +21,12 @@ typedef struct GttCStrArr {
   size_t nmemb;  ///< Number of strings.
   size_t size;   ///< Size of each string.
 } GttCStrArr;
+
+/** Represents an array of pointers. */
+typedef struct GttPtrArr {
+  void **arr;
+  size_t nmemb;
+} GttPtrArr;
 
 /**
  * Creates new array of const strings.
@@ -42,13 +46,47 @@ GTT_API GttCStrArr gtt_cstr_arr_new(size_t nmemb, size_t size);
 GTT_API void gtt_cstr_arr_delete(GttCStrArr self);
 
 /**
- * Returns a number of elements in the array.
+ * Creates new array of pointers.
  *
- * \param arr Array to calculate number of elements from.
- * \returns Number of elements in the array.
+ * \param nmemb Number of pointers in the array.
+ * \returns Array of pointers
+ * \see GttPtrArr
  */
-// TODO: remove
-#define arrlen(arr) sizeof(arr) / sizeof(*arr)
+GTT_API GttPtrArr gtt_ptr_arr_new(size_t nmemb);
+
+/**
+ * Reallocates the array of pointers in case to add more space to it.
+ *
+ * \param self Pointer to the array of pointers to resize.
+ * \param nmemb New number of pointers in the array (must be greater than the
+ * current nmemb) or -1 to increment the current nmemb.
+ * \see GttPtrArr
+ */
+GTT_API void gtt_ptr_arr_resize(GttPtrArr *self, int nmemb);
+
+/**
+ * Deletes the array of pointers.
+ *
+ * Note that this macro does not free any of pointers in the array. If you
+ * want to do so call `gtt_ptr_arr_delete_all` instead.
+ *
+ * \param self Array of pointers to delete.
+ * \see GttPtrArr
+ * \see gtt_ptr_arr_delete_all
+ */
+#define gtt_ptr_arr_delete(self) free(self.arr)
+
+/**
+ * Frees each pointer in the array of pointers and deletes the array itself.
+ *
+ * Do not call this function when at least one pointer in the array isn't
+ * heap-allocated. In such case `gtt_ptr_arr_delete` should be used instead.
+ *
+ * \param self Array of pointers to delete.
+ * \see GttPtrArr
+ * \see gtt_ptr_arr_delete
+ */
+GTT_API void gtt_ptr_arr_delete_all(GttPtrArr self);
 
 GTT_HEADER_END
 

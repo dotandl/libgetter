@@ -27,7 +27,7 @@ TEST(Zip, GeneratesBoxObject) {
   ASSERT_EQ(gtt_last_error.code, GTT_OK);
 
   GttBoxInfo *bi = box->info;
-  cvector_vector_type(GttRelease *) vec = box->releases;
+  GttPtrArr arr = box->releases;
 
   /* BoxInfo */
   EXPECT_STREQ(bi->name, "example-box");
@@ -39,29 +39,35 @@ TEST(Zip, GeneratesBoxObject) {
   /* Releases */
   int i, counter = 0;
 
-  for (i = 0; i < cvector_size(vec); i++) {
-    if (string(vec[i]->version) == "v1.0.0" &&
-        string(vec[i]->platform) == "win32" && string(vec[i]->arch) == "x86_64")
+  for (i = 0; i < arr.nmemb; i++) {
+    if (string(((GttRelease *)arr.arr[i])->version) == "v1.0.0" &&
+        string(((GttRelease *)arr.arr[i])->platform) == "win32" &&
+        string(((GttRelease *)arr.arr[i])->arch) == "x86_64")
       counter++;
 
-    if (string(vec[i]->version) == "v1.0.0" &&
-        string(vec[i]->platform) == "linux" && string(vec[i]->arch) == "x86_64")
+    if (string(((GttRelease *)arr.arr[i])->version) == "v1.0.0" &&
+        string(((GttRelease *)arr.arr[i])->platform) == "linux" &&
+        string(((GttRelease *)arr.arr[i])->arch) == "x86_64")
       counter++;
 
-    if (string(vec[i]->version) == "v1.0.0" &&
-        string(vec[i]->platform) == "linux" && string(vec[i]->arch) == "arm64")
+    if (string(((GttRelease *)arr.arr[i])->version) == "v1.0.0" &&
+        string(((GttRelease *)arr.arr[i])->platform) == "linux" &&
+        string(((GttRelease *)arr.arr[i])->arch) == "arm64")
       counter++;
 
-    if (string(vec[i]->version) == "v1.1.0" &&
-        string(vec[i]->platform) == "win32" && string(vec[i]->arch) == "x86_64")
+    if (string(((GttRelease *)arr.arr[i])->version) == "v1.1.0" &&
+        string(((GttRelease *)arr.arr[i])->platform) == "win32" &&
+        string(((GttRelease *)arr.arr[i])->arch) == "x86_64")
       counter++;
 
-    if (string(vec[i]->version) == "v1.1.0" &&
-        string(vec[i]->platform) == "linux" && string(vec[i]->arch) == "x86_64")
+    if (string(((GttRelease *)arr.arr[i])->version) == "v1.1.0" &&
+        string(((GttRelease *)arr.arr[i])->platform) == "linux" &&
+        string(((GttRelease *)arr.arr[i])->arch) == "x86_64")
       counter++;
 
-    if (string(vec[i]->version) == "v1.1.0" &&
-        string(vec[i]->platform) == "linux" && string(vec[i]->arch) == "arm64")
+    if (string(((GttRelease *)arr.arr[i])->version) == "v1.1.0" &&
+        string(((GttRelease *)arr.arr[i])->platform) == "linux" &&
+        string(((GttRelease *)arr.arr[i])->arch) == "arm64")
       counter++;
   }
 

@@ -14,25 +14,20 @@
 
 #include <cstdlib>
 
-#include "../cppvector.h"
-
 TEST(ReleaseLatestVersionCalculator, ReturnsLatestRelease) {
-  cvector_vector_type(GttRelease *) releases = NULL;
+  GttPtrArr releases = gtt_ptr_arr_new(3);
 
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("linux", "x86", "v1.0.0"));
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("linux", "x86", "v1.11111.0"));
-  cppvector_push_back((void ***)&releases,
-                      gtt_release_new("linux", "x86", "v1.1.1"));
+  releases.arr[0] = gtt_release_new("linux", "x86", "v1.0.0");
+  releases.arr[1] = gtt_release_new("linux", "x86", "v1.11111.0");
+  releases.arr[2] = gtt_release_new("linux", "x86", "v1.1.1");
 
   GttRelease *latest = gtt_get_latest_release_version(releases);
 
   ASSERT_EQ(gtt_last_error.code, GTT_OK);
   ASSERT_STREQ(latest->version, "v1.11111.0");
 
-  gtt_release_delete(releases[0]);
-  gtt_release_delete(releases[1]);
-  gtt_release_delete(releases[2]);
-  cvector_free(releases);
+  gtt_release_delete((GttRelease *)releases.arr[0]);
+  gtt_release_delete((GttRelease *)releases.arr[1]);
+  gtt_release_delete((GttRelease *)releases.arr[2]);
+  gtt_ptr_arr_delete(releases);
 }

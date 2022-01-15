@@ -6,7 +6,6 @@
 # +----------------------------------------------------------+
 
 set(LIBGETTER_TESTS_SOURCES
-  # Tests
   box/info.cpp
   box/box.cpp
   release/info.cpp
@@ -17,9 +16,6 @@ set(LIBGETTER_TESTS_SOURCES
   files/zip/box_info.cpp
   files/zip/box.cpp
   files/zip/release_extract.cpp
-
-  # Tools
-  cppvector.c
 )
 
 # Platform-specific source files

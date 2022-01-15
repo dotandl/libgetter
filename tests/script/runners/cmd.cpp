@@ -22,7 +22,7 @@ using std::vector;
 using testing::internal::CaptureStdout;
 using testing::internal::GetCapturedStdout;
 
-TEST(ShScriptRunner, RunsPrepareFunc) {
+TEST(CmdScriptRunner, RunsPrepareFunc) {
   CaptureStdout();
 
   int err =

@@ -75,7 +75,6 @@ set(LIBGETTER_DEPENDENCIES
   json-c
   zip
   pcre2
-  c-vector
 )
 
 # All header files are in "<libgetter>/include/getter/" directory, so their

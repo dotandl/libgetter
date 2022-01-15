@@ -10,18 +10,16 @@
 #ifndef INCLUDE_GETTER_BOX_BOX_H_
 #define INCLUDE_GETTER_BOX_BOX_H_
 
-#define CVECTOR_LOGARITHMIC_GROWTH
-
-#include <cvector.h>
 #include <getter/box/info.h>
 #include <getter/release/release.h>
+#include <getter/types/array.h>
 
 GTT_HEADER_BEGIN
 
 /** Basic representation of the Box. */
 typedef struct GttBox {
   GttBoxInfo *info;
-  cvector_vector_type(GttRelease *) releases;
+  GttPtrArr releases;  ///< Array of `GttRelease *`
 } GttBox;
 
 /**
@@ -29,13 +27,12 @@ typedef struct GttBox {
  *
  * \param info Info about the Box (the object IS NOT copied so make sure to not
  * delete the GttBoxInfo after creating GttBox).
- * \param releases All the Releases available in the Box (again - Vector is not
+ * \param releases All the Releases available in the Box (again - array is not
  * copied so do not delete it).
  * \returns Created GttBox.
  * \see GttBox
  */
-GTT_API GttBox *gtt_box_new(GttBoxInfo *info,
-                            cvector_vector_type(GttRelease *) releases);
+GTT_API GttBox *gtt_box_new(GttBoxInfo *info, GttPtrArr releases);
 
 /**
  * Deletes existing GttBox.

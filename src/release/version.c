@@ -8,9 +8,7 @@
  */
 
 #define PCRE2_CODE_UNIT_WIDTH 8
-#define CVECTOR_LOGARITHMIC_GROWTH
 
-#include <cvector.h>
 #include <getter/release/version.h>
 #include <getter/tools/error.h>
 #include <getter/tools/version.h>
@@ -19,8 +17,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-GttRelease *gtt_get_latest_release_version(cvector_vector_type(GttRelease *)
-                                               releases) {
+GttRelease *gtt_get_latest_release_version(GttPtrArr releases) {
   GttRelease *latest = NULL;
   pcre2_code *regexp;
   pcre2_match_data *match_data;
@@ -46,21 +43,22 @@ GttRelease *gtt_get_latest_release_version(cvector_vector_type(GttRelease *)
   l_minor = 0;
   l_patch = 0;
 
-  for (i = 0; i < cvector_size(releases); i++) {
+  for (i = 0; i < releases.nmemb; i++) {
     match_data = pcre2_match_data_create_from_pattern(regexp, NULL);
 
-    matches = pcre2_match(regexp, releases[i]->version,
-                          strlen(releases[i]->version), 0, 0, match_data, NULL);
+    matches = pcre2_match(regexp, ((GttRelease *)releases.arr[i])->version,
+                          strlen(((GttRelease *)releases.arr[i])->version), 0,
+                          0, match_data, NULL);
 
-    buflen = arrlen(buf);
+    buflen = sizeof(buf) / sizeof(*buf);
     pcre2_substring_copy_bynumber(match_data, 1, buf, &buflen);
     c_major = atoi(buf);
 
-    buflen = arrlen(buf);
+    buflen = sizeof(buf) / sizeof(*buf);
     pcre2_substring_copy_bynumber(match_data, 2, buf, &buflen);
     c_minor = atoi(buf);
 
-    buflen = arrlen(buf);
+    buflen = sizeof(buf) / sizeof(*buf);
     pcre2_substring_copy_bynumber(match_data, 3, buf, &buflen);
     c_patch = atoi(buf);
 
@@ -69,7 +67,7 @@ GttRelease *gtt_get_latest_release_version(cvector_vector_type(GttRelease *)
       l_minor = c_minor;
       l_patch = c_patch;
 
-      latest = releases[i];
+      latest = releases.arr[i];
     }
 
     pcre2_match_data_free(match_data);

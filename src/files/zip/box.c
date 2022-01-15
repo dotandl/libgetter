@@ -19,11 +19,11 @@
 
 GttBox *gtt_zip_read_box(zip_t *zip) {
   /* common */
-  int status, i;
+  int status, i, j;
 
   /* libgetter */
   GttBoxInfo *bi;
-  cvector_vector_type(GttRelease *) releases = NULL;
+  GttPtrArr releases;
 
   /* libzip */
   int entries;
@@ -53,6 +53,9 @@ GttBox *gtt_zip_read_box(zip_t *zip) {
 
   entries = zip_get_num_entries(zip, 0);
 
+  j = 0;
+  releases = gtt_ptr_arr_new(0);
+
   for (i = 0; i < entries; i++) {
     entry_name = (char *)zip_get_name(zip, i, 0);
 
@@ -77,8 +80,8 @@ GttBox *gtt_zip_read_box(zip_t *zip) {
       buflen = GTT_BUFLEN;
       pcre2_substring_copy_bynumber(match_data, 3, arch_buf, &buflen);
 
-      cvector_push_back(releases,
-                        gtt_release_new(platform_buf, arch_buf, version_buf));
+      gtt_ptr_arr_resize(&releases, -1);
+      releases.arr[j++] = gtt_release_new(platform_buf, arch_buf, version_buf);
     }
 
     pcre2_match_data_free(match_data);
