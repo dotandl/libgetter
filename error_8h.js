@@ -16,7 +16,8 @@ var error_8h =
       [ "GTT_LIBGETTER_TOO_OLD", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79a9425d9904ab214cb1bd37aec1fda5936", null ],
       [ "GTT_ZIP_ERROR", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79ad213b4248fb67540dea43f1847472289", null ],
       [ "GTT_NOT_FOUND", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79ac3e3ede74ffcd423ec36e5a9ad191bdd", null ],
-      [ "GTT_ARR_RESIZE_FAILED", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79a1c1be773be1074dd9c0fb162c8317501", null ]
+      [ "GTT_ARR_RESIZE_FAILED", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79a1c1be773be1074dd9c0fb162c8317501", null ],
+      [ "GTT_DB_ERROR", "error_8h.html#a9c55ab15c20ff47540c151d30bdcac79aff74c4a606f3cf0b3041832960fd61ac", null ]
     ] ],
     [ "gtt_error", "error_8h.html#a0f131f54113263e0ac282b2e67481c9a", null ],
     [ "gtt_last_error", "error_8h.html#ae508d811c3c8294aae40fe84ba3f5756", null ]

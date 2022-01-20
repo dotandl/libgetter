@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libgetter: Globals</title>
+<title>libgetter: src/db/init.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('init_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -82,50 +82,76 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 </iframe>
 </div>
 
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">init.c File Reference</div>  </div>
+</div><!--header-->
 <div class="contents">
-&#160;<ul>
-<li>GTT_ARR_RESIZE_FAILED
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79a1c1be773be1074dd9c0fb162c8317501">error.h</a>
-</li>
-<li>GTT_DB_ERROR
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79aff74c4a606f3cf0b3041832960fd61ac">error.h</a>
-</li>
-<li>GTT_INVALID_DATA
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79aa609c3a216d38a708520c5096a2b568f">error.h</a>
-</li>
-<li>GTT_INVALID_VERSION
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79aad599b574a31a059dd47a89262c39efb">error.h</a>
-</li>
-<li>GTT_LIBGETTER_TOO_OLD
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79a9425d9904ab214cb1bd37aec1fda5936">error.h</a>
-</li>
-<li>GTT_NOT_FOUND
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79ac3e3ede74ffcd423ec36e5a9ad191bdd">error.h</a>
-</li>
-<li>GTT_OK
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79a28aabd67c80852b2a3eebb82119b891a">error.h</a>
-</li>
-<li>GTT_PARSE_ERROR
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79a8d87bdc5744659b4bcf341b742a6fb8f">error.h</a>
-</li>
-<li>GTT_REGEXP_COMPILATION_FAILED
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79a89307160f469c904e9d6ab692a540b89">error.h</a>
-</li>
-<li>GTT_UNIDENTIFIED_ERROR
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79aad0c58871687b1f068fb3080012fd419">error.h</a>
-</li>
-<li>GTT_UNSUPPORTED_HOST
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79ab92ea0b9a82e18f2eeed0637afe4d214">error.h</a>
-</li>
-<li>GTT_ZIP_ERROR
-: <a class="el" href="error_8h.html#a9c55ab15c20ff47540c151d30bdcac79ad213b4248fb67540dea43f1847472289">error.h</a>
-</li>
-</ul>
+<div class="textblock"><code>#include &lt;<a class="el" href="init_8h_source.html">getter/db/init.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="error_8h_source.html">getter/tools/error.h</a>&gt;</code><br />
+<code>#include &lt;sqlite3.h&gt;</code><br />
+<code>#include &lt;incstr/init.sql&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a53b96f4ee2e076c5588e4b6a84fe9ca0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="init_8c.html#a53b96f4ee2e076c5588e4b6a84fe9ca0">gtt_db_init</a> (const char *db_file)</td></tr>
+<tr class="separator:a53b96f4ee2e076c5588e4b6a84fe9ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a3bd730619d1c64471afb14bf9c583470"><td class="memItemLeft" align="right" valign="top">const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="init_8c.html#a3bd730619d1c64471afb14bf9c583470">sql</a> = &quot;&quot;</td></tr>
+<tr class="separator:a3bd730619d1c64471afb14bf9c583470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a53b96f4ee2e076c5588e4b6a84fe9ca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53b96f4ee2e076c5588e4b6a84fe9ca0">&#9670;&nbsp;</a></span>gtt_db_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gtt_db_init </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>db_file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initializes the internal database (creates tables if they don't exist etc.).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">db_file</td><td>Path to the database file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a3bd730619d1c64471afb14bf9c583470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bd730619d1c64471afb14bf9c583470">&#9670;&nbsp;</a></span>sql</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* const sql = &quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_18fd539062cd3a2de3dfd78991cf728d.html">db</a></li><li class="navelem"><a class="el" href="init_8c.html">init.c</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

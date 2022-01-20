@@ -9,5 +9,5 @@ var array_8h =
     [ "gtt_cstr_arr_new", "array_8h.html#a47aaeaddd5eaea3fcc4f8583fa1f78f4", null ],
     [ "gtt_ptr_arr_delete_all", "array_8h.html#a37065d8c394608287d062a02478f2bd7", null ],
     [ "gtt_ptr_arr_new", "array_8h.html#a09078cbd96ec95bfc0eb9757f10a5b11", null ],
-    [ "gtt_ptr_arr_resize", "array_8h.html#addd4e14eb62db3c533a023d872b48def", null ]
+    [ "gtt_ptr_arr_resize", "array_8h.html#a37d1fd757a7a2484aea492d2db444e4b", null ]
 ];
