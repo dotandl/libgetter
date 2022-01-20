@@ -32,7 +32,7 @@ typedef struct GttExtractedRelease {
                                    ///< `/[0-9]+\.[0-9]+\.[0-9]+/`).
 
   const char
-      getter[GTT_BUFLEN];  ///< Minimum libgetter version reuired by the Box
+      getter[GTT_BUFLEN];  ///< Minimum libgetter version required by the Box
                            ///< (must match `/^[0-9]+\.[0-9]+\.[0-9]+$/`).
   GTT_REQUIRED const char script[GTT_BUFLEN];
 

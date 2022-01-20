@@ -8,4 +8,5 @@
 include(json-c.cmake)
 include(pcre2.cmake)
 include(libzip.cmake)
+include(sqlite3.cmake)
 include(googletest.cmake)

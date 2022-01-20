@@ -10,6 +10,8 @@
 #ifndef INCLUDE_GETTER_TOOLS_ERROR_H_
 #define INCLUDE_GETTER_TOOLS_ERROR_H_
 
+#include <stddef.h>
+
 GTT_HEADER_BEGIN
 
 /** List of possible errors. */
@@ -28,6 +30,7 @@ typedef enum GttErrorCode {
   GTT_NOT_FOUND,          ///< Specified target (e.g. Release) not found.
   GTT_ARR_RESIZE_FAILED,  ///< Could not resize the array (new nmemb is too
                           ///< small).
+  GTT_DB_ERROR,           ///< Error opening/querying internal database.
 } GttErrorCode;
 
 /** Representation of an error. */

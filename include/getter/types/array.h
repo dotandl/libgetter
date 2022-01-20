@@ -62,7 +62,7 @@ GTT_API GttPtrArr gtt_ptr_arr_new(size_t nmemb);
  * current nmemb) or -1 to increment the current nmemb.
  * \see GttPtrArr
  */
-GTT_API void gtt_ptr_arr_resize(GttPtrArr *self, int nmemb);
+GTT_API GTT_ERROR_EMITTER void gtt_ptr_arr_resize(GttPtrArr *self, int nmemb);
 
 /**
  * Deletes the array of pointers.

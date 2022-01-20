@@ -5,6 +5,8 @@
 # | Copyright (C) 2021 dotandl                               |
 # +----------------------------------------------------------+
 
+include("${PROJECT_SOURCE_DIR}/cmake/incstr.cmake")
+
 set(LIBGETTER_SOURCES
   box/info.c
   box/box.c
@@ -24,6 +26,7 @@ set(LIBGETTER_SOURCES
   files/zip/box.c
   files/zip/release_extract.c
   script/script_runner.c
+  db/init.c
 )
 
 set(LIBGETTER_HEADERS
@@ -49,6 +52,7 @@ set(LIBGETTER_HEADERS
   files/zip/box.h
   files/zip/release_extract.h
   script/script_runner.h
+  db/init.h
 )
 
 # Platform-specific source/header files
@@ -75,6 +79,7 @@ set(LIBGETTER_DEPENDENCIES
   json-c
   zip
   pcre2
+  sqlite3
 )
 
 # All header files are in "<libgetter>/include/getter/" directory, so their
@@ -92,7 +97,7 @@ configure_file(
 )
 
 add_library(getter ${LIBGETTER_SOURCES} ${LIBGETTER_HEADERS})
-target_include_directories(getter PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(getter PUBLIC "${PROJECT_SOURCE_DIR}/include")
 target_link_libraries(getter PUBLIC ${LIBGETTER_DEPENDENCIES})
 
 # Force include common header
@@ -123,3 +128,6 @@ set_target_properties(getter PROPERTIES
   C_STANDARD 11 # TODO: convert the project to be C89 compatible
   POSITION_INDEPENDENT_CODE ${LIBGETTER_PIC}
 )
+
+# Prepare text files to be included as C strings
+incstr("db/sql/init.sql")

@@ -16,6 +16,7 @@ set(LIBGETTER_TESTS_SOURCES
   files/zip/box_info.cpp
   files/zip/box.cpp
   files/zip/release_extract.cpp
+  db/init.cpp
 )
 
 # Platform-specific source files
@@ -35,8 +36,6 @@ target_link_libraries(libgetter_test getter gtest_main)
 set_target_properties(libgetter_test PROPERTIES
   # For Windows: Test executable has to be in the same directory as DLL is
   RUNTIME_OUTPUT_DIRECTORY ${LIBGETTER_OUTDIR}
-
-  C_STANDARD 90
   CXX_STANDARD 17 # for std::filesystem
 )
 

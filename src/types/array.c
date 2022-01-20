@@ -55,6 +55,7 @@ void gtt_ptr_arr_resize(GttPtrArr *self, int nmemb) {
 
   self->nmemb = nmemb;
   self->arr = realloc(self->arr, nmemb * sizeof(void *));
+  gtt_ok();
 }
 
 void gtt_ptr_arr_delete_all(GttPtrArr self) {
