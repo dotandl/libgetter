@@ -13,11 +13,13 @@
 #include <sqlite3.h>
 
 #include <algorithm>
+#include <filesystem>
 #include <string>
 #include <vector>
 
 using std::string;
 using std::vector;
+namespace fs = std::filesystem;
 
 #define vector_has(vector, element) \
   (std::find((vector).begin(), (vector).end(), (element)) != (vector).end())
@@ -38,7 +40,7 @@ TEST(Database, Initializes) {
   ASSERT_FALSE(err);
 
   err = sqlite3_exec(
-      db, "SELECT COUNT(*), name FROM sqlite_schema WHERE type = 'table';", cb,
+      db, "SELECT COUNT(*), name FROM sqlite_master WHERE type = 'table';", cb,
       NULL, &errmsg);
   if (err) {
     sqlite3_free(errmsg);
@@ -50,6 +52,7 @@ TEST(Database, Initializes) {
     ;  // Wait
 
   sqlite3_close(db);
+  fs::remove("./getter.db");
 
   ASSERT_FALSE(cb_assertion_failed);
 }

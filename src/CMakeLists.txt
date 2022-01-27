@@ -32,6 +32,7 @@ set(LIBGETTER_SOURCES
 set(LIBGETTER_HEADERS
   # Headers WITHOUT corresponding source files
   getter.h
+  fs/resolve_path.h
 
   # Headers WITH corresponding source files
   box/info.h
@@ -125,7 +126,7 @@ set_target_properties(getter PROPERTIES
   LIBRARY_OUTPUT_DIRECTORY ${LIBGETTER_OUTDIR}
   RUNTIME_OUTPUT_DIRECTORY ${LIBGETTER_OUTDIR} # For Windows DLLs RUNTIME_... should be used
 
-  C_STANDARD 11 # TODO: convert the project to be C89 compatible
+  C_STANDARD 90 # TODO: convert the project to be C89 compatible
   POSITION_INDEPENDENT_CODE ${LIBGETTER_PIC}
 )
 

@@ -29,6 +29,7 @@ void gtt_db_init(const char *db_file) {
   err = sqlite3_exec(db, sql, NULL, NULL, &errmsg);
   if (err) {
     gtt_error(GTT_DB_ERROR, "Error initializing database");
+    sqlite3_free(errmsg);
     sqlite3_close(db);
     return;
   }
