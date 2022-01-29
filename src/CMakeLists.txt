@@ -25,6 +25,7 @@ set(LIBGETTER_SOURCES
   files/zip/box_info.c
   files/zip/box.c
   files/zip/release_extract.c
+  files/zip/release_info.c
   script/script_runner.c
   db/init.c
 )
@@ -52,6 +53,7 @@ set(LIBGETTER_HEADERS
   files/zip/box_info.h
   files/zip/box.h
   files/zip/release_extract.h
+  files/zip/release_info.h
   script/script_runner.h
   db/init.h
 )
