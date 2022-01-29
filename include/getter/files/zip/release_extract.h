@@ -12,6 +12,7 @@
 
 GTT_HEADER_BEGIN
 
+#include <getter/release/release.h>
 #include <zip.h>
 
 /**
@@ -20,16 +21,13 @@ GTT_HEADER_BEGIN
  * Release.
  *
  * \param zip Pointer to the zip Box object
- * \param version Version of the extracted Relese
- * \param platform Platform of the extracted Relese
- * \param arch Processor architecture of the extracted Relese
+ * \param release Release to be extracted
  * \param buf Buffer to write the path of the extracted Release to
  * \param bufsize Size of the `buf`
  * \returns The same pointer you pass as a `buf` parameter
  */
 GTT_ERROR_EMITTER GTT_API const char *gtt_zip_extract_release(
-    zip_t *zip, const char *version, const char *platform, const char *arch,
-    char *buf, size_t bufsize);
+    zip_t *zip, GttRelease *release, char *buf, size_t bufsize);
 
 GTT_HEADER_END
 

@@ -46,7 +46,7 @@ GttReleaseInfo *gtt_zip_read_release_info(zip_t *zip, GttRelease *release) {
   bufsize = file_stat.size + 1;
   buf = calloc(bufsize, sizeof(char));
 
-  status = zip_fread(zip, buf, bufsize - 1);
+  status = zip_fread(file, buf, bufsize - 1);
   if (status < 0) {
     gtt_error(
         GTT_ZIP_ERROR,

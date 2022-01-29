@@ -15,11 +15,9 @@
 #include <getter/types/string.h>
 #include <string.h>
 
-const char *gtt_zip_extract_release(zip_t *zip, const char *version,
-                                    const char *platform, const char *arch,
-                                    char *buf, size_t bufsize) {
+const char *gtt_zip_extract_release(zip_t *zip, GttRelease *release, char *buf,
+                                    size_t bufsize) {
   unsigned int i;
-  GttRelease *release;
 
   /* paths */
   char release_path[GTT_BUFLEN];      /* path to the release in zip */
@@ -48,26 +46,8 @@ const char *gtt_zip_extract_release(zip_t *zip, const char *version,
   /* error will be passed on */
   if (GTT_FAILED) return NULL;
 
-  /* find an appropriate release in the box */
-  release = NULL;
-  for (i = 0; i < box->releases.nmemb; i++) {
-    if (strcmp(((GttRelease *)box->releases.arr[i])->version, version) == 0 &&
-        strcmp(((GttRelease *)box->releases.arr[i])->platform, platform) == 0 &&
-        strcmp(((GttRelease *)box->releases.arr[i])->arch, arch) == 0) {
-      release = box->releases.arr[i];
-      break;
-    }
-  }
-
-  if (release == NULL) {
-    gtt_box_delete(box);
-
-    gtt_error(GTT_NOT_FOUND, "Specified Release has not been found in the Box");
-    return NULL;
-  }
-
-  snprintf(release_path, GTT_BUFLEN, "Releases/%s/%s/%s/", version, platform,
-           arch);
+  snprintf(release_path, GTT_BUFLEN, "Releases/%s/%s/%s/", release->version,
+           release->platform, release->arch);
 
   int entries = zip_get_num_entries(zip, 0);
   for (i = 0; i < entries; i++) {

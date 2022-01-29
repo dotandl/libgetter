@@ -30,9 +30,7 @@ TEST(ReleaseExtractor, ExtractsRelease) {
 
   char buf[GTT_BUFLEN];
   const char *res = gtt_zip_extract_release(
-      zip, ((GttRelease *)box->releases.arr[0])->version,
-      ((GttRelease *)box->releases.arr[0])->platform,
-      ((GttRelease *)box->releases.arr[0])->arch, buf, GTT_BUFLEN);
+      zip, (GttRelease *)box->releases.arr[0], buf, GTT_BUFLEN);
 
   ASSERT_FALSE(res == NULL);
   ASSERT_EQ(gtt_last_error.code, GTT_OK);
