@@ -42,7 +42,9 @@ char *gtt_mktmpdir(char *buf, size_t bufsize) {
 
   /* temp folder will be named getter-XXXXXX, where each X is a random character
    * (see mkdtemp(3)) */
-  snprintf(tmp_dir, GTT_BUFLEN, "%sgetter-XXXXXX", tmp_dir);
+  // snprintf(tmp_dir, GTT_BUFLEN, "%sgetter-XXXXXX", tmp_dir);
+  snprintf(tmp_dir + strlen(tmp_dir), GTT_BUFLEN - strlen(tmp_dir),
+           "getter-XXXXXX");
   mkdtemp(tmp_dir);
 
   snprintf(buf, bufsize, "%s", tmp_dir);

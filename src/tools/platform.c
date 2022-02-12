@@ -87,9 +87,15 @@ const char *gtt_get_arch(void) {
 }
 
 void gtt_mock_platform(const char *platform) {
-  snprintf(gtt_platform, GTT_BUFLEN, "%s", platform);
+  if (platform == NULL)
+    *gtt_platform = 0;
+  else
+    snprintf(gtt_platform, GTT_BUFLEN, "%s", platform);
 }
 
 void gtt_mock_arch(const char *arch) {
-  snprintf(gtt_arch, GTT_BUFLEN, "%s", arch);
+  if (arch == NULL)
+    *gtt_arch = 0;
+  else
+    snprintf(gtt_arch, GTT_BUFLEN, "%s", arch);
 }

@@ -3,7 +3,7 @@
  * | libgetter - part of Getter Package Manager               |
  * | Licensed under the GNU GPLv3 License. See LICENSE.txt    |
  * |                                                          |
- * | Copyright (C) 2021 dotandl                               |
+ * | Copyright (C) 2021-2022 dotandl                          |
  * +----------------------------------------------------------+
  */
 
@@ -57,13 +57,14 @@ GttReleaseInfo *gtt_zip_read_release_info(zip_t *zip, GttRelease *release) {
   }
 
   zip_fclose(file);
-  free(buf);
 
   ri = gtt_release_info_new_from_json(buf);
   if (GTT_FAILED) {
     /* Pass the error on */
     return NULL;
   }
+
+  free(buf);
 
   gtt_ok();
   return ri;

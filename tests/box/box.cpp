@@ -83,4 +83,7 @@ TEST(Box, IsAbleToSearchForRelease) {
   EXPECT_STREQ(release->arch, "arm64");
 
   gtt_box_delete(box);
+
+  gtt_mock_platform(NULL);
+  gtt_mock_arch(NULL);
 }
