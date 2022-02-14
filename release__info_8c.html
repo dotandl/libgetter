@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libgetter: include/getter/files/zip Directory Reference</title>
+<title>libgetter: src/files/zip/release_info.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('dir_bba5d1da5fc2a1ac9e90bb2571c0c593.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('release__info_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -83,30 +83,67 @@ $(document).ready(function(){initNavTree('dir_bba5d1da5fc2a1ac9e90bb2571c0c593.h
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">zip Directory Reference</div>  </div>
+<div class="title">release_info.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
-Files</h2></td></tr>
-<tr class="memitem:files_2zip_2box_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="files_2zip_2box_8h.html">box.h</a> <a href="files_2zip_2box_8h_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:box__info_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box__info_8h.html">box_info.h</a> <a href="box__info_8h_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:package_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="package_8h.html">package.h</a> <a href="package_8h_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:release__extract_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release__extract_8h.html">release_extract.h</a> <a href="release__extract_8h_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:release__info_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release__info_8h.html">release_info.h</a> <a href="release__info_8h_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<div class="textblock"><code>#include &lt;<a class="el" href="release__info_8h_source.html">getter/files/zip/release_info.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="error_8h_source.html">getter/tools/error.h</a>&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a88c15b9ffb0617e069c8b8c5f3efb111"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="release__info_8c.html#a88c15b9ffb0617e069c8b8c5f3efb111">gtt_zip_read_release_info</a> (zip_t *zip, <a class="el" href="struct_gtt_release.html">GttRelease</a> *release)</td></tr>
+<tr class="separator:a88c15b9ffb0617e069c8b8c5f3efb111"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a88c15b9ffb0617e069c8b8c5f3efb111"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88c15b9ffb0617e069c8b8c5f3efb111">&#9670;&nbsp;</a></span>gtt_zip_read_release_info()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a>* gtt_zip_read_release_info </td>
+          <td>(</td>
+          <td class="paramtype">zip_t *&#160;</td>
+          <td class="paramname"><em>zip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_gtt_release.html">GttRelease</a> *&#160;</td>
+          <td class="paramname"><em>release</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reads the GetterRelease.json file of <code>release</code> from the <code>zip</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zip</td><td>Zip Box to read the <a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> from. </td></tr>
+    <tr><td class="paramname">release</td><td>Release to retrieve info </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Representation of GetterRelease.json read from the zip Box. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_gtt_release_info.html">GttReleaseInfo</a> </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c2c6a4f8373d77330c39958ea52f8376.html">getter</a></li><li class="navelem"><a class="el" href="dir_180166150afbd424d12170d6971079a1.html">files</a></li><li class="navelem"><a class="el" href="dir_bba5d1da5fc2a1ac9e90bb2571c0c593.html">zip</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_251697ed71d3107a084c4be76de6bea7.html">files</a></li><li class="navelem"><a class="el" href="dir_dcfa6af7b0098dbb525c8a6eaf207acd.html">zip</a></li><li class="navelem"><a class="el" href="release__info_8c.html">release_info.c</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

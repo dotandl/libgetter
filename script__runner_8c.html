@@ -84,20 +84,55 @@ $(document).ready(function(){initNavTree('script__runner_8c.html',''); initResiz
 
 <div class="header">
   <div class="summary">
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">script_runner.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="script__runner_8h_source.html">getter/script/script_runner.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="string_8h_source.html">getter/types/string.h</a>&gt;</code><br />
 <code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="sh_8h_source.html">getter/script/runners/sh.h</a>&gt;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a9a68ae5de5b067b90e98753db3d28ca4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <a class="el" href="struct_gtt_script_runner.html">GttScriptRunner</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="script__runner_8c.html#a9a68ae5de5b067b90e98753db3d28ca4">gtt_script_runner_get</a> (const char *script_file)</td></tr>
+<tr class="separator:a9a68ae5de5b067b90e98753db3d28ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a042ca445f7f0906bb289829e65482542"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_gtt_script_runner.html">GttScriptRunner</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="script__runner_8c.html#a042ca445f7f0906bb289829e65482542">gtt_script_runners</a> []</td></tr>
 <tr class="separator:a042ca445f7f0906bb289829e65482542"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a9a68ae5de5b067b90e98753db3d28ca4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a68ae5de5b067b90e98753db3d28ca4">&#9670;&nbsp;</a></span>gtt_script_runner_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <a class="el" href="struct_gtt_script_runner.html">GttScriptRunner</a>* gtt_script_runner_get </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>script_file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets an appriopriate script runner depending on script file's extension.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">script_file</td><td>Name of the script file for which the script runner should be get. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The script runner to be used with the script or NULL if no script runner was found. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_gtt_script_runner.html">GttScriptRunner</a> </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="a042ca445f7f0906bb289829e65482542"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a042ca445f7f0906bb289829e65482542">&#9670;&nbsp;</a></span>gtt_script_runners</h2>

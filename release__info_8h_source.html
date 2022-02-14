@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libgetter: include/getter/files/zip/release_extract.h Source File</title>
+<title>libgetter: include/getter/files/zip/release_info.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('release__extract_8h_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('release__info_8h_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -84,45 +84,48 @@ $(document).ready(function(){initNavTree('release__extract_8h_source.html',''); 
 
 <div class="header">
   <div class="headertitle">
-<div class="title">release_extract.h</div>  </div>
+<div class="title">release_info.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="release__extract_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="release__info_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * +----------------------------------------------------------+</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * | libgetter - part of Getter Package Manager               |</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * | Licensed under the GNU GPLv3 License. See LICENSE.txt    |</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * |                                                          |</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * | Copyright (C) 2021 dotandl                               |</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * | Copyright (C) 2021-2022 dotandl                          |</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * +----------------------------------------------------------+</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef INCLUDE_GETTER_FILES_ZIP_RELEASE_EXTRACT_H_</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define INCLUDE_GETTER_FILES_ZIP_RELEASE_EXTRACT_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef INCLUDE_GETTER_FILES_ZIP_RELEASE_INFO_H_</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define INCLUDE_GETTER_FILES_ZIP_RELEASE_INFO_H_</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<a class="code" href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="release_8h.html">getter/release/release.h</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;zip.h&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<a class="code" href="common_8h_8in.html#a5923a3b909aa66a6b11c16ea830b4901">GTT_ERROR_EMITTER</a> <a class="code" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="release__extract_8h.html#a001562d2766d90204fc49dcd8907a57b">gtt_zip_extract_release</a>(</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    zip_t *zip, <a class="code" href="struct_gtt_release.html">GttRelease</a> *release, <span class="keywordtype">char</span> *buf, <span class="keywordtype">size_t</span> bufsize);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="release_2info_8h.html">getter/release/info.h</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="release_8h.html">getter/release/release.h</a>&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;zip.h&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<a class="code" href="common_8h_8in.html#a5923a3b909aa66a6b11c16ea830b4901">GTT_ERROR_EMITTER</a> <a class="code" href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a> <a class="code" href="struct_gtt_release_info.html">GttReleaseInfo</a> *<a class="code" href="release__info_8h.html#aea72833fa8f5c926a3a14bcb122e428d">gtt_zip_read_release_info</a>(</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    zip_t *zip, <a class="code" href="struct_gtt_release.html">GttRelease</a> *release);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<a class="code" href="common_8h_8in.html#a5c91347ebb3fc214a032f73b9c3ea77a">GTT_HEADER_END</a></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<a class="code" href="common_8h_8in.html#a5c91347ebb3fc214a032f73b9c3ea77a">GTT_HEADER_END</a></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* INCLUDE_GETTER_FILES_ZIP_RELEASE_EXTRACT_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* INCLUDE_GETTER_FILES_ZIP_RELEASE_INFO_H_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="arelease_8h_html"><div class="ttname"><a href="release_8h.html">release.h</a></div></div>
+<div class="ttc" id="astruct_gtt_release_info_html"><div class="ttname"><a href="struct_gtt_release_info.html">GttReleaseInfo</a></div><div class="ttdef"><b>Definition:</b> info.h:18</div></div>
 <div class="ttc" id="acommon_8h_8in_html_a5923a3b909aa66a6b11c16ea830b4901"><div class="ttname"><a href="common_8h_8in.html#a5923a3b909aa66a6b11c16ea830b4901">GTT_ERROR_EMITTER</a></div><div class="ttdeci">#define GTT_ERROR_EMITTER</div><div class="ttdef"><b>Definition:</b> common.h.in:62</div></div>
 <div class="ttc" id="acommon_8h_8in_html_a82a951c8960c7713f288f5a605d19363"><div class="ttname"><a href="common_8h_8in.html#a82a951c8960c7713f288f5a605d19363">GTT_API</a></div><div class="ttdeci">#define GTT_API</div><div class="ttdef"><b>Definition:</b> common.h.in:26</div></div>
 <div class="ttc" id="astruct_gtt_release_html"><div class="ttname"><a href="struct_gtt_release.html">GttRelease</a></div><div class="ttdef"><b>Definition:</b> release.h:18</div></div>
-<div class="ttc" id="arelease__extract_8h_html_a001562d2766d90204fc49dcd8907a57b"><div class="ttname"><a href="release__extract_8h.html#a001562d2766d90204fc49dcd8907a57b">gtt_zip_extract_release</a></div><div class="ttdeci">GTT_HEADER_BEGIN GTT_ERROR_EMITTER const GTT_API char * gtt_zip_extract_release(zip_t *zip, GttRelease *release, char *buf, size_t bufsize)</div><div class="ttdef"><b>Definition:</b> release_extract.c:18</div></div>
 <div class="ttc" id="acommon_8h_8in_html_a5c91347ebb3fc214a032f73b9c3ea77a"><div class="ttname"><a href="common_8h_8in.html#a5c91347ebb3fc214a032f73b9c3ea77a">GTT_HEADER_END</a></div><div class="ttdeci">#define GTT_HEADER_END</div><div class="ttdef"><b>Definition:</b> common.h.in:36</div></div>
+<div class="ttc" id="arelease__info_8h_html_aea72833fa8f5c926a3a14bcb122e428d"><div class="ttname"><a href="release__info_8h.html#aea72833fa8f5c926a3a14bcb122e428d">gtt_zip_read_release_info</a></div><div class="ttdeci">GTT_HEADER_BEGIN GTT_ERROR_EMITTER GTT_API GttReleaseInfo * gtt_zip_read_release_info(zip_t *zip, GttRelease *release)</div><div class="ttdef"><b>Definition:</b> release_info.c:15</div></div>
 <div class="ttc" id="acommon_8h_8in_html_aa44122a202af0ba9ded93e22ec8640c4"><div class="ttname"><a href="common_8h_8in.html#aa44122a202af0ba9ded93e22ec8640c4">GTT_HEADER_BEGIN</a></div><div class="ttdeci">#define GTT_HEADER_BEGIN</div><div class="ttdef"><b>Definition:</b> common.h.in:34</div></div>
+<div class="ttc" id="arelease_2info_8h_html"><div class="ttname"><a href="release_2info_8h.html">info.h</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c2c6a4f8373d77330c39958ea52f8376.html">getter</a></li><li class="navelem"><a class="el" href="dir_180166150afbd424d12170d6971079a1.html">files</a></li><li class="navelem"><a class="el" href="dir_bba5d1da5fc2a1ac9e90bb2571c0c593.html">zip</a></li><li class="navelem"><a class="el" href="release__extract_8h.html">release_extract.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c2c6a4f8373d77330c39958ea52f8376.html">getter</a></li><li class="navelem"><a class="el" href="dir_180166150afbd424d12170d6971079a1.html">files</a></li><li class="navelem"><a class="el" href="dir_bba5d1da5fc2a1ac9e90bb2571c0c593.html">zip</a></li><li class="navelem"><a class="el" href="release__info_8h.html">release_info.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
