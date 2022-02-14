@@ -17,11 +17,10 @@ set(LIBGETTER_TESTS_SOURCES
   files/zip/box.cpp
   files/zip/release_extract.cpp
   files/zip/package.cpp
+  files/zip/release_info.cpp
   db/init.cpp
   script/script_runner.cpp
 )
-
-# TODO: files/zip/release_info test
 
 # Platform-specific source files
 if(WIN32)

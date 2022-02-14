@@ -30,7 +30,7 @@ GttReleaseInfo *gtt_zip_read_release_info(zip_t *zip, GttRelease *release) {
            release->version, release->platform, release->arch);
 
   status = zip_stat(zip, ri_json_path, 0, &file_stat);
-  if (status) {
+  if (status != 0) {
     gtt_error(GTT_ZIP_ERROR,
               "Error reading info about GetterRelease.json file");
     return NULL;
