@@ -18,6 +18,7 @@ set(LIBGETTER_TESTS_SOURCES
   files/zip/release_extract.cpp
   files/zip/package.cpp
   db/init.cpp
+  script/script_runner.cpp
 )
 
 # TODO: files/zip/release_info test

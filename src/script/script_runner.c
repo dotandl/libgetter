@@ -8,6 +8,7 @@
  */
 
 #include <getter/script/script_runner.h>
+#include <getter/types/string.h>
 #include <stddef.h>
 
 #ifdef _WIN32
@@ -24,3 +25,18 @@ GttScriptRunner *gtt_script_runners[] = {
 #endif
     NULL,
 };
+
+GTT_API GttScriptRunner *gtt_script_runner_get(const char *script_file) {
+  GttScriptRunner **sr;
+  size_t i;
+
+  for (sr = gtt_script_runners; sr != NULL; sr++) {
+    for (i = 0; i < (*sr)->n_extensions; i++) {
+      if (gtt_str_ends_with(script_file, (*sr)->extensions[i])) {
+        return *sr;
+      }
+    }
+  }
+
+  return NULL;
+}

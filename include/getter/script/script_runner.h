@@ -40,6 +40,17 @@ typedef struct GttScriptRunner {
  */
 GTT_API extern GttScriptRunner *gtt_script_runners[];
 
+/**
+ * Gets an appriopriate script runner depending on script file's extension.
+ *
+ * \param script_file Name of the script file for which the script runner should
+ * be get.
+ * \returns The script runner to be used with the script or NULL if no
+ * script runner was found.
+ * \see GttScriptRunner
+ */
+GTT_API GttScriptRunner *gtt_script_runner_get(const char *script_file);
+
 GTT_HEADER_END
 
 #endif /* INCLUDE_GETTER_SCRIPT_SCRIPT_RUNNER_H_ */
