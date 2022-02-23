@@ -46,6 +46,13 @@ void gtt_zip_package_install(zip_t *zip) {
     return;
   }
 
+  if (release == NULL) {
+    gtt_box_delete(box);
+    gtt_error(GTT_NOT_FOUND,
+              "Could not found a Release targetting the current platform");
+    return;
+  }
+
   ri = gtt_zip_read_release_info(zip, release);
   if (GTT_FAILED) {
     gtt_box_delete(box);
