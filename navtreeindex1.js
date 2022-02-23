@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"struct_gtt_box_info.html#af3a9dab378d7ab987ab1364ffebb47b7":[0,0,1,16],
+"struct_gtt_box_info.html#aff63d2d8592bbf5f82706a0bcb02ba70":[0,0,1,8],
 "struct_gtt_c_str_arr.html":[0,0,2],
 "struct_gtt_c_str_arr.html#a68d8edfbf22596fed60098e92af97726":[0,0,2,0],
 "struct_gtt_c_str_arr.html#aaafe533af923d12635efda46b096f001":[0,0,2,1],
