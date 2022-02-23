@@ -31,6 +31,8 @@ typedef enum GttErrorCode {
   GTT_ARR_RESIZE_FAILED,  ///< Could not resize the array (new nmemb is too
                           ///< small).
   GTT_DB_ERROR,           ///< Error opening/querying internal database.
+  GTT_INCOMPATIBLE_SCRIPT_ERROR,  ///< Script runner not found.
+  GTT_SCRIPT_ERROR,               ///< Error running GetterScript.
 } GttErrorCode;
 
 /** Representation of an error. */

@@ -10,5 +10,5 @@
 prepare() {
   echo "prepare()"
   pwd
-  return 2
+  exit 2
 }

@@ -11,4 +11,4 @@ goto %1
 :prepare
   echo :prepare
   cd
-  exit /b 2
+  exit 2

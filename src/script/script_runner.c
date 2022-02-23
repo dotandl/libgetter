@@ -26,7 +26,7 @@ GttScriptRunner *gtt_script_runners[] = {
     NULL,
 };
 
-GTT_API GttScriptRunner *gtt_script_runner_get(const char *script_file) {
+GttScriptRunner *gtt_script_runner_get(const char *script_file) {
   GttScriptRunner **sr;
   size_t i;
 
